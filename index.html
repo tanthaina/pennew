@@ -99,6 +99,11 @@
         .ball-btn.active { background: #4f46e5; border-color: #4338ca; color: white; transform: scale(1.08); box-shadow: 0 3px 8px rgba(79, 70, 229, 0.4); }
         .quick-pad-chip { display: inline-block; background: white; border: 1px solid #cbd5e1; color: #475569; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-bottom: 4px; margin-right: 4px; }
         .quick-pad-chip:hover { background: #e0e7ff; color: #4338ca; border-color: #a5b4fc; }
+        /* 📱 ปรับขนาดสำหรับมือถือโดยเฉพาะ */
+        @media (max-width: 640px) {
+            .court-input { font-size: 13px !important; padding: 10px 24px 10px 4px !important; letter-spacing: -0.5px; }
+            .court-grid { gap: 16px 8px !important; }
+        }
     </style>
 </head>
 <body>
@@ -448,7 +453,11 @@ function renderQuickPad(status) {
     let list = [...state.masterPlayerList].sort((a,b)=>a.localeCompare(b,'th'));
     if(isY && cText) list = list.filter(n=>{ let s=n.includes(': ')?n.split(': ')[1].toLowerCase():n.toLowerCase(); return s.includes(cText)||cText.includes(s); });
     
-    pad.innerHTML = list.map(n=>`<div class="quick-pad-chip" onclick="selectPad('${escapeHtml(n)}', '${targetId}')">${escapeHtml(n)}</div>`).join('');
+   pad.innerHTML = list.map(n=>{
+        let sh = n.includes(': ')?n.split(': ')[1]:n; let px = n.includes(': ')?n.split(': ')[0]:'';
+        let display = px ? `<span class="text-sm font-bold text-gray-800">${escapeHtml(sh)}</span> <span class="text-[10px] text-gray-400">(${escapeHtml(px)})</span>` : `<span class="text-sm font-bold text-gray-800">${escapeHtml(sh)}</span>`;
+        return `<div class="quick-pad-chip" onclick="selectPad('${escapeHtml(n)}', '${targetId}')">${display}</div>`;
+    }).join('');
 }
 function selectPad(name, targetId) {
     document.getElementById(targetId).value = name; scanPenInput();
@@ -524,7 +533,11 @@ function renderDaily() {
     
     // 2. Dropdowns
     const prs = dd.players.filter(p=>p.present).sort((a,b)=>a.name.localeCompare(b.name,'th'));
-    const opts = '<option value="">-- เลือก --</option>' + prs.map(p=>`<option value="${escapeHtml(p.name)}">${escapeHtml(p.name)}</option>`).join('');
+    const opts = '<option value="">-- เลือก --</option>' + prs.map(p=>{
+        let n = p.name; let sh = n.includes(': ')?n.split(': ')[1]:n; let px = n.includes(': ')?n.split(': ')[0]:'';
+        let display = px ? `${sh} (${px})` : sh;
+        return `<option value="${escapeHtml(n)}">${escapeHtml(display)}</option>`;
+    }).join('');
     ['player1','player2','player3','player4'].forEach(id=>{ const el=document.getElementById(id); el.innerHTML=opts; el.value=currentGameSelection[id]||''; });
 
     // 3 & 4. Games & Summary
@@ -533,7 +546,9 @@ function renderDaily() {
     document.getElementById('gamesList').innerHTML = dd.games.map((g,i)=>{
         let c = ((g.shuttlecocksUsed||0)*(g.shuttlecockPrice||0)/4).toFixed(2);
         return `<div class="game-card p-2 text-sm"><div class="flex justify-between font-bold mb-1"><span>เกม ${i+1}</span><button onclick="getCurrentDailyData().games.splice(${i},1); updateAndRender();" class="text-red-500"><i class="fas fa-trash"></i></button></div>
-        <div class="text-blue-600">A: ${g.players[0]}, ${g.players[1]}</div><div class="text-red-600">B: ${g.players[2]}, ${g.players[3]}</div>
+        let fN = n => { if(!n) return '-'; let sh = n.includes(': ')?n.split(': ')[1]:n; let px = n.includes(': ')?n.split(': ')[0]:''; return px ? `${sh}(${px})` : sh; };
+        <div class="text-blue-600">A: ${escapeHtml(fN(g.players[0]))}, ${escapeHtml(fN(g.players[1]))}</div>
+        <div class="text-red-600">B: ${escapeHtml(fN(g.players[2]))}, ${escapeHtml(fN(g.players[3]))}</div>
         <div class="text-gray-500 text-xs mt-1">ลูก ${g.shuttlecockSpeeds.join(',')} (${c} บ./คน)</div></div>`;
     }).join('');
 
