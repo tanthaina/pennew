@@ -2480,82 +2480,66 @@ function sendPersonalLine(name, balance) {
 // ============================================================
 // 🎙️ VOICE COMMAND (ระบบสั่งทัพด้วยเสียง)
 // ============================================================
-function startVoiceCommand() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-        Swal.fire('ไม่รองรับ', 'เบราว์เซอร์ของคุณไม่รองรับการสั่งงานด้วยเสียง แนะนำให้ใช้ Chrome ครับ', 'error');
-        return;
-    }
-    
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'th-TH';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-    
-    Swal.fire({
-        title: '🎙️ กำลังฟังเสียงคุณ...',
-        html: 'พูดชื่อ 4 คนเรียงกันได้เลยครับ<br><span style="font-size:12px;color:#64748b;">(พูดจบแล้วให้กดปุ่มด้านล่าง 👇)</span>',
-        showConfirmButton: true,
-        confirmButtonText: '<i class="fas fa-stop-circle"></i> พูดจบแล้ว',
-        confirmButtonColor: '#1d4ed8',
-        showCancelButton: true,
-        cancelButtonText: 'ยกเลิก',
-        allowOutsideClick: false,
-        didOpen: function() {
-            Swal.showLoading();
-            recognition.start();
-        }
-    }).then(function(result) {
-        // ถ้ายกเลิก หรือกดหยุดฟัง ให้สั่งตัดการทำงานไมค์ทันที
-        if (result.isConfirmed) {
-            recognition.stop(); // บังคับให้เบราว์เซอร์ประมวลผลคำที่ได้ยินทันที
-        } else if (result.isDismissed) {
-            recognition.abort(); // ยกเลิกการฟัง
+function processVoiceCommand(text) {
+    let allAliases = [];
+    const autoCorrectMap = { 'แกน':'แทน', 'หนู':'หมู', 'เบน':'แมน', 'สากล':'สากดา', 'พี่ปุ้ย':'พี่ปุ๋ย' };
+
+    // 1. สร้างตะแกรงร่อนชื่อเพื่อนทั้งหมดที่มีในก๊วน
+    state.masterPlayerList.forEach(function(fullName) {
+        let shortName = fullName.includes(': ') ? fullName.split(': ')[1] : fullName;
+        allAliases.push(shortName);
+    });
+    Object.keys(autoCorrectMap).forEach(function(k) { allAliases.push(k); });
+    Object.values(autoCorrectMap).forEach(function(v) { allAliases.push(v); });
+
+    // กรองคำซ้ำและเรียงจากคำยาวไปสั้น (เพื่อให้มันจับคำว่า "พี่ปุ๋ย" ก่อนคำว่า "ปุ๋ย")
+    allAliases = [...new Set(allAliases)].filter(Boolean);
+    allAliases.sort(function(a, b) { return b.length - a.length; });
+
+    let foundPositions = [];
+    let tempText = text;
+
+    // 2. กวาดหา "ชื่อที่สะกดตรงเป๊ะ" จากประโยคที่พูด
+    allAliases.forEach(function(alias) {
+        let index = tempText.indexOf(alias);
+        while (index !== -1) {
+            // จำตำแหน่งเอาไว้ว่าชื่อนี้พูดออกมาตอนไหน (Index เท่าไหร่)
+            foundPositions.push({ name: alias, index: index });
+            // เจาะรูคำที่หาเจอออกไป เพื่อรักษาตำแหน่งคำข้างหลังไว้
+            tempText = tempText.substring(0, index) + ' '.repeat(alias.length) + tempText.substring(index + alias.length);
+            index = tempText.indexOf(alias);
         }
     });
-    
-    recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        Swal.close();
-        processVoiceCommand(transcript);
-    };
-    
-    recognition.onerror = function(event) {
-        Swal.close();
-        if (event.error !== 'aborted' && event.error !== 'no-speech') {
-            Swal.fire('ข้อผิดพลาด', 'ฟังไม่ถนัด กรุณาลองใหม่อีกครั้งครับ', 'warning');
-        }
-    };
 
-    // 🛡️ ป้องกันบั๊กกล่องโหลดค้าง ถ้าไมค์ดับไปเองเงียบๆ
-    recognition.onend = function() {
-        const swalTitle = Swal.getTitle();
-        if (Swal.isVisible() && swalTitle && swalTitle.textContent === '🎙️ กำลังฟังเสียงคุณ...') {
-            Swal.close();
-        }
-    };
-}
+    // 3. กวาดล้างคำขยะและคำสร้อยที่ STT ชอบแถมมา
+    let noiseRegex = /ทีม 1|ทีม 2|ทีมหนึ่ง|ทีมสอง|ทีมเอ|ทีมบี|คู่กับ|และ|กับ|คู่|เจอ|ปะทะ|ฝั่ง|ทาง|ครับ|ค่ะ|จ้ะ|จ้า|เอ่อ|อ่า|อืม|คือ|แบบว่า/g;
+    let leftoverText = tempText.replace(noiseRegex, ' ').replace(/\s+/g, ' ').trim();
+    let leftoverWords = leftoverText.split(' ').filter(Boolean);
 
-function processVoiceCommand(text) {
-    // 1. ตัดคำเชื่อมขยะที่คนมักจะพูดติดปากออกไป
-    let cleanText = text.replace(/ทีมเอ|ทีมบี|คู่กับ|และ|กับ|คู่|เจอ/g, ' ').replace(/\s+/g, ' ').trim();
-    let words = cleanText.split(' ');
-    
-    // 2. ล้างกล่องเก่าให้สะอาดก่อน
+    // 4. ถ้ามีคำที่ STT ฟังเพี้ยน (Fuzzy) หลงเหลืออยู่ ให้เก็บตกมาด้วย
+    leftoverWords.forEach(function(word) {
+        if (word.length >= 2) { // ไม่เอาคำพยางค์เดียวประหลาดๆ
+            let idx = text.indexOf(word);
+            foundPositions.push({ name: word, index: idx !== -1 ? idx : 999 });
+        }
+    });
+
+    // 5. 🎯 เรียงคิวชื่อทั้งหมดตาม "ลำดับการพูด" จากซ้ายไปขวา
+    foundPositions.sort(function(a, b) { return a.index - b.index; });
+    let finalNames = foundPositions.map(function(item) { return item.name; });
+
+    // 6. เทรายชื่อลง 4 กล่องตามลำดับเป๊ะๆ
     ['penP1', 'penP2', 'penP3', 'penP4'].forEach(function(id) { document.getElementById(id).value = ''; });
-    
-    // 3. เอาคำที่ได้ยินไปยัดลงกล่องเรียงตามลำดับ
-    if(words[0]) document.getElementById('penP1').value = words[0];
-    if(words[1]) document.getElementById('penP2').value = words[1];
-    if(words[2]) document.getElementById('penP3').value = words[2];
-    if(words[3]) document.getElementById('penP4').value = words[3];
-    
-    Swal.fire({ icon: 'success', title: 'รับเสียงสำเร็จ!', text: `ระบบได้ยินว่า: "${text}"`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-    
-    // 4. สั่งให้กระดานสแกนตรวจเช็คสีไฟทันที
-    scanPenInput(); 
-}
+    if(finalNames[0]) document.getElementById('penP1').value = finalNames[0];
+    if(finalNames[1]) document.getElementById('penP2').value = finalNames[1];
+    if(finalNames[2]) document.getElementById('penP3').value = finalNames[2];
+    if(finalNames[3]) document.getElementById('penP4').value = finalNames[3];
 
+    Swal.fire({ icon: 'success', title: 'จัดทีมตามเสียงสั่ง!', text: `ได้ยินว่า: "${text}"`, toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+
+    // 7. ปลุกสมองกลให้ประเมินไฟสัญญาณและหาคนชื่อซ้ำอัตโนมัติ
+    scanPenInput();
+}
 // ============================================================
 // 🛡️ INITIALIZATION & EVENT BINDING (Safe Bind)
 // ============================================================
