@@ -2494,12 +2494,23 @@ function startVoiceCommand() {
     
     Swal.fire({
         title: '🎙️ กำลังฟังเสียงคุณ...',
-        html: 'พูดชื่อ 4 คนเรียงกันได้เลยครับ<br><span style="font-size:12px;color:#64748b;">(เช่น "ต่อ แมน หมู แทน")</span>',
-        showConfirmButton: false,
+        html: 'พูดชื่อ 4 คนเรียงกันได้เลยครับ<br><span style="font-size:12px;color:#64748b;">(พูดจบแล้วให้กดปุ่มด้านล่าง 👇)</span>',
+        showConfirmButton: true,
+        confirmButtonText: '<i class="fas fa-stop-circle"></i> พูดจบแล้ว',
+        confirmButtonColor: '#1d4ed8',
+        showCancelButton: true,
+        cancelButtonText: 'ยกเลิก',
         allowOutsideClick: false,
         didOpen: function() {
             Swal.showLoading();
             recognition.start();
+        }
+    }).then(function(result) {
+        // ถ้ายกเลิก หรือกดหยุดฟัง ให้สั่งตัดการทำงานไมค์ทันที
+        if (result.isConfirmed) {
+            recognition.stop(); // บังคับให้เบราว์เซอร์ประมวลผลคำที่ได้ยินทันที
+        } else if (result.isDismissed) {
+            recognition.abort(); // ยกเลิกการฟัง
         }
     });
     
@@ -2511,8 +2522,16 @@ function startVoiceCommand() {
     
     recognition.onerror = function(event) {
         Swal.close();
-        if (event.error !== 'aborted') {
-            Swal.fire('ข้อผิดพลาด', 'ฟังไม่ถนัด หรือลืมเปิดสิทธิ์ไมโครโฟนครับ ลองใหม่อีกครั้ง', 'warning');
+        if (event.error !== 'aborted' && event.error !== 'no-speech') {
+            Swal.fire('ข้อผิดพลาด', 'ฟังไม่ถนัด กรุณาลองใหม่อีกครั้งครับ', 'warning');
+        }
+    };
+
+    // 🛡️ ป้องกันบั๊กกล่องโหลดค้าง ถ้าไมค์ดับไปเองเงียบๆ
+    recognition.onend = function() {
+        const swalTitle = Swal.getTitle();
+        if (Swal.isVisible() && swalTitle && swalTitle.textContent === '🎙️ กำลังฟังเสียงคุณ...') {
+            Swal.close();
         }
     };
 }
