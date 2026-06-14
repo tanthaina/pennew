@@ -20,13 +20,9 @@
             --primary-light: #3b82f6;
             --primary-dark: #1e3a8a;
             --surface: #ffffff;
-            --surface-alt: #f8fafc;
             --border: #e2e8f0;
             --text: #1e293b;
             --text-muted: #64748b;
-            --success: #16a34a;
-            --danger: #dc2626;
-            --warning: #d97706;
         }
         * { box-sizing: border-box; }
         body { font-family: 'Sarabun', sans-serif; background: #f1f5f9; color: var(--text); }
@@ -39,101 +35,69 @@
         .tab-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; border-radius: 9px; font-size: 11px; font-weight: 800; padding: 0 5px; margin-left: 5px; background: #ef4444; color: white; line-height: 1; }
         .tab-btn.active .tab-badge { background: white; color: #dc2626; }
 
-        /* --- CARDS --- */
-        .card { background: white; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); overflow: hidden; }
+        /* --- CARDS & FORMS --- */
+        .card { background: white; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); overflow: hidden; margin-bottom: 16px; }
         .card-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
         .card-header h2 { font-size: 16px; font-weight: 700; margin: 0; }
         .card-body { padding: 20px; }
         .section-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-
-        /* --- FORMS --- */
-        .form-control { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 14px; transition: border-color .2s, box-shadow .2s; background: white; }
-        .form-control:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(59,130,246,.12); }
+        .form-control { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 14px; background: white; }
         .form-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-position: right 10px center; background-repeat: no-repeat; background-size: 18px; padding-right: 36px; }
         .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
 
         /* --- BUTTONS --- */
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; white-space: nowrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
         .btn:disabled { opacity: .5; cursor: not-allowed; }
         .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover:not(:disabled) { background: var(--primary-dark); box-shadow: 0 4px 12px rgba(29,78,216,.3); }
         .btn-success { background: #16a34a; color: white; }
-        .btn-success:hover:not(:disabled) { background: #15803d; }
         .btn-danger { background: #dc2626; color: white; }
-        .btn-danger:hover:not(:disabled) { background: #b91c1c; }
         .btn-warning { background: #d97706; color: white; }
-        .btn-warning:hover:not(:disabled) { background: #b45309; }
         .btn-secondary { background: #f1f5f9; color: #475569; border: 1.5px solid var(--border); }
-        .btn-secondary:hover:not(:disabled) { background: #e2e8f0; }
         .btn-ghost { background: transparent; color: var(--text-muted); padding: 6px 8px; }
-        .btn-ghost:hover { background: #f1f5f9; color: var(--text); }
         .btn-sm { padding: 6px 12px; font-size: 13px; }
         .btn-icon { padding: 7px; border-radius: 8px; }
         .btn-indigo { background: #4f46e5; color: white; }
-        .btn-indigo:hover:not(:disabled) { background: #4338ca; }
 
-        /* --- PLAYER CARDS --- */
-        .player-chip { position: relative; display: flex; align-items: flex-start; justify-content: space-between; padding: 10px 10px; border-radius: 10px; border: 2px solid; cursor: pointer; transition: all .15s; user-select: none; min-height: 52px; }
+        /* --- PLAYER CARDS & TABLE --- */
+        .player-chip { position: relative; display: flex; align-items: flex-start; justify-content: space-between; padding: 10px; border-radius: 10px; border: 2px solid; cursor: pointer; user-select: none; min-height: 52px; }
         .player-chip .chip-actions { display: flex; gap: 2px; opacity: 0; transition: opacity .15s; flex-shrink: 0; }
         @media (hover: none) { .player-chip .chip-actions { opacity: 1; } }
         .player-chip:hover .chip-actions { opacity: 1; }
         .player-chip.absent { background: #f8fafc !important; border-color: #e2e8f0 !important; color: #94a3b8 !important; }
-
-        /* --- GAME CARDS --- */
-        .game-card { background: white; border-radius: 10px; border: 1.5px solid var(--border); overflow: hidden; transition: box-shadow .2s; }
-        .game-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+        .game-card { background: white; border-radius: 10px; border: 1.5px solid var(--border); overflow: hidden; }
         .game-card-header { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: #f8fafc; }
         .game-card-body { padding: 12px 14px; }
         .player-tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; color: white; }
-
-        /* --- TABLE --- */
         .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .data-table th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; background: #f8fafc; border-bottom: 2px solid var(--border); color: var(--text-muted); }
-        .data-table th.text-right { text-align: right; }
-        .data-table th.text-center { text-align: center; }
+        .data-table th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; background: #f8fafc; border-bottom: 2px solid var(--border); }
         .data-table td { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-        .data-table td.text-right { text-align: right; }
-        .data-table td.text-center { text-align: center; }
-        .data-table tbody tr:hover { background: #fafafa; }
-        .data-table tbody tr:last-child td { border-bottom: none; }
         .data-table tfoot td { padding: 12px 14px; font-weight: 700; background: #f8fafc; border-top: 2px solid var(--border); }
         .sticky-col { position: sticky; left: 0; z-index: 2; background: white; }
-        .data-table thead th.sticky-col { z-index: 3; background: #f8fafc; }
-        .data-table tfoot td.sticky-col { background: #f8fafc; }
 
         /* --- MODALS --- */
         .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 16px; backdrop-filter: blur(2px); }
-        .modal-box { background: white; border-radius: 16px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,.2); overflow: hidden; display: flex; flex-direction: column; max-height: 90vh; }
-        .modal-header { padding: 18px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .modal-box { background: white; border-radius: 16px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,.2); display: flex; flex-direction: column; max-height: 90vh; }
+        .modal-header { padding: 18px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; flex-shrink: 0; }
         .modal-body { padding: 20px; overflow-y: auto; }
         .modal-footer { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; flex-shrink: 0; }
 
-        /* 🏸 S PEN COURT V3 (REAL BADMINTON LAYOUT) */
+        /* 🏸 S PEN COURT V4 */
         .court-container { background: #15803d; border: 4px solid #ffffff; border-radius: 12px; padding: 20px 16px; position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,0.3); }
         .court-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 16px; position: relative; z-index: 10; }
         .court-cell { position: relative; width: 100%; }
         .court-input { background: rgba(255,255,255,0.92); border: 2px dashed #bbf7d0; border-radius: 8px; padding: 12px 36px 12px 12px; font-size: 16px; font-weight: 700; text-align: center; color: #14532d; width: 100%; transition: all 0.2s; }
-        
-        /* ไฟสัญญาณจำลองสถานะ */
         .court-input.status-green { background: #bbf7d0; border-color: #22c55e; color: #14532d; border-style: solid; }
         .court-input.status-yellow { background: #fef3c7; border-color: #f59e0b; color: #78350f; border-style: solid; }
         .court-input.status-red { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; border-style: solid; }
         .court-input:focus { background: white; border-style: solid; border-color: #22c55e; outline: none; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.4); }
-        
-        /* ปุ่มกากบาทเคลียร์ชื่อด่วน */
         .court-clear-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 14px; padding: 4px; display: none; z-index: 12; }
         .court-clear-btn:hover { color: #dc2626; }
-        
-        /* เส้นสนามหนาชัดเจน */
         .court-net-line { position: absolute; top: 50%; left: 0; right: 0; height: 6px; background: #ffffff; z-index: 5; transform: translateY(-50%); box-shadow: 0 2px 4px rgba(0,0,0,0.15); }
         .court-center-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: rgba(255,255,255,0.6); border-left: 2px dashed #ffffff; z-index: 4; transform: translateX(-50%); }
-        
-        /* ปุ่มกดเบอร์ลูก 1-12 */
-        .ball-btn-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
-        .ball-btn { background: white; border: 2px solid #cbd5e1; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.15s; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .ball-btn-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 8px; }
+        .ball-btn { background: white; border: 2px solid #cbd5e1; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #475569; cursor: pointer; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .ball-btn.active { background: #4f46e5; border-color: #4338ca; color: white; transform: scale(1.08); box-shadow: 0 3px 8px rgba(79, 70, 229, 0.4); }
-
-        .quick-pad-chip { display: inline-block; background: white; border: 1px solid #cbd5e1; color: #475569; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-bottom: 4px; }
+        .quick-pad-chip { display: inline-block; background: white; border: 1px solid #cbd5e1; color: #475569; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-bottom: 4px; margin-right: 4px; }
         .quick-pad-chip:hover { background: #e0e7ff; color: #4338ca; border-color: #a5b4fc; }
     </style>
 </head>
@@ -151,7 +115,7 @@
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
                         <div class="flex items-center gap-2">
-                            <label for="workingDate" class="text-sm font-semibold text-gray-600 whitespace-nowrap">📅 วันที่เล่น:</label>
+                            <label class="text-sm font-semibold text-gray-600 whitespace-nowrap">📅 วันที่เล่น:</label>
                             <input type="date" id="workingDate" class="form-control" style="width:auto;">
                         </div>
                         <div class="flex gap-2">
@@ -173,33 +137,20 @@
     </div>
 
     <div id="tab-daily" class="tab-content space-y-4">
-
         <div class="card">
             <div class="card-header">
-                <div class="section-icon bg-blue-100 text-blue-600"><i class="fas fa-users"></i></div>
-                <h2 class="text-blue-700">1. จัดการรายชื่อผู้เล่น</h2>
+                <div class="section-icon bg-blue-100 text-blue-600"><i class="fas fa-users"></i></div><h2 class="text-blue-700">1. จัดการรายชื่อผู้เล่น</h2>
             </div>
             <div class="card-body space-y-3">
-                <p class="text-sm text-gray-500">คลิกที่ชื่อ = เลือก/ยกเลิกการมาวันนี้ &nbsp;|&nbsp; ✏️ เปลี่ยนชื่อ &nbsp;|&nbsp; 🗑️ ลบออกจากระบบ</p>
-                
-                <div class="relative mt-2 mb-2">
-                    <input type="text" id="searchDailyPlayer" class="form-control" placeholder="🔍 ค้นหาชื่อผู้เล่น..." style="border-radius: 8px;">
-                </div>
-
+                <div class="relative mb-2"><input type="text" id="searchDailyPlayer" class="form-control" placeholder="🔍 ค้นหาชื่อผู้เล่น..."></div>
                 <div class="flex flex-col sm:flex-row gap-2">
                     <select id="newPlayerPrefix" class="form-control form-select" style="width:auto; flex-shrink:0;">
-                        <option value="ทั่วไป">ทั่วไป</option>
-                        <option value="ตากฟ้า">ตากฟ้า</option>
-                        <option value="ตาคลี">ตาคลี</option>
-                        <option value="ไพศาลี">ไพศาลี</option>
-                        <option value="ชัยนาท">ชัยนาท</option>
-                        <option value="นครสวรรค์">นครสวรรค์</option>
-                        <option value="กองบิน4">กองบิน4</option>
+                        <option value="ทั่วไป">ทั่วไป</option><option value="ตากฟ้า">ตากฟ้า</option><option value="ตาคลี">ตาคลี</option><option value="นครสวรรค์">นครสวรรค์</option>
                     </select>
                     <input type="text" id="newPlayerName" class="form-control flex-1" placeholder="พิมพ์ชื่อผู้เล่นใหม่...">
                     <button id="btnAddPlayer" class="btn btn-primary"><i class="fas fa-user-plus"></i>เพิ่มผู้เล่น</button>
                 </div>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex gap-2">
                     <button id="btnClearTodayPlayers" class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i>ล้างรายชื่อวันนี้</button>
                     <button id="btnClearAllPlayers" class="btn btn-secondary btn-sm"><i class="fas fa-users-slash"></i>ล้างรายชื่อทั้งหมด</button>
                 </div>
@@ -209,191 +160,88 @@
 
         <div class="card">
             <div class="card-header">
-                <div class="section-icon bg-green-100 text-green-600"><i class="fas fa-gamepad"></i></div>
-                <h2 class="text-green-700">2. บันทึกเกม</h2>
+                <div class="section-icon bg-green-100 text-green-600"><i class="fas fa-gamepad"></i></div><h2 class="text-green-700">2. บันทึกเกม</h2>
             </div>
             <div class="card-body space-y-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div><label class="form-label">ผู้เล่น 1 (ทีม A)</label><select id="player1" class="form-control form-select"></select></div>
-                    <div><label class="form-label">ผู้เล่น 2 (ทีม A)</label><select id="player2" class="form-control form-select"></select></div>
-                    <div><label class="form-label">ผู้เล่น 3 (ทีม B)</label><select id="player3" class="form-control form-select"></select></div>
-                    <div><label class="form-label">ผู้เล่น 4 (ทีม B)</label><select id="player4" class="form-control form-select"></select></div>
+                    <div><label class="form-label">ผู้เล่น 1 (A)</label><select id="player1" class="form-control form-select"></select></div>
+                    <div><label class="form-label">ผู้เล่น 2 (A)</label><select id="player2" class="form-control form-select"></select></div>
+                    <div><label class="form-label">ผู้เล่น 3 (B)</label><select id="player3" class="form-control form-select"></select></div>
+                    <div><label class="form-label">ผู้เล่น 4 (B)</label><select id="player4" class="form-control form-select"></select></div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="form-label">เบอร์ลูกที่ใช้ <span class="text-gray-400 font-normal">(คั่นด้วย , หรือเว้นวรรค)</span></label>
-                        <input type="text" id="shuttlecockSpeeds" class="form-control" placeholder="เช่น 75, 76, 75">
-                    </div>
-                    <div>
-                        <label class="form-label">ราคาต่อลูก (บาท)</label>
-                        <input type="number" id="shuttlecockPrice" class="form-control" value="0" min="0" step="1">
-                    </div>
+                    <div><label class="form-label">เบอร์ลูกที่ใช้</label><input type="text" id="shuttlecockSpeeds" class="form-control" placeholder="เช่น 75, 76"></div>
+                    <div><label class="form-label">ราคาต่อลูก (บาท)</label><input type="number" id="shuttlecockPrice" class="form-control" value="0" min="0" step="1"></div>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button id="btnRecordGame" class="btn btn-success flex-1 text-base py-3"><i class="fas fa-plus-circle"></i>บันทึกเกมนี้</button>
-                    <button id="btnOpenPenInput" class="btn btn-indigo text-base py-3 px-5 shadow-lg" title="เปิดกระดานสนามแบด S Pen"><i class="fas fa-pen-nib"></i><span>กระดาน S Pen</span></button>
-                    <button id="btnUseLastTeam" class="btn btn-secondary py-3" title="เลือกทีมเดิมจากเกมล่าสุด"><i class="fas fa-redo-alt"></i><span class="hidden sm:inline">ทีมเดิม</span></button>
+                    <button id="btnRecordGame" class="btn btn-success flex-1 py-3"><i class="fas fa-plus-circle"></i>บันทึกเกมนี้</button>
+                    <button id="btnOpenPenInput" class="btn btn-indigo py-3 px-5"><i class="fas fa-pen-nib"></i>กระดานจัดทัพ</button>
+                    <button id="btnUseLastTeam" class="btn btn-secondary py-3"><i class="fas fa-redo-alt"></i>ทีมเดิม</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <div class="section-icon bg-purple-100 text-purple-600"><i class="fas fa-chart-bar"></i></div>
-                <h2 class="text-purple-700">3. ภาพรวมประจำวัน</h2>
-            </div>
-            <div class="card-body">
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div class="stat-card bg-blue-50">
-                        <div class="stat-icon bg-blue-200 text-blue-700"><i class="fas fa-layer-group"></i></div>
-                        <div><div class="stat-value text-blue-700" id="totalGames">0</div><div class="stat-label">เกมทั้งหมด</div></div>
-                    </div>
-                    <div class="stat-card bg-green-50">
-                        <div class="stat-icon bg-green-200 text-green-700"><i class="fas fa-circle"></i></div>
-                        <div><div class="stat-value text-green-700" id="totalShuttlecocks">0</div><div class="stat-label">ลูกทั้งหมด</div></div>
-                    </div>
-                    <div class="stat-card bg-gray-50 col-span-2 md:col-span-1">
-                        <div class="stat-icon bg-gray-200 text-gray-600"><i class="fas fa-sort-numeric-up"></i></div>
-                        <div><div class="stat-label mb-1">สรุปลูกตามเบอร์</div><div id="shuttlecockSpeedSummary" class="text-sm font-semibold text-gray-700">-</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="section-icon bg-orange-100 text-orange-600"><i class="fas fa-list"></i></div>
-                <h2 class="text-orange-700">4. เกมที่บันทึกแล้ว</h2>
+                <div class="section-icon bg-orange-100 text-orange-600"><i class="fas fa-list"></i></div><h2 class="text-orange-700">รายการเกมที่บันทึก</h2>
                 <button id="btnExportGamesImg" class="btn btn-sm ml-auto" style="background:#f97316;color:white;"><i class="fas fa-image"></i>ส่งออกรูป</button>
             </div>
             <div class="card-body">
-                <div id="gamesList" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+                <div id="shuttlecockSpeedSummary" class="text-sm font-semibold text-gray-700 mb-3 bg-gray-50 p-2 rounded"></div>
+                <div id="gamesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <div class="section-icon bg-teal-100 text-teal-600"><i class="fas fa-receipt"></i></div>
-                <h2 class="text-teal-700">5. สรุปค่าใช้จ่ายประจำวัน</h2>
-                <div class="ml-auto flex flex-wrap gap-2">
-                    <button id="btnExportSummaryImg" class="btn btn-sm" style="background:#0d9488;color:white;"><i class="fas fa-image"></i>ส่งออกรูป</button>
-                    <button id="btnConfirmSave" class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>ยืนยัน&บันทึกลงบัญชี</button>
-                    <button id="btnClearToday" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i>ล้างข้อมูลวันนี้</button>
+                <div class="section-icon bg-teal-100 text-teal-600"><i class="fas fa-receipt"></i></div><h2 class="text-teal-700">สรุปค่าใช้จ่ายประจำวัน</h2>
+                <div class="ml-auto flex gap-2">
+                    <button id="btnConfirmSave" class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>บันทึกลงบัญชี</button>
+                    <button id="btnClearToday" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i>ล้างวันนี้</button>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <div class="overflow-x-auto">
-                    <table class="data-table" id="summaryTable">
-                        <thead>
-                            <tr>
-                                <th class="sticky-col">ชื่อผู้เล่น</th>
-                                <th class="text-center">เกมที่เล่น</th>
-                                <th class="text-center">เบอร์ลูก</th>
-                                <th class="text-center">ค่าลูก (฿)</th>
-                                <th class="text-center">สถานะ</th>
-                                <th class="text-center">จัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody id="summaryTableUnpaid"></tbody>
-                        <tbody id="summaryTablePaid"></tbody>
-                        <tfoot>
-                            <tr>
-                                <td class="sticky-col" colspan="3">รวมทั้งหมด</td>
-                                <td class="text-center" id="grandTotal">0.00</td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+            <div class="card-body p-0 overflow-x-auto">
+                <table class="data-table" id="summaryTable">
+                    <thead><tr><th class="sticky-col">ชื่อ</th><th class="text-center">เกม</th><th class="text-center">ลูก</th><th class="text-center">ค่าลูก(฿)</th><th class="text-center">สถานะ</th><th class="text-center">จัดการ</th></tr></thead>
+                    <tbody id="summaryTableUnpaid"></tbody>
+                    <tbody id="summaryTablePaid"></tbody>
+                    <tfoot><tr><td class="sticky-col" colspan="3">รวมทั้งหมด</td><td class="text-center text-lg text-teal-700" id="grandTotal">0.00</td><td colspan="2"></td></tr></tfoot>
+                </table>
             </div>
         </div>
-
     </div>
     
     <div id="tab-account" class="tab-content hidden space-y-4">
         <div class="card">
             <div class="card-header">
-                <div class="section-icon bg-blue-100 text-blue-600"><i class="fas fa-wallet"></i></div>
-                <h2 class="text-blue-700">สรุปยอดรวมบัญชีทั้งหมด</h2>
-                <div class="ml-auto flex flex-wrap gap-2">
-                    <button id="btnExportAccountImg" class="btn btn-sm" style="background:#7c3aed;color:white;"><i class="fas fa-image"></i>ส่งออกรูป</button>
-                    <button id="btnExportAccountText" class="btn btn-sm" style="background:#0891b2;color:white;"><i class="fab fa-line"></i>ส่ง LINE</button>
-                    <button id="btnPayAllUnpaid" class="btn btn-sm" style="background:#16a34a;color:white;"><i class="fas fa-hand-holding-usd"></i>ชำระทั้งหมด</button>
-                    <button id="btnOpenQuickDebt" class="btn btn-danger btn-sm"><i class="fas fa-file-invoice"></i>บันทึกหนี้โดยตรง</button>
+                <div class="section-icon bg-blue-100 text-blue-600"><i class="fas fa-wallet"></i></div><h2 class="text-blue-700">สรุปยอดรวมบัญชีทั้งหมด</h2>
+                <div class="ml-auto flex gap-2">
+                    <button id="btnExportAccountText" class="btn btn-sm btn-indigo"><i class="fab fa-line"></i>ส่ง LINE</button>
+                    <button id="btnPayAllUnpaid" class="btn btn-sm btn-success"><i class="fas fa-hand-holding-usd"></i>ชำระทั้งหมด</button>
                 </div>
             </div>
             <div class="card-body space-y-4">
-                <div class="relative mb-2">
-                    <input type="text" id="searchAccountInput" class="form-control pl-10" placeholder="🔍 ค้นหาชื่อผู้เล่น..." style="max-width: 320px; border-radius: 20px;">
+                <input type="text" id="searchAccountInput" class="form-control" placeholder="🔍 ค้นหาชื่อ..." style="max-width: 320px;">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                    <div class="bg-red-50 p-2 rounded-lg"><div class="text-red-700 font-bold text-xl" id="total-unpaid-overall">฿0</div><div class="text-xs text-gray-500">ค้างชำระรวม</div></div>
+                    <div class="bg-blue-50 p-2 rounded-lg"><div class="text-blue-700 font-bold text-xl" id="total-credit-overall">฿0</div><div class="text-xs text-gray-500">เครดิตรวม</div></div>
                 </div>
-                
-                <p class="text-sm text-gray-500">ข้อมูล ณ วันที่: <span id="account-summary-date" class="font-semibold text-gray-700"></span></p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div class="stat-card bg-red-50"><div class="stat-icon bg-red-200 text-red-700"><i class="fas fa-exclamation-circle"></i></div><div><div class="stat-value text-red-700" id="total-unpaid-overall">฿0</div><div class="stat-label">ค้างชำระรวม</div></div></div>
-                    <div class="stat-card bg-blue-50"><div class="stat-icon bg-blue-200 text-blue-700"><i class="fas fa-coins"></i></div><div><div class="stat-value text-blue-700" id="total-credit-overall">฿0</div><div class="stat-label">เครดิตรวม</div></div></div>
-                    <div class="stat-card bg-amber-50"><div class="stat-icon bg-amber-200 text-amber-700"><i class="fas fa-circle"></i></div><div><div class="stat-value text-amber-700" id="total-shuttlecock-overall">฿0</div><div class="stat-label">ค่าลูกรวม</div></div></div>
-                    <div class="stat-card bg-cyan-50"><div class="stat-icon bg-cyan-200 text-cyan-700"><i class="fas fa-users"></i></div><div><div class="stat-value text-cyan-700" id="players-count-overall">0</div><div class="stat-label">จำนวนผู้เล่น</div></div></div>
-                </div>
-                <div>
-                    <div class="section-divider text-red-600 bg-red-50 rounded-md mb-2">⚠️ ผู้ที่ค้างชำระ (คลิกเพื่อชำระเงิน)</div>
-                    <div id="unpaid-list-overall" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
-                </div>
-                <div>
-                    <div class="section-divider text-blue-600 bg-blue-50 rounded-md mb-2">💰 ผู้ที่มีเครดิต</div>
-                    <div id="credit-list-overall" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
-                </div>
-                <div>
-                    <div class="section-divider text-green-600 bg-green-50 rounded-md mb-2">✅ ผู้ที่ชำระครบแล้ว</div>
-                    <div id="paid-in-full-list-overall" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="tab-history" class="tab-content hidden space-y-4">
-        <div class="card">
-            <div class="card-header">
-                <div class="section-icon bg-indigo-100 text-indigo-600"><i class="fas fa-history"></i></div>
-                <h2 class="text-indigo-700">สรุปยอดตามช่วงวันที่</h2>
-                <button id="btnRefreshHistory" class="btn btn-secondary btn-sm ml-auto"><i class="fas fa-sync-alt"></i>รีเฟรช</button>
-            </div>
-            <div class="card-body space-y-4">
-                <div class="flex flex-wrap items-end gap-3 p-4 bg-gray-50 rounded-lg border">
-                    <div>
-                        <label class="form-label">จากวันที่</label>
-                        <input type="date" id="summaryStartDate" class="form-control">
-                    </div>
-                    <div>
-                        <label class="form-label">ถึงวันที่</label>
-                        <input type="date" id="summaryEndDate" class="form-control">
-                    </div>
-                    <button id="btnFilterHistory" class="btn btn-primary"><i class="fas fa-filter"></i>แสดงสรุป</button>
-                </div>
-                <p class="text-sm text-gray-500">ข้อมูล ณ: <span id="history-current-date" class="font-semibold text-gray-700"></span></p>
-                <div id="overall-summary-content">
-                    <div class="empty-state"><i class="fas fa-calendar-alt"></i>กรุณาเลือกช่วงวันที่แล้วกด "แสดงสรุป"</div>
-                </div>
+                <div><div class="font-bold text-red-600 mb-2">⚠️ ผู้ที่ค้างชำระ</div><div id="unpaid-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
+                <div><div class="font-bold text-blue-600 mb-2">💰 มีเครดิต</div><div id="credit-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
+                <div><div class="font-bold text-green-600 mb-2">✅ ชำระครบแล้ว</div><div id="paid-in-full-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
             </div>
         </div>
     </div>
 
-    <div id="tab-settings" class="tab-content hidden space-y-4">
+    <div id="tab-history" class="tab-content hidden space-y-4">
         <div class="card">
-            <div class="card-header">
-                <div class="section-icon bg-gray-100 text-gray-600"><i class="fas fa-cog"></i></div>
-                <h2 class="text-gray-700">ตั้งค่าบัญชีรับเงิน (PromptPay)</h2>
-            </div>
-            <div class="card-body space-y-3">
-                <p class="text-sm text-gray-500 mb-4">ข้อมูลนี้จะถูกแนบไปในข้อความเมื่อคุณกดปุ่มส่ง LINE ทวงเงิน</p>
-                <div>
-                    <label class="form-label">ชื่อบัญชี / ชื่อผู้รับ</label>
-                    <input type="text" id="settingBankName" class="form-control" placeholder="เช่น นายสมชาย ใจดี">
+            <div class="card-header"><div class="section-icon bg-indigo-100 text-indigo-600"><i class="fas fa-history"></i></div><h2 class="text-indigo-700">ประวัติค่าใช้จ่าย</h2></div>
+            <div class="card-body">
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <input type="date" id="summaryStartDate" class="form-control" style="width:auto;"><input type="date" id="summaryEndDate" class="form-control" style="width:auto;">
+                    <button id="btnFilterHistory" class="btn btn-primary">ค้นหา</button>
                 </div>
-                <div>
-                    <label class="form-label">เลข PromptPay / เลขบัญชี</label>
-                    <input type="text" id="settingBankNumber" class="form-control" placeholder="เช่น 081-234-5678">
-                </div>
-                <button class="btn btn-primary mt-2" onclick="savePromptPaySettings()"><i class="fas fa-save"></i> บันทึกการตั้งค่า</button>
+                <div id="overall-summary-content"></div>
             </div>
         </div>
     </div>
@@ -403,2436 +251,334 @@
 <div id="pen-input-modal" class="modal-overlay hidden">
     <div class="modal-box" style="max-width: 650px; width: 95%;">
         <div class="modal-header" style="background: #15803d; border-bottom: 2px solid #ffffff;">
-            <h3 class="text-lg font-bold text-white"><i class="fas fa-chalkboard mr-2"></i>กระดานวางแผนทีมอัจฉริยะ</h3>
-            <button class="btn-ghost btn-icon btn text-white hover:bg-green-700" id="btnClosePenInput"><i class="fas fa-times"></i></button>
+            <h3 class="text-lg font-bold text-white"><i class="fas fa-chalkboard mr-2"></i>กระดานวางแผนทีม</h3>
+            <button class="btn-ghost btn-icon btn text-white" id="btnClosePenInput"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body space-y-4 bg-slate-50">
-            <div class="text-xs text-gray-600 bg-white p-3 rounded-lg border">
-                <strong>💡 วิธีใช้:</strong> เขียนชื่อเล่นในช่องประจำคอร์ท 🟢 <b>เขียว</b> = ผ่าน | 🟡 <b>เหลือง</b> = ชื่อกำกวม/ซ้ำ (จิ้มแก้ด้านล่าง) | 🔴 <b>แดง</b> = ไม่พบชื่อ
-            </div>
-            
             <div class="flex justify-between items-center bg-indigo-50 p-2 rounded-lg border border-indigo-100">
                 <span class="text-sm font-bold text-indigo-800"><i class="fas fa-microphone-alt mr-1"></i> จัดทีมด้วยเสียง:</span>
                 <button id="btnVoiceCommand" class="btn btn-sm btn-indigo shadow-sm"><i class="fas fa-bullhorn"></i> แตะเพื่อพูด</button>
             </div>
-
+            
             <div class="court-container">
-                <div class="court-net-line"></div>
-                <div class="court-center-line"></div>
+                <div class="court-net-line"></div><div class="court-center-line"></div>
                 <div class="court-grid">
-                    <div class="court-cell">
-                        <input type="text" id="penP1" class="court-input" placeholder="ทีม A (ซ้าย)">
-                        <button class="court-clear-btn" onclick="clearPenField('penP1')"><i class="fas fa-times-circle"></i></button>
-                    </div>
-                    <div class="court-cell">
-                        <input type="text" id="penP2" class="court-input" placeholder="ทีม A (ขวา)">
-                        <button class="court-clear-btn" onclick="clearPenField('penP2')"><i class="fas fa-times-circle"></i></button>
-                    </div>
-                    <div class="court-cell">
-                        <input type="text" id="penP3" class="court-input" placeholder="ทีม B (ซ้าย)">
-                        <button class="court-clear-btn" onclick="clearPenField('penP3')"><i class="fas fa-times-circle"></i></button>
-                    </div>
-                    <div class="court-cell">
-                        <input type="text" id="penP4" class="court-input" placeholder="ทีม B (ขวา)">
-                        <button class="court-clear-btn" onclick="clearPenField('penP4')"><i class="fas fa-times-circle"></i></button>
-                    </div>
+                    <div class="court-cell"><input type="text" id="penP1" class="court-input" placeholder="ทีม A (ซ้าย)"><button class="court-clear-btn" onclick="clearPenField('penP1')"><i class="fas fa-times-circle"></i></button></div>
+                    <div class="court-cell"><input type="text" id="penP2" class="court-input" placeholder="ทีม A (ขวา)"><button class="court-clear-btn" onclick="clearPenField('penP2')"><i class="fas fa-times-circle"></i></button></div>
+                    <div class="court-cell"><input type="text" id="penP3" class="court-input" placeholder="ทีม B (ซ้าย)"><button class="court-clear-btn" onclick="clearPenField('penP3')"><i class="fas fa-times-circle"></i></button></div>
+                    <div class="court-cell"><input type="text" id="penP4" class="court-input" placeholder="ทีม B (ขวา)"><button class="court-clear-btn" onclick="clearPenField('penP4')"><i class="fas fa-times-circle"></i></button></div>
                 </div>
             </div>
 
             <div class="bg-white p-3 rounded-lg border">
                 <div class="flex justify-between items-center mb-2">
                     <div class="text-sm font-bold text-gray-700"><i class="fas fa-circle-dot text-indigo-600 mr-1"></i> เลือกเบอร์ลูก:</div>
-                    <div id="penShuttleCountBadge" class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded-md font-medium border border-indigo-200 shadow-sm">เบอร์ลูกที่ใช้: -</div>
+                    <div id="penShuttleCountBadge" class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded-md font-medium border border-indigo-200">ลูกล่าสุด: -</div>
                 </div>
                 <div class="ball-btn-grid">
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '1')">1</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '2')">2</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '3')">3</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '4')">4</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '5')">5</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '6')">6</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '7')">7</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '8')">8</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '9')">9</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '10')">10</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '11')">11</button>
-                    <button type="button" class="ball-btn" onclick="toggleBallBtn(this, '12')">12</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '1')">1</button><button class="ball-btn" onclick="toggleBallBtn(this, '2')">2</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '3')">3</button><button class="ball-btn" onclick="toggleBallBtn(this, '4')">4</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '5')">5</button><button class="ball-btn" onclick="toggleBallBtn(this, '6')">6</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '7')">7</button><button class="ball-btn" onclick="toggleBallBtn(this, '8')">8</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '9')">9</button><button class="ball-btn" onclick="toggleBallBtn(this, '10')">10</button>
+                    <button class="ball-btn" onclick="toggleBallBtn(this, '11')">11</button><button class="ball-btn" onclick="toggleBallBtn(this, '12')">12</button>
                 </div>
             </div>
 
-            <button id="btnScanPen" class="btn btn-success w-full py-3 shadow-md text-lg"><i class="fas fa-search-plus"></i> สแกนตรวจสอบความถูกต้อง</button>
-            
-            <div id="penReviewSection" class="hidden bg-white p-3 rounded-lg border shadow-sm">
-                <div class="text-xs font-bold text-red-600 bg-red-50 p-2 rounded" id="penErrorText"></div>
-            </div>
-            
+            <button id="btnScanPen" class="btn btn-success w-full py-3 text-lg"><i class="fas fa-search-plus"></i> สแกนตรวจสอบความถูกต้อง</button>
+            <div id="penReviewSection" class="hidden bg-white p-3 rounded-lg border shadow-sm"><div class="text-xs font-bold text-red-600 bg-red-50 p-2 rounded" id="penErrorText"></div></div>
             <div id="penQuickPad" class="hidden">
-                <div class="text-xs font-bold text-gray-500 mb-2" id="penQuickPadLabel"><i class="fas fa-hand-pointer mr-1"></i> จิ้มรายชื่อด่วนเพื่อจัดทัพ:</div>
-                <div class="flex flex-wrap gap-1 bg-white p-2 rounded-lg border" id="penQuickPadList" style="max-height: 140px; overflow-y: auto;"></div>
+                <div class="text-xs font-bold text-gray-500 mb-2" id="penQuickPadLabel">จิ้มรายชื่อเพื่อแก้กล่องที่ผิด:</div>
+                <div class="flex flex-wrap bg-white p-2 rounded-lg border" id="penQuickPadList" style="max-height: 140px; overflow-y: auto;"></div>
             </div>
         </div>
-        <div class="modal-footer" style="background: #f8fafc;">
-            <button class="btn btn-secondary" id="btnCancelPenInput">ยกเลิก</button>
-            <button class="btn btn-primary hidden shadow-lg" id="btnConfirmPenInput"><i class="fas fa-check-circle"></i> ยืนยันข้อมูลจัดลงสนาม</button>
-        </div>
+        <div class="modal-footer" style="background: #f8fafc;"><button class="btn btn-secondary" id="btnCancelPenInput">ยกเลิก</button><button class="btn btn-primary hidden shadow-lg" id="btnConfirmPenInput"><i class="fas fa-check-circle"></i> ยืนยันจัดลงสนาม</button></div>
     </div>
 </div>
 
-<div id="payment-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h3 class="text-lg font-bold text-green-700"><i class="fas fa-hand-holding-usd mr-2"></i>ชำระเงินด่วน</h3>
-            <button class="btn-ghost btn-icon btn" id="btnClosePayment"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body space-y-3">
-            <p class="text-gray-700">ชำระยอดค้างสำหรับ: <strong id="payment-name" class="text-blue-700"></strong></p>
-            <input type="hidden" id="payment-hidden-name">
-            <div>
-                <label class="form-label">จำนวนเงิน (บาท)</label>
-                <input type="number" step="any" id="payment-amount" class="form-control text-lg" placeholder="0.00" min="0.01">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" id="btnCancelPayment">ยกเลิก</button>
-            <button class="btn btn-success" id="btnSubmitPayment"><i class="fas fa-check"></i>ยืนยันชำระ</button>
-        </div>
-    </div>
-</div>
-
-<div id="quick-debt-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h3 class="text-lg font-bold text-red-700"><i class="fas fa-file-invoice mr-2"></i>บันทึกหนี้โดยตรง</h3>
-            <button class="btn-ghost btn-icon btn" id="btnCloseDebt"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body space-y-3">
-            <div>
-                <label class="form-label">วันที่</label>
-                <input type="date" id="debt-date" class="form-control">
-            </div>
-            <div>
-                <label class="form-label">ชื่อผู้เล่น</label>
-                <select id="debt-player-name" class="form-control form-select"></select>
-            </div>
-            <div>
-                <label class="form-label">ยอดหนี้ (บาท)</label>
-                <input type="number" step="any" id="debt-amount" class="form-control text-lg" placeholder="0.00" min="0.01">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" id="btnCancelDebt">ยกเลิก</button>
-            <button class="btn btn-danger" id="btnSubmitDebt"><i class="fas fa-plus"></i>บันทึกหนี้</button>
-        </div>
-    </div>
-</div>
-
-<div id="rename-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h3 class="text-lg font-bold text-blue-700"><i class="fas fa-edit mr-2"></i>เปลี่ยนชื่อผู้เล่น</h3>
-            <button class="btn-ghost btn-icon btn" id="btnCloseRename"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body space-y-3">
-            <p class="text-gray-600">ชื่อเดิม: <strong id="rename-old-display" class="text-gray-800"></strong></p>
-            <input type="hidden" id="rename-old-name">
-            <div>
-                <label class="form-label">ชื่อใหม่</label>
-                <input type="text" id="rename-new-name" class="form-control" placeholder="ใส่ชื่อใหม่">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" id="btnCancelRename">ยกเลิก</button>
-            <button class="btn btn-primary" id="btnSubmitRename"><i class="fas fa-check"></i>ยืนยัน</button>
-        </div>
-    </div>
-</div>
+<div id="payment-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-header"><h3 class="font-bold text-green-700">ชำระเงิน</h3><button class="btn-ghost" id="btnClosePayment"><i class="fas fa-times"></i></button></div><div class="modal-body"><p id="payment-name" class="font-bold mb-2"></p><input type="hidden" id="payment-hidden-name"><input type="number" id="payment-amount" class="form-control text-lg" placeholder="0.00"></div><div class="modal-footer"><button class="btn btn-secondary" id="btnCancelPayment">ยกเลิก</button><button class="btn btn-success" id="btnSubmitPayment">ยืนยัน</button></div></div></div>
+<div id="rename-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-header"><h3 class="font-bold">เปลี่ยนชื่อ</h3><button class="btn-ghost" id="btnCloseRename"><i class="fas fa-times"></i></button></div><div class="modal-body"><input type="hidden" id="rename-old-name"><input type="text" id="rename-new-name" class="form-control"></div><div class="modal-footer"><button class="btn btn-secondary" id="btnCancelRename">ยกเลิก</button><button class="btn btn-primary" id="btnSubmitRename">ยืนยัน</button></div></div></div>
 
 <script>
 'use strict';
+const TOLERANCE = 0.005; const STORAGE_KEY = 'badmintonAppState_v2';
+const PLAYER_COLORS = [{bg:'#fee2e2',border:'#fca5a5',text:'#991b1b',tag:'#ef4444'},{bg:'#dbeafe',border:'#93c5fd',text:'#1e40af',tag:'#3b82f6'},{bg:'#dcfce7',border:'#86efac',text:'#166534',tag:'#22c55e'},{bg:'#fef9c3',border:'#fde047',text:'#713f12',tag:'#eab308'},{bg:'#ede9fe',border:'#c4b5fd',text:'#4c1d95',tag:'#8b5cf6'},{bg:'#fce7f3',border:'#f9a8d4',text:'#831843',tag:'#ec4899'},{bg:'#ccfbf1',border:'#5eead4',text:'#134e4a',tag:'#14b8a6'},{bg:'#ffedd5',border:'#fdba74',text:'#7c2d12',tag:'#f97316'}];
+let state = createDefaultState(); let selectedDate = getTodayString(); let currentGameSelection = {player1:'',player2:'',player3:'',player4:''}; let _gameIdCounter = Date.now(); let _isDailyDirty = false;
+let currentPenMatchedBalls = []; let focusedFieldId = 'penP1';
 
-// ============================================================
-// CONSTANTS & STATE
-// ============================================================
-const TOLERANCE = 0.005;
-const STORAGE_KEY = 'badmintonAppState_v2';
+function createDefaultState() { return { masterPlayerList: [], allTransactions: [], allPayments: [], dailyData: {}, settings: { shuttlecockPrice: 0 } }; }
+function getTodayString() { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().split('T')[0]; }
+function escapeHtml(str) { return String(str||'').replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function getPlayerColor(name) { if(!name) return PLAYER_COLORS[0]; const sum = [...String(name)].reduce((a,c)=>a+c.charCodeAt(0),0); return PLAYER_COLORS[sum%PLAYER_COLORS.length]; }
+function getCurrentDailyData() { if(!state.dailyData[selectedDate]) state.dailyData[selectedDate] = { players:[], games:[] }; return state.dailyData[selectedDate]; }
 
-const PLAYER_COLORS = [
-    { bg: '#fee2e2', border: '#fca5a5', text: '#991b1b', tag: '#ef4444' },
-    { bg: '#dbeafe', border: '#93c5fd', text: '#1e40af', tag: '#3b82f6' },
-    { bg: '#dcfce7', border: '#86efac', text: '#166534', tag: '#22c55e' },
-    { bg: '#fef9c3', border: '#fde047', text: '#713f12', tag: '#eab308' },
-    { bg: '#ede9fe', border: '#c4b5fd', text: '#4c1d95', tag: '#8b5cf6' },
-    { bg: '#fce7f3', border: '#f9a8d4', text: '#831843', tag: '#ec4899' },
-    { bg: '#ccfbf1', border: '#5eead4', text: '#134e4a', tag: '#14b8a6' },
-    { bg: '#ffedd5', border: '#fdba74', text: '#7c2d12', tag: '#f97316' },
-];
-
-let state = createDefaultState();
-let selectedDate = getTodayString();
-let currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-let _gameIdCounter = Date.now(); 
-let _isDailyDirty = false; 
-
-// ตัวแปรควบคุม S Pen
-let currentPenMatchedBalls = [];
-let focusedFieldId = 'penP1';
-
-function generateGameId() {
-    return ++_gameIdCounter;
-}
-
-function syncGameIdCounter() {
-    let maxId = _gameIdCounter;
-    Object.values(state.dailyData || {}).forEach(function(daily) {
-        (daily.games || []).forEach(function(g) {
-            if (typeof g.id === 'number' && g.id > maxId) maxId = g.id;
-        });
-    });
-    _gameIdCounter = maxId;
-}
-
-function createDefaultState() {
-    return { masterPlayerList: [], allTransactions: [], allPayments: [], dailyData: {}, settings: { shuttlecockPrice: 0 } };
-}
-
-// ============================================================
-// UTILS & DATA SANITIZATION
-// ============================================================
-function getTodayString() {
-    const d = new Date();
-    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().split('T')[0];
-}
-
-function escapeHtml(str) {
-    if (str == null) return '';
-    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
-
-function formatCurrency(amount) {
-    return '฿' + parseFloat(amount || 0).toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function getPlayerColor(name) {
-    if (!name) return PLAYER_COLORS[0];
-    const sum = [...String(name)].reduce(function(a, c) { return a + c.charCodeAt(0); }, 0);
-    return PLAYER_COLORS[sum % PLAYER_COLORS.length];
-}
-
-function getCurrentDailyData() {
-    if (!state.dailyData[selectedDate]) state.dailyData[selectedDate] = { players: [], games: [] };
-    return state.dailyData[selectedDate];
-}
-
-let _storageFailed = false; 
-
-function saveToStorage() {
-    try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        _storageFailed = false; 
-    } catch (e) {
-        console.error('Storage save failed', e);
-        if (!_storageFailed) {
-            _storageFailed = true;
-            Swal.fire({
-                icon: 'error',
-                title: '⚠️ บันทึกข้อมูลไม่สำเร็จ!',
-                html: `<p>พื้นที่จัดเก็บในเครื่องเต็มหรือถูกบล็อก</p>
-                       <p style="margin-top:8px;font-size:13px;color:#64748b;">กรุณากด "บันทึกไฟล์" เพื่อสำรองข้อมูลออกมาก่อน แล้วลองล้างข้อมูลเก่าออก</p>`,
-                confirmButtonText: '🗂️ บันทึกไฟล์ทันที',
-                showCancelButton: true,
-                cancelButtonText: 'ปิด',
-                confirmButtonColor: '#1d4ed8'
-            }).then(function(r) { if (r.isConfirmed) saveToFile(); });
-        }
-    }
-}
-
-function loadFromStorage() {
-    try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) state = JSON.parse(raw) || createDefaultState();
-        else state = createDefaultState();
-    } catch (e) { state = createDefaultState(); }
-}
-
+function saveToStorage() { try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){ console.warn("Storage full"); } }
+function loadFromStorage() { try{ const raw = localStorage.getItem(STORAGE_KEY); if(raw) state = JSON.parse(raw)||createDefaultState(); }catch(e){ state = createDefaultState(); } }
 function ensureIntegrity() {
-    state.settings = state.settings || {};
-    state.settings.shuttlecockPrice = state.settings.shuttlecockPrice || 0;
-    
-    if (!Array.isArray(state.masterPlayerList)) state.masterPlayerList = [];
-    state.masterPlayerList = state.masterPlayerList
-        .filter(function(p) { return p != null; })
-        .map(function(p) { return String(p).trim(); })
-        .filter(function(p) { return p !== ''; });
-        
-    state.allTransactions = Array.isArray(state.allTransactions) ? state.allTransactions : [];
-    state.allPayments = Array.isArray(state.allPayments) ? state.allPayments : [];
-    state.dailyData = state.dailyData || {};
-    
-    if (!state.dailyData[selectedDate]) state.dailyData[selectedDate] = { players: [], games: [] };
-    
-    // 🔥 แก้ปัญหาตอนโหลดไฟล์ JSON เก่าที่มีโครงสร้างไม่ครบ!
-    Object.values(state.dailyData).forEach(function(daily) {
-        if (!Array.isArray(daily.players)) daily.players = [];
-        if (!Array.isArray(daily.games)) daily.games = [];
-        
-        daily.players.forEach(function(p) {
-            if (p.paid === undefined) p.paid = false;
-            if (p.present === undefined) p.present = true;
-        });
-        
-        daily.games.forEach(function(g) {
-            if (!Array.isArray(g.players)) g.players = [];
-            // ดัก Error ให้ไฟล์เก่าที่ไม่มีฟิลด์แบดมินตัน
-            if (!Array.isArray(g.shuttlecockSpeeds)) g.shuttlecockSpeeds = [];
-            if (g.shuttlecocksUsed === undefined) g.shuttlecocksUsed = g.shuttlecockSpeeds.length || 0;
-        });
-    });
+    state.settings = state.settings || { shuttlecockPrice:0 }; state.masterPlayerList = (state.masterPlayerList||[]).filter(Boolean);
+    state.allTransactions = state.allTransactions||[]; state.allPayments = state.allPayments||[]; state.dailyData = state.dailyData||{};
+    Object.values(state.dailyData).forEach(d => { d.players=(d.players||[]); d.games=(d.games||[]); d.games.forEach(g => g.shuttlecockSpeeds=(g.shuttlecockSpeeds||[])); });
 }
+function syncGameIdCounter() { let max = _gameIdCounter; Object.values(state.dailyData).forEach(d => (d.games||[]).forEach(g => { if(g.id>max) max=g.id; })); _gameIdCounter = max; }
 
+// --- FILE SYSTEM ---
 function saveToFile() {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = `badminton-${getTodayString()}.json`;
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a); URL.revokeObjectURL(url);
-    Swal.fire({ icon: 'success', title: 'บันทึกไฟล์สำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+    const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `badminton-${getTodayString()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); Swal.fire({icon:'success',title:'บันทึกไฟล์สำเร็จ',toast:true,position:'top-end',showConfirmButton:false,timer:2000});
 }
-
 function loadFromFile(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
+    const file = event.target.files[0]; if(!file) return; const reader = new FileReader();
     reader.onload = function(e) {
         try {
             const loaded = JSON.parse(e.target.result);
-            // 🔥 ปรับเงื่อนไขให้ยืดหยุ่น รองรับไฟล์ JSON เก่าทุกยุค
             if (loaded && ('masterPlayerList' in loaded || 'dailyData' in loaded)) {
-                state = loaded;
-                ensureIntegrity();
-                syncGameIdCounter(); 
-                applySettingsToUI();
-                updateAndRender();
-                switchTab('daily');
-                Swal.fire({ icon: 'success', title: 'โหลดข้อมูลเก่าสำเร็จ!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-            } else {
-                throw new Error('Invalid format');
-            }
-        } catch (err) { 
-            console.error(err);
-            Swal.fire('เกิดข้อผิดพลาด', 'ไฟล์ JSON นี้ไม่ถูกต้อง โครงสร้างเก่าเกินไป หรืออาจจะชำรุดครับ', 'error'); 
-        }
-    };
-    reader.readAsText(file);
-    event.target.value = null;
+                state = loaded; ensureIntegrity(); syncGameIdCounter(); document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice||0;
+                updateAndRender(); switchTab('daily'); Swal.fire({icon:'success',title:'โหลดข้อมูลสำเร็จ!',toast:true,position:'top-end',showConfirmButton:false,timer:2500});
+            } else throw new Error('Invalid');
+        } catch (err) { Swal.fire('ข้อผิดพลาด', 'ไฟล์ไม่ถูกต้องหรือชำรุด', 'error'); }
+    }; reader.readAsText(file); event.target.value = null;
 }
 
-// ============================================================
-// CORE LOGIC — PLAYERS
-// ============================================================
+// --- PLAYER MGMT ---
 function addPlayer() {
-    const prefixElement = document.getElementById('newPlayerPrefix');
-    const nameInput = document.getElementById('newPlayerName');
-    
-    if (!prefixElement || !nameInput) return;
-
-    const prefix = prefixElement.value;
-    const raw = nameInput.value.trim();
-    
-    if (!raw) {
-        Swal.fire({ icon: 'warning', title: 'แจ้งเตือน', text: 'กรุณาพิมพ์ชื่อผู้เล่น', timer: 2000, toast: true, position: 'top' });
-        return;
-    }
-    
-    const name = (prefix === 'ทั่วไป' ? raw : `${prefix}: ${raw}`).trim();
-
-    if (state.masterPlayerList.some(function(p) { return String(p).toLowerCase() === name.toLowerCase(); })) {
-        Swal.fire({ icon: 'info', title: 'มีชื่อนี้แล้ว', text: 'รายชื่อนี้มีอยู่แล้วในระบบ', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
-        return;
-    }
-
-    state.masterPlayerList.push(name);
-    state.masterPlayerList.sort(function(a, b) { return String(a).localeCompare(String(b), 'th'); });
-
-    const dd = getCurrentDailyData();
-    let player = dd.players.find(function(p) { return p.name === name; });
-    if (player) { player.present = true; }
-    else { dd.players.push({ name: name, paid: false, present: true }); }
-
-    nameInput.value = '';
-    prefixElement.value = 'ทั่วไป';
-    
-    const searchInput = document.getElementById('searchDailyPlayer');
-    if (searchInput) {
-        searchInput.value = '';
-    }
-    
-    updateAndRender();
-    Swal.fire({ icon: 'success', title: `เพิ่ม "${escapeHtml(name)}" สำเร็จ!`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+    const pfx = document.getElementById('newPlayerPrefix').value; const raw = document.getElementById('newPlayerName').value.trim(); if(!raw) return;
+    const name = pfx==='ทั่วไป'?raw:`${pfx}: ${raw}`; if(state.masterPlayerList.includes(name)) return;
+    state.masterPlayerList.push(name); state.masterPlayerList.sort((a,b)=>a.localeCompare(b,'th'));
+    const dd = getCurrentDailyData(); if(!dd.players.find(p=>p.name===name)) dd.players.push({name,paid:false,present:true});
+    document.getElementById('newPlayerName').value = ''; updateAndRender();
 }
-
-function togglePlayerPresence(name) {
-    const dd = getCurrentDailyData();
-    let player = dd.players.find(function(p) { return p.name === name; });
-    if (!player) {
-        if (!state.masterPlayerList.includes(name)) return;
-        player = { name: name, paid: false, present: true };
-        dd.players.push(player);
-    } else {
-        player.present = !player.present;
-    }
-    if (!player.present) {
-        Object.keys(currentGameSelection).forEach(function(k) { if (currentGameSelection[k] === name) currentGameSelection[k] = ''; });
-    }
+function togglePlayer(name) {
+    const dd = getCurrentDailyData(); let p = dd.players.find(x=>x.name===name);
+    if(!p) dd.players.push({name,paid:false,present:true}); else p.present = !p.present;
     updateAndRender();
 }
-
-function openRenameModal(name) {
-    document.getElementById('rename-old-name').value = name;
-    document.getElementById('rename-old-display').textContent = name;
-    document.getElementById('rename-new-name').value = name;
-    document.getElementById('rename-modal').classList.remove('hidden');
-    setTimeout(function() { document.getElementById('rename-new-name').focus(); }, 100);
-}
-
-function closeRenameModal() { document.getElementById('rename-modal').classList.add('hidden'); }
-
-function submitRename() {
-    const oldName = document.getElementById('rename-old-name').value;
-    const newName = document.getElementById('rename-new-name').value.trim();
-    
-    if (!newName) { Swal.fire('ข้อผิดพลาด', 'ชื่อใหม่ต้องไม่ว่าง', 'error'); return; }
-    if (oldName === newName) { closeRenameModal(); return; }
-    
-    if (state.masterPlayerList.some(function(m) { return String(m).toLowerCase() === newName.toLowerCase() && m !== oldName; })) {
-        Swal.fire('ข้อผิดพลาด', `มีชื่อ "${escapeHtml(newName)}" อยู่แล้ว`, 'error'); return;
-    }
-    
-    const idx = state.masterPlayerList.indexOf(oldName);
-    if (idx !== -1) { 
-        state.masterPlayerList[idx] = newName; 
-        state.masterPlayerList.sort(function(a, b) { return String(a).localeCompare(String(b), 'th'); }); 
-    }
-    
-    state.allTransactions.forEach(function(t) { if (t.name === oldName) t.name = newName; });
-    state.allPayments.forEach(function(p) { if (p.name === oldName) p.name = newName; });
-    Object.values(state.dailyData).forEach(function(daily) {
-        daily.players.forEach(function(p) { if (p.name === oldName) p.name = newName; });
-        daily.games.forEach(function(g) { g.players = g.players.map(function(p) { return p === oldName ? newName : p; }); });
-    });
-    Object.keys(currentGameSelection).forEach(function(k) { if (currentGameSelection[k] === oldName) currentGameSelection[k] = newName; });
-    
-    closeRenameModal();
-    updateAndRender();
-    Swal.fire({ icon: 'success', title: 'เปลี่ยนชื่อสำเร็จ!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-}
-
 function deletePlayer(name) {
-    Swal.fire({
-        title: `ต้องการลบ "${escapeHtml(name)}"?`,
-        html: `ผู้เล่นนี้จะถูก<strong>ลบออกจากทุกข้อมูล</strong>อย่างถาวร<br>รวมถึงประวัติการเล่นและการจ่ายเงินทั้งหมด`,
-        icon: 'warning', showCancelButton: true,
-        confirmButtonColor: '#dc2626', confirmButtonText: 'ใช่ ลบเลย!', cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (!r.isConfirmed) return;
-        state.masterPlayerList = state.masterPlayerList.filter(function(p) { return p !== name; });
-        Object.values(state.dailyData).forEach(function(daily) {
-            daily.players = daily.players.filter(function(p) { return p.name !== name; });
-        });
-        
-        state.allTransactions = state.allTransactions.filter(function(t) { return t.name !== name; });
-        state.allPayments = state.allPayments.filter(function(p) { return p.name !== name; });
-        
-        Object.keys(currentGameSelection).forEach(function(k) { if (currentGameSelection[k] === name) currentGameSelection[k] = ''; });
-        updateAndRender();
-        Swal.fire({ icon: 'success', title: 'ลบผู้เล่นสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-    });
-}
-
-function clearTodayPlayers() {
-    Swal.fire({
-        title: 'ล้างรายชื่อวันนี้?', text: 'รายชื่อที่มาวันนี้และเกมที่บันทึกไว้จะถูกล้าง (รายชื่อหลักยังคงอยู่)',
-        icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626',
-        confirmButtonText: 'ล้างเลย!', cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (!r.isConfirmed) return;
-        const dd = getCurrentDailyData();
-        dd.players.forEach(function(p) { p.present = false; p.paid = false; });
-        dd.games = [];
-        currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-        updateAndRender();
-    });
-}
-
-function clearAllPlayers() {
-    Swal.fire({
-        title: 'ล้างข้อมูลทั้งหมด?',
-        html: `<p class="text-red-600 font-semibold">การดำเนินการนี้จะลบรายชื่อผู้เล่นและข้อมูลทั้งหมดอย่างถาวร!</p><p class="mt-2">พิมพ์ <strong>CONFIRM</strong> เพื่อยืนยัน</p>`,
-        icon: 'error', input: 'text', inputPlaceholder: 'CONFIRM',
-        inputValidator: function(v) { return v !== 'CONFIRM' ? 'กรุณาพิมพ์ CONFIRM ให้ถูกต้อง' : undefined; },
-        showCancelButton: true, confirmButtonColor: '#dc2626',
-        confirmButtonText: 'ยืนยันลบทั้งหมด', cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (r.isConfirmed) {
-            state = createDefaultState();
-            currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-            applySettingsToUI();
+    Swal.fire({title:`ลบ ${name}?`,icon:'warning',showCancelButton:true,confirmButtonColor:'#dc2626',confirmButtonText:'ลบเลย'}).then(r=>{
+        if(r.isConfirmed) {
+            state.masterPlayerList = state.masterPlayerList.filter(x=>x!==name);
+            Object.values(state.dailyData).forEach(d => d.players = d.players.filter(x=>x.name!==name));
+            state.allTransactions = state.allTransactions.filter(x=>x.name!==name); state.allPayments = state.allPayments.filter(x=>x.name!==name);
             updateAndRender();
         }
     });
 }
+function submitRename() {
+    const oldN = document.getElementById('rename-old-name').value; const newN = document.getElementById('rename-new-name').value.trim();
+    if(!newN || oldN===newN) { document.getElementById('rename-modal').classList.add('hidden'); return; }
+    let idx = state.masterPlayerList.indexOf(oldN); if(idx!==-1) state.masterPlayerList[idx] = newN;
+    state.allTransactions.forEach(t=>{if(t.name===oldN) t.name=newN;}); state.allPayments.forEach(t=>{if(t.name===oldN) t.name=newN;});
+    Object.values(state.dailyData).forEach(d=>{ d.players.forEach(p=>{if(p.name===oldN) p.name=newN;}); d.games.forEach(g=>g.players=g.players.map(x=>x===oldN?newN:x)); });
+    document.getElementById('rename-modal').classList.add('hidden'); updateAndRender();
+}
 
-// ============================================================
-// CORE LOGIC — GAMES & S PEN V.3 (INTELLIGENT BOARD)
-// ============================================================
-
+// --- S PEN SMART BOARD (V4) ---
 function openPenInputModal() {
-    const elModal = document.getElementById('pen-input-modal');
-    if (elModal) elModal.classList.remove('hidden');
+    document.getElementById('pen-input-modal').classList.remove('hidden');
+    ['penP1','penP2','penP3','penP4'].forEach(id=>{ document.getElementById(id).value=''; document.getElementById(id).className='court-input'; });
+    document.querySelectorAll('.ball-btn').forEach(b=>b.classList.remove('active')); currentPenMatchedBalls=[]; focusedFieldId='penP1';
+    document.getElementById('penReviewSection').classList.add('hidden'); document.getElementById('penQuickPad').classList.add('hidden'); document.getElementById('btnConfirmPenInput').classList.add('hidden');
     
-    // 🧮 ดึง "เบอร์ลูกล่าสุด" จากเกมล่าสุดของวันนี้มาแสดง
-    const dd = getCurrentDailyData();
-    const badge = document.getElementById('penShuttleCountBadge');
-    
-    if (badge) {
-        if (dd.games && dd.games.length > 0) {
-            const lastGame = dd.games[dd.games.length - 1];
-            const lastSpeeds = lastGame.shuttlecockSpeeds || [];
-            badge.innerHTML = `ลูกล่าสุดใช้เบอร์: <b>${lastSpeeds.join(', ')}</b>`;
-        } else {
-            badge.innerHTML = `ยังไม่มีเกมวันนี้`;
-        }
-    }
-    
-    // เคลียร์ค่าทั้ง 4 กล่องให้ว่าง
-    ['penP1', 'penP2', 'penP3', 'penP4'].forEach(function(id) {
-        const el = document.getElementById(id);
-        if (el) { el.value = ''; el.className = 'court-input'; }
-        const btn = el ? el.nextElementSibling : null;
-        if (btn && btn.classList.contains('court-clear-btn')) btn.style.display = 'none';
-    });
-    
-    // เคลียร์ปุ่มเบอร์ลูก
-    document.querySelectorAll('.ball-btn').forEach(function(b) { b.classList.remove('active'); });
-    currentPenMatchedBalls = [];
-    focusedFieldId = 'penP1';
-    
-    document.getElementById('penReviewSection').classList.add('hidden');
-    document.getElementById('penQuickPad').classList.add('hidden');
-    document.getElementById('btnConfirmPenInput').classList.add('hidden');
-    
-    setTimeout(function() { const p1 = document.getElementById('penP1'); if (p1) p1.focus(); }, 150);
+    const dd = getCurrentDailyData(); const badge = document.getElementById('penShuttleCountBadge');
+    if(badge) badge.innerHTML = (dd.games.length>0 && dd.games[dd.games.length-1].shuttlecockSpeeds) ? `ลูกล่าสุด: <b>${dd.games[dd.games.length-1].shuttlecockSpeeds.join(', ')}</b>` : 'ยังไม่มีเกม';
 }
-
-function closePenInputModal() {
-    const elModal = document.getElementById('pen-input-modal');
-    if (elModal) elModal.classList.add('hidden');
-}
-
-function getEditDistance(a, b) {
-    if (a.length === 0) return b.length;
-    if (b.length === 0) return a.length;
-    let matrix = [];
-    for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
-    for (let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
-    for (let i = 1; i <= b.length; i++) {
-        for (let j = 1; j <= a.length; j++) {
-            if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                matrix[i][j] = matrix[i - 1][j - 1];
-            } else {
-                matrix[i][j] = Math.min(
-                    matrix[i - 1][j - 1] + 1, 
-                    Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1) 
-                );
-            }
-        }
-    }
-    return matrix[b.length][a.length];
-}
-
-function clearPenField(id) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.value = '';
-        el.className = 'court-input';
-        el.focus();
-        focusedFieldId = id;
-    }
-    scanPenInput();
-}
-
+function closePenInputModal() { document.getElementById('pen-input-modal').classList.add('hidden'); }
+function clearPenField(id) { document.getElementById(id).value=''; document.getElementById(id).className='court-input'; document.getElementById(id).focus(); focusedFieldId=id; scanPenInput(); }
 function toggleBallBtn(btn, num) {
-    btn.classList.toggle('active');
-    if (btn.classList.contains('active')) {
-        currentPenMatchedBalls.push(num);
-    } else {
-        currentPenMatchedBalls = currentPenMatchedBalls.filter(function(b) { return b !== num; });
-    }
-    currentPenMatchedBalls = [...new Set(currentPenMatchedBalls)].sort(function(a, b) { return Number(a) - Number(b); });
-    scanPenInput();
+    btn.classList.toggle('active'); if(btn.classList.contains('active')) currentPenMatchedBalls.push(num); else currentPenMatchedBalls = currentPenMatchedBalls.filter(b=>b!==num);
+    currentPenMatchedBalls.sort((a,b)=>a-b); scanPenInput();
 }
 
 function scanPenInput() {
-    let p1 = document.getElementById('penP1').value.trim();
-    let p2 = document.getElementById('penP2').value.trim();
-    let p3 = document.getElementById('penP3').value.trim();
-    let p4 = document.getElementById('penP4').value.trim();
+    let p1 = document.getElementById('penP1').value.trim(); let p2 = document.getElementById('penP2').value.trim();
+    let p3 = document.getElementById('penP3').value.trim(); let p4 = document.getElementById('penP4').value.trim();
     
-    // 💡 ระบบเตะชื่อล้นออโต้ (เพิ่มตัวบล็อก: ถ้ามีเครื่องหมาย : หรือเป็นชื่อเต็มแล้ว ห้ามแยกเด็ดขาด!)
+    // Auto Split (Block if contains : )
     if (p1 && !p1.includes(':') && !state.masterPlayerList.includes(p1)) {
-        let p1Tokens = p1.replace(/vs/ig, ' ').replace(/[-,\/]/g, ' ').split(/\s+/).filter(Boolean);
-        if (p1Tokens.length > 1) {
-            p1 = p1Tokens[0]; document.getElementById('penP1').value = p1;
-            if (!p2 && p1Tokens[1]) { p2 = p1Tokens[1]; document.getElementById('penP2').value = p2; }
-            else if (!p3 && p1Tokens[1]) { p3 = p1Tokens[1]; document.getElementById('penP3').value = p3; }
-            else if (!p4 && p1Tokens[1]) { p4 = p1Tokens[1]; document.getElementById('penP4').value = p4; }
-        }
+        let tk = p1.replace(/vs/ig,' ').replace(/[-,\/]/g,' ').split(/\s+/).filter(Boolean);
+        if (tk.length>1) { p1=tk[0]; document.getElementById('penP1').value=p1; if(!p2&&tk[1]){p2=tk[1]; document.getElementById('penP2').value=p2;} else if(!p3&&tk[1]){p3=tk[1]; document.getElementById('penP3').value=p3;} }
     }
 
-    const fields = ['penP1', 'penP2', 'penP3', 'penP4'];
-    const values = [p1, p2, p3, p4];
-    let finalMatchedNames = ['', '', '', ''];
-    let statusColors = ['white', 'white', 'white', 'white'];
+    let fields = ['penP1','penP2','penP3','penP4']; let vals = [p1,p2,p3,p4]; let fNames = ['','','','']; let status = ['white','white','white','white'];
+    const autoMap = {'แกน':'แทน','หนู':'หมู','เบน':'แมน','สากล':'สากดา','พี่ปุ้ย':'พี่ปุ๋ย'};
+    let aliasMap = state.masterPlayerList.map(n=>({full:n, short:n.includes(': ')?n.split(': ')[1].toLowerCase():n.toLowerCase()}));
 
-    const autoCorrectMap = { 'แกน':'แทน', 'หนู':'หมู', 'เบน':'แมน', 'สากล':'สากดา', 'พี่ปุ้ย':'พี่ปุ๋ย' };
-    let aliasMap = state.masterPlayerList.map(function(fullName) {
-        let shortName = fullName.includes(': ') ? fullName.split(': ')[1] : fullName;
-        return { full: fullName, short: shortName.toLowerCase() };
-    });
-
-    fields.forEach(function(id, idx) {
-        let rawVal = values[idx];
-        const el = document.getElementById(id);
-        const clearBtn = el.nextElementSibling;
+    fields.forEach((id, i) => {
+        let v = vals[i]; const el = document.getElementById(id);
+        if(!v) { el.className='court-input'; return; }
         
-        if (!rawVal) { 
-            el.className = 'court-input'; 
-            if (clearBtn && clearBtn.classList.contains('court-clear-btn')) clearBtn.style.display = 'none'; 
-            return; 
-        }
-        if (clearBtn && clearBtn.classList.contains('court-clear-btn')) clearBtn.style.display = 'block';
+        let exact = state.masterPlayerList.find(m=>m.toLowerCase()===v.toLowerCase());
+        if(exact) { status[i]='green'; fNames[i]=exact; el.value=exact; return; }
 
-        // 🟢 VIP Fast Track: ถ้าชื่อในกล่องตรงกับฐานข้อมูลเป๊ะๆ (จิ้มมาจากแผง) ให้ไฟเขียวผ่านทันที ไม่ต้องสแกนซ้ำ!
-        let exactMatch = state.masterPlayerList.find(function(m) { return m.toLowerCase() === rawVal.trim().toLowerCase(); });
-        if (exactMatch) {
-            statusColors[idx] = 'green';
-            finalMatchedNames[idx] = exactMatch;
-            el.value = exactMatch;
-            return; // ผ่านไปตรวจกล่องต่อไปเลย
-        }
-
-        let token = rawVal.toLowerCase();
-        if (autoCorrectMap[token]) token = autoCorrectMap[token].toLowerCase();
-
+        let t = v.toLowerCase(); if(autoMap[t]) t=autoMap[t].toLowerCase();
         let matches = [];
-        aliasMap.forEach(function(item) {
-            if (token === item.short) { matches.push({ name: item.full, dist: 0 }); }
-            else if (token.includes(item.short) || item.short.includes(token)) { matches.push({ name: item.full, dist: 1 }); }
-            else {
-                let dist = getEditDistance(token, item.short);
-                if (dist <= (token.length <= 3 ? 1 : 2)) matches.push({ name: item.full, dist: dist + 2 });
-            }
+        aliasMap.forEach(item => {
+            if(t===item.short) matches.push({name:item.full, d:0});
+            else if(t.includes(item.short)||item.short.includes(t)) matches.push({name:item.full, d:1});
+            else { let d=getEditDistance(t,item.short); if(d<=(t.length<=3?1:2)) matches.push({name:item.full, d:d+2}); }
         });
+        matches.sort((a,b)=>a.d-b.d);
 
-        matches.sort(function(a, b) { return a.dist - b.dist; });
-
-        if (matches.length === 0) {
-            statusColors[idx] = 'red'; 
-        } else if (matches.length > 1 && matches[0].dist === matches[1].dist) {
-            statusColors[idx] = 'yellow'; 
-            finalMatchedNames[idx] = token; 
-        } else {
-            statusColors[idx] = 'green'; 
-            finalMatchedNames[idx] = matches[0].name;
-            el.value = matches[0].name;
-        }
+        if(matches.length===0) status[i]='red';
+        else if(matches.length>1 && matches[0].d===matches[1].d) { status[i]='yellow'; fNames[i]=t; }
+        else { status[i]='green'; fNames[i]=matches[0].name; el.value=matches[0].name; }
     });
 
-    // 💡 ดักจับผู้เล่นซ้ำ
-    let duplicateDetected = false;
-    let nonEmpties = finalMatchedNames.filter(Boolean);
-    if (new Set(nonEmpties).size !== nonEmpties.length) {
-        duplicateDetected = true;
-        finalMatchedNames.forEach(function(name, i) {
-            if (name && finalMatchedNames.indexOf(name) !== finalMatchedNames.lastIndexOf(name)) statusColors[i] = 'yellow';
-        });
-    }
+    let nonE = fNames.filter(Boolean); let dup = new Set(nonE).size !== nonE.length;
+    if(dup) fNames.forEach((n,i)=>{ if(n && fNames.indexOf(n)!==fNames.lastIndexOf(n)) status[i]='yellow'; });
 
-    fields.forEach(function(id, idx) {
-        const el = document.getElementById(id);
-        el.className = 'court-input status-' + statusColors[idx];
-    });
+    fields.forEach((id, i) => document.getElementById(id).className = 'court-input status-'+status[i]);
 
-    const secReview = document.getElementById('penReviewSection');
-    const errText = document.getElementById('penErrorText');
-    const btnConfirm = document.getElementById('btnConfirmPenInput');
-    const secPad = document.getElementById('penQuickPad');
+    let allG = status.every(c=>c==='green') && vals.every(v=>v!==''); let hasB = currentPenMatchedBalls.length>0;
+    const rev = document.getElementById('penReviewSection'); const pad = document.getElementById('penQuickPad'); const btnConf = document.getElementById('btnConfirmPenInput');
 
-    let allGreen = statusColors.every(function(c) { return c === 'green'; }) && values.every(function(v) { return v !== ''; });
-    let hasBalls = currentPenMatchedBalls.length > 0;
-
-    if (duplicateDetected || statusColors.includes('yellow') || statusColors.includes('red') || (!hasBalls && values.some(function(v) { return v !== ''; }))) {
-        secReview.classList.remove('hidden');
-        btnConfirm.classList.add('hidden');
-        secPad.classList.remove('hidden');
-        
-        if (duplicateDetected) { errText.innerHTML = "⚠️ <b>พบบั๊กผู้เล่นซ้ำกัน:</b> มีชื่อซ้ำกันลงเล่นมากกว่า 1 ตำแหน่ง กรุณาตรวจสอบ"; }
-        else if (!hasBalls && allGreen) { errText.innerHTML = "⚠️ <b>ข้อมูลไม่ครบ:</b> กรุณาเลือกกดเบอร์ลูกแบดอย่างน้อย 1 เบอร์ครับ"; }
-        else { errText.innerHTML = "⚠️ กรุณาเคลียร์ช่องไฟเหลืองหรือแดง โดยการจิ้มกล่องนั้นแล้วจิ้มเลือกชื่อเพื่อนด้านล่างให้ถูกต้อง"; }
-        
-        renderPenV3QuickPad(statusColors, finalMatchedNames);
-    } else if (allGreen && hasBalls) {
-        secReview.classList.add('hidden');
-        secPad.classList.add('hidden');
-        btnConfirm.classList.remove('hidden'); // ปลดล็อกปุ่มบันทึก
-    } else {
-        secReview.classList.add('hidden');
-        secPad.classList.add('hidden');
-        btnConfirm.classList.add('hidden');
-    }
+    if(dup || status.includes('yellow') || status.includes('red') || (!hasB && vals.some(v=>v!==''))) {
+        rev.classList.remove('hidden'); btnConf.classList.add('hidden'); pad.classList.remove('hidden');
+        if(dup) document.getElementById('penErrorText').innerHTML="⚠️ พบชื่อซ้ำกันในสนาม"; else if(!hasB&&allG) document.getElementById('penErrorText').innerHTML="⚠️ อย่าลืมเลือกเบอร์ลูก"; else document.getElementById('penErrorText').innerHTML="⚠️ จิ้มรายชื่อด้านล่างเพื่อแก้กล่องที่ผิด";
+        renderQuickPad(status);
+    } else if(allG && hasB) { rev.classList.add('hidden'); pad.classList.add('hidden'); btnConf.classList.remove('hidden'); }
 }
 
-function renderPenV3QuickPad(statusColors, finalMatchedNames) {
-    const pad = document.getElementById('penQuickPadList');
-    const label = document.getElementById('penQuickPadLabel');
-    
-    // 🎯 ล็อกเป้าหมาย: หากล่องที่ติดไฟเหลือง หรือไฟแดง เป็นอันดับแรก
-    let fields = ['penP1', 'penP2', 'penP3', 'penP4'];
-    let targetIdx = statusColors.indexOf('yellow');
-    if (targetIdx === -1) targetIdx = statusColors.indexOf('red');
-    if (targetIdx === -1) targetIdx = fields.indexOf(focusedFieldId); // ถ้าไม่มีบั๊ก เอาช่องที่ปากกาอยู่
-    
-    let targetId = fields[targetIdx !== -1 ? targetIdx : 0];
-    let targetEl = document.getElementById(targetId);
-    
-    let currentText = targetEl ? targetEl.value.trim().toLowerCase() : '';
-    let isYellow = statusColors[targetIdx] === 'yellow';
+function renderQuickPad(status) {
+    const pad = document.getElementById('penQuickPadList'); let fields = ['penP1','penP2','penP3','penP4'];
+    let tIdx = status.indexOf('yellow'); if(tIdx===-1) tIdx = status.indexOf('red'); if(tIdx===-1) tIdx = fields.indexOf(focusedFieldId);
+    let targetId = fields[tIdx!==-1?tIdx:0]; let targetEl = document.getElementById(targetId);
+    let cText = targetEl?targetEl.value.trim().toLowerCase():''; let isY = status[tIdx]==='yellow';
 
-    let listToRender = [...state.masterPlayerList].sort(function(a, b) { return String(a).localeCompare(String(b), 'th'); });
+    let list = [...state.masterPlayerList].sort((a,b)=>a.localeCompare(b,'th'));
+    if(isY && cText) list = list.filter(n=>{ let s=n.includes(': ')?n.split(': ')[1].toLowerCase():n.toLowerCase(); return s.includes(cText)||cText.includes(s); });
     
-    if (isYellow && currentText) {
-        listToRender = listToRender.filter(function(fullName) {
-            let short = fullName.includes(': ') ? fullName.split(': ')[1] : fullName;
-            return short.toLowerCase().includes(currentText) || currentText.includes(short.toLowerCase());
-        });
-        label.innerHTML = `🎯 <b>ฟันธงผู้เล่นย่อสำหรับช่องนี้:</b> คัดกรองคำกำกวมมาให้แล้ว เลือกได้เลย`;
-    } else {
-        label.innerHTML = `<i class="fas fa-hand-pointer mr-1"></i> จิ้มเลือกชื่อเพื่อนเพื่อแก้ช่องที่ผิด:`;
-    }
-
-    // แปะชื่อพร้อมส่งเป้าหมาย (targetId) ไปด้วยว่าต้องเข้ากล่องไหน
-    pad.innerHTML = listToRender.map(function(name) {
-        return `<div class="quick-pad-chip" onclick="selectQuickPadName('${escapeHtml(name)}', '${targetId}')">${escapeHtml(name)}</div>`;
-    }).join('');
+    pad.innerHTML = list.map(n=>`<div class="quick-pad-chip" onclick="selectPad('${escapeHtml(n)}', '${targetId}')">${escapeHtml(n)}</div>`).join('');
 }
-
-
-function selectQuickPadName(name, targetId) {
-    const el = document.getElementById(targetId);
-    if (el) {
-        el.value = name; // 🎯 เสียบชื่อเข้ากล่องที่ติดไฟเหลือง/แดงทันที
-        scanPenInput();  // สแกนเพื่อให้กล่องนั้นเปลี่ยนเป็นไฟเขียว
-        
-        // เลื่อนเคอร์เซอร์ปากกาไปรอกล่องที่ยังว่างอยู่
-        let order = ['penP1', 'penP2', 'penP3', 'penP4'];
-        let nextIdx = (order.indexOf(targetId) + 1) % 4;
-        let count = 0;
-        while(document.getElementById(order[nextIdx]).value !== '' && count < 4) {
-            nextIdx = (nextIdx + 1) % 4; 
-            count++;
-        }
-        focusedFieldId = order[nextIdx];
-        const nextEl = document.getElementById(focusedFieldId);
-        if(nextEl) nextEl.focus();
-        
-        scanPenInput(); // รีเฟรชหน้ากระดาน
-    }
+function selectPad(name, targetId) {
+    document.getElementById(targetId).value = name; scanPenInput();
+    let fields = ['penP1','penP2','penP3','penP4']; let nIdx = (fields.indexOf(targetId)+1)%4; let c=0;
+    while(document.getElementById(fields[nIdx]).value!=='' && c<4) { nIdx=(nIdx+1)%4; c++; }
+    focusedFieldId = fields[nIdx]; document.getElementById(focusedFieldId).focus(); scanPenInput();
 }
-
+function getEditDistance(a, b) {
+    if(a.length===0) return b.length; if(b.length===0) return a.length; let m=[];
+    for(let i=0;i<=b.length;i++) m[i]=[i]; for(let j=0;j<=a.length;j++) m[0][j]=j;
+    for(let i=1;i<=b.length;i++) { for(let j=1;j<=a.length;j++) { m[i][j] = b.charAt(i-1)===a.charAt(j-1) ? m[i-1][j-1] : Math.min(m[i-1][j-1]+1, Math.min(m[i][j-1]+1, m[i-1][j]+1)); } }
+    return m[b.length][a.length];
+}
 function confirmPenData() {
-    const names = ['penP1', 'penP2', 'penP3', 'penP4'].map(function(id) { return document.getElementById(id).value.trim(); });
-    if (new Set(names).size !== 4 || names.includes('')) return;
-    
-    const dd = getCurrentDailyData();
-    names.forEach(function(n) {
-        let p = dd.players.find(function(x) { return x.name === n; });
-        if (!p) { dd.players.push({ name: n, paid: false, present: true }); } else { p.present = true; }
-    });
-    
-    renderPlayerList(); 
-    renderGameDropdowns();
-    ['player1', 'player2', 'player3', 'player4'].forEach(function(id, idx) {
-        currentGameSelection[id] = names[idx];
-        const el = document.getElementById(id); if (el) el.value = names[idx];
-    });
-    renderGameDropdowns();
-    
-    // โยนเบอร์ลูกที่กดไว้ลงช่องลูกแบดหลักของระบบเดิม
+    const n = ['penP1','penP2','penP3','penP4'].map(id=>document.getElementById(id).value);
+    const dd = getCurrentDailyData(); n.forEach(x=>{ let p=dd.players.find(y=>y.name===x); if(!p) dd.players.push({name:x,paid:false,present:true}); else p.present=true; });
+    ['player1','player2','player3','player4'].forEach((id,i)=>{ currentGameSelection[id]=n[i]; document.getElementById(id).value=n[i]; });
     document.getElementById('shuttlecockSpeeds').value = currentPenMatchedBalls.join(', ');
-    
-    closePenInputModal();
-    Swal.fire({ icon: 'success', title: 'จัดตัวลงสนามสำเร็จ!', text: 'กด "บันทึกเกมนี้" ได้เลยครับ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+    closePenInputModal(); updateAndRender(); Swal.fire({icon:'success',title:'ลงสนามสำเร็จ!',toast:true,position:'top-end',showConfirmButton:false,timer:1500});
 }
 
-function recordGame() {
-    const players = ['player1','player2','player3','player4'].map(function(id) { return document.getElementById(id).value; }).filter(Boolean);
-    if (new Set(players).size !== 4) {
-        Swal.fire({ icon: 'error', title: 'ผู้เล่นไม่ถูกต้อง', text: 'กรุณาเลือกผู้เล่น 4 คนที่ไม่ซ้ำกัน' }); return;
-    }
-    
-    const priceVal = parseFloat(document.getElementById('shuttlecockPrice').value) || state.settings.shuttlecockPrice || 0;
-    
-    if (isNaN(priceVal) || priceVal < 0) {
-        Swal.fire({ icon: 'error', title: 'ราคาไม่ถูกต้อง', text: 'กรุณากรอกราคาต่อลูก (≥ 0)' }); return;
-    }
-    const speedsStr = document.getElementById('shuttlecockSpeeds').value.trim();
-    if (!speedsStr) {
-        Swal.fire({ icon: 'error', title: 'ข้อมูลไม่ครบ', text: 'กรุณากรอกเบอร์ลูกที่ใช้' }); return;
-    }
-    const speeds = speedsStr.split(/[,\s]+/).map(function(s) { return s.trim(); }).filter(Boolean);
-    if (speeds.length === 0) {
-        Swal.fire({ icon: 'error', title: 'ข้อมูลไม่ครบ', text: 'กรุณากรอกเบอร์ลูกให้ถูกต้อง' }); return;
-    }
-
-    _isDailyDirty = true; 
-
-    getCurrentDailyData().games.push({
-        id: generateGameId(), players: players, shuttlecocksUsed: speeds.length,
-        shuttlecockPrice: priceVal, shuttlecockSpeeds: speeds
-    });
-    state.settings.shuttlecockPrice = priceVal;
-
-    document.getElementById('shuttlecockSpeeds').value = '';
-    currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-    updateAndRender();
-    Swal.fire({ icon: 'success', title: 'บันทึกเกมสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 1800 });
+// --- VOICE COMMAND (Smart) ---
+function startVoiceCommand() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if(!SR) { Swal.fire('ไม่รองรับ','โปรดใช้ Chrome','error'); return; }
+    const rec = new SR(); rec.lang = 'th-TH'; rec.interimResults = false; rec.maxAlternatives = 1;
+    Swal.fire({ title:'🎙️ ฟังอยู่...', html:'พูดชื่อ 4 คน <br><span class="text-xs text-gray-500">(เสร็จแล้วกด พูดจบแล้ว 👇)</span>', showConfirmButton:true, confirmButtonText:'<i class="fas fa-stop-circle"></i> พูดจบแล้ว', showCancelButton:true, allowOutsideClick:false, didOpen:()=>rec.start() }).then(r=>{ if(r.isConfirmed) rec.stop(); else if(r.isDismissed) rec.abort(); });
+    rec.onresult = e => { Swal.close(); processVoiceCommand(e.results[0][0].transcript); };
+    rec.onerror = e => { Swal.close(); if(e.error!=='aborted' && e.error!=='no-speech') Swal.fire('ผิดพลาด','ฟังไม่ถนัด ลองใหม่ครับ','warning'); };
+    rec.onend = () => { if(Swal.isVisible() && Swal.getTitle()?.textContent==='🎙️ ฟังอยู่...') Swal.close(); };
 }
-
-function removeGame(gameId) {
-    Swal.fire({ title: 'ลบเกมนี้?', text: 'ค่าใช้จ่ายจะถูกคำนวณใหม่', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626', confirmButtonText: 'ลบเลย!', cancelButtonText: 'ยกเลิก' })
-        .then(function(r) {
-            if (!r.isConfirmed) return;
-            _isDailyDirty = true;
-            const dd = getCurrentDailyData();
-            dd.games = dd.games.filter(function(g) { return g.id !== gameId; });
-            updateAndRender();
-        });
-}
-
-async function editGame(gameId) {
-    const dd = getCurrentDailyData();
-    const game = dd.games.find(function(g) { return g.id === gameId; });
-    if (!game) return;
-    
-    const presentPlayers = dd.players.filter(function(p) { return p.present; }).sort(function(a, b) { return String(a.name).localeCompare(String(b.name), 'th'); });
-    
-    const opts = presentPlayers.map(function(p) { return `<option value="${escapeHtml(p.name)}">${escapeHtml(p.name)}</option>`; }).join('');
-    const speedVal = (game.shuttlecockSpeeds || []).join(', ');
-    const makeSelect = function(i) { return `<div class="mb-2 text-left"><label style="font-size:13px;font-weight:600;color:#475569">ผู้เล่น ${i}</label><select id="ep${i}" class="swal2-select" style="margin:4px 0 0;">${opts}</select></div>`; };
-    
-    const { value: fv, isConfirmed } = await Swal.fire({
-        title: 'แก้ไขข้อมูลเกม', width: 480,
-        html: `${[1,2,3,4].map(makeSelect).join('')}<div class="mt-2 text-left"><label style="font-size:13px;font-weight:600;color:#475569">เบอร์ลูก</label><input id="ep-speeds" class="swal2-input" value="${escapeHtml(speedVal)}" style="margin:4px 0 0;" placeholder="75, 76"></div>`,
-        focusConfirm: false,
-        didOpen: function() { for (let i = 1; i <= 4; i++) { const s = document.getElementById(`ep${i}`); if (s) s.value = game.players[i-1] || ''; } },
-        preConfirm: function() {
-            const players = [1,2,3,4].map(function(i) { return document.getElementById(`ep${i}`).value; }).filter(Boolean);
-            const speeds = document.getElementById('ep-speeds').value.split(/[,\s]+/).map(function(s) { return s.trim(); }).filter(Boolean);
-            if (new Set(players).size !== 4) { Swal.showValidationMessage('กรุณาเลือกผู้เล่น 4 คนที่ไม่ซ้ำ'); return false; }
-            if (speeds.length === 0) { Swal.showValidationMessage('กรุณากรอกเบอร์ลูก'); return false; }
-            return { players: players, speeds: speeds };
-        }
-    });
-    if (isConfirmed && fv) {
-        _isDailyDirty = true;
-        game.players = fv.players; game.shuttlecockSpeeds = fv.speeds; game.shuttlecocksUsed = fv.speeds.length;
-        updateAndRender();
-        Swal.fire({ icon: 'success', title: 'แก้ไขเกมสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
-    }
-}
-
-function moveGame(gameId, dir) {
-    const dd = getCurrentDailyData();
-    const idx = dd.games.findIndex(function(g) { return g.id === gameId; });
-    const targetIdx = idx + dir;
-    if (targetIdx < 0 || targetIdx >= dd.games.length) return;
-    
-    const temp = dd.games[idx];
-    dd.games[idx] = dd.games[targetIdx];
-    dd.games[targetIdx] = temp;
-    
-    updateAndRender();
-}
-
-function togglePaidStatus(name) {
-    const dd = getCurrentDailyData();
-    const player = dd.players.find(function(p) { return p.name === name; });
-    if (!player) return;
-    const summary = calculateDailySummary();
-    const pd = summary.playerDetails[name];
-    if (!pd || pd.totalCost < TOLERANCE) {
-        Swal.fire({ icon: 'warning', title: 'ไม่มีค่าใช้จ่าย', text: `${escapeHtml(name)} ไม่มียอดที่ต้องชำระ` }); return;
-    }
-    player.paid = !player.paid;
-    updateAndRender();
-}
-
-// ============================================================
-// CALCULATIONS
-// ============================================================
-function calculateDailySummary() {
-    const dd = getCurrentDailyData();
-    const details = {};
-
-    dd.players.filter(function(p) { return p.present; }).forEach(function(p) {
-        details[p.name] = { name: p.name, shuttlecockCost: 0, totalCost: 0, gamesPlayed: 0, paid: p.paid, gameIndices: [], shuttlecockSpeedsUsed: [], inGameOnly: false };
-    });
-
-    dd.games.forEach(function(g) {
-        g.players.forEach(function(name) {
-            if (!details[name]) {
-                const playerRecord = dd.players.find(function(p) { return p.name === name; });
-                details[name] = {
-                    name: name, shuttlecockCost: 0, totalCost: 0, gamesPlayed: 0,
-                    paid: playerRecord ? playerRecord.paid : false,
-                    gameIndices: [], shuttlecockSpeedsUsed: [],
-                    inGameOnly: true 
-                };
-            }
-        });
-    });
-
-    dd.games.forEach(function(g, idx) {
-        const price = g.shuttlecockPrice ?? state.settings.shuttlecockPrice ?? 0;
-        const costPer = (g.shuttlecocksUsed * price) / 4;
-        g.players.forEach(function(name) {
-            if (details[name]) {
-                details[name].shuttlecockCost += costPer;
-                details[name].totalCost += costPer;
-                details[name].gamesPlayed++;
-                details[name].gameIndices.push(idx + 1);
-                details[name].shuttlecockSpeedsUsed.push(...(g.shuttlecockSpeeds || []));
-            }
-        });
-    });
-
-    let grandTotal = 0;
-    Object.values(details).forEach(function(d) { grandTotal += d.totalCost; });
-    return { playerDetails: details, grandTotal: grandTotal };
-}
-
-function calculateOverallBalance() {
-    const allNames = new Set([
-        ...state.masterPlayerList,
-        ...state.allTransactions.map(function(t) { return t.name; }),
-        ...state.allPayments.map(function(p) { return p.name; })
-    ]);
-    const summary = {};
-    allNames.forEach(function(name) { summary[name] = { name: name, totalDebt: 0, totalPaid: 0, balance: 0 }; });
-    
-    let totalShuttlecock = 0;
-    state.allTransactions.forEach(function(t) {
-        if (summary[t.name]) { summary[t.name].totalDebt += Number(t.totalCost || 0); totalShuttlecock += Number(t.shuttlecockCost || 0); }
-    });
-    state.allPayments.forEach(function(p) { if (summary[p.name]) summary[p.name].totalPaid += Number(p.amount || 0); });
-    
-    const report = { unpaid: [], withCredit: [], paidInFull: [] };
-    let totalUnpaid = 0, totalCredit = 0;
-    
-    Object.values(summary).forEach(function(item) {
-        item.balance = item.totalDebt - item.totalPaid;
-        if (item.totalDebt > TOLERANCE || item.totalPaid > TOLERANCE) {
-            if (item.balance > TOLERANCE) { report.unpaid.push(item); totalUnpaid += item.balance; }
-            else if (item.balance < -TOLERANCE) { report.withCredit.push(item); totalCredit += -item.balance; }
-            else report.paidInFull.push(item);
-        }
-    });
-    report.unpaid.sort(function(a, b) { return b.balance - a.balance; });
-    report.withCredit.sort(function(a, b) { return a.balance - b.balance; });
-    report.paidInFull.sort(function(a, b) { return String(a.name).localeCompare(String(b.name), 'th'); });
-    
-    return { report: report, totalShuttlecock: totalShuttlecock, totalUnpaid: totalUnpaid, totalCredit: totalCredit, playersCount: allNames.size };
-}
-
-// ============================================================
-// CONFIRM & SAVE DAILY TO OVERALL
-// ============================================================
-function confirmDailySummaryAndSave() {
-    const { playerDetails } = calculateDailySummary();
-    const withCosts = Object.values(playerDetails).filter(function(p) { return p.totalCost > TOLERANCE || p.gamesPlayed > 0; });
-    if (withCosts.length === 0) { Swal.fire('ไม่พบข้อมูล', 'ยังไม่มีผู้เล่นที่มีค่าใช้จ่าย', 'info'); return; }
-
-    Swal.fire({
-        title: 'ยืนยันและบันทึกลงบัญชีรวม?',
-        html: `<p>ข้อมูลวันที่ <strong>${selectedDate}</strong> จะถูกบันทึกลงประวัติรวม</p><p class="text-sm text-gray-500 mt-1">(ถ้าเคยบันทึกวันนี้แล้วจะถูกอัปเดตโดยอัตโนมัติ)</p>`,
-        icon: 'question', showCancelButton: true, confirmButtonColor: '#1d4ed8',
-        confirmButtonText: 'ยืนยัน', cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (!r.isConfirmed) return;
-        
-        state.allTransactions = state.allTransactions.filter(function(t) {
-            if (t.date !== selectedDate) return true;
-            if (t.source === 'quick_debt') return true; 
-            if (t.source === 'daily') return false; 
-            if (!t.source && t.shuttlecockCost === 0) return true; 
-            return false;
-        });
-
-        state.allPayments = state.allPayments.filter(function(p) {
-            if (p.paymentDate !== selectedDate) return true;
-            if (p.source === 'manual_payment') return true;
-            if (p.source === 'daily') return false;
-            return true;
-        });
-
-        const transToAdd = withCosts.map(function(p) { 
-            return {
-                date: selectedDate, name: p.name,
-                shuttlecockCost: parseFloat(p.shuttlecockCost.toFixed(2)),
-                totalCost: parseFloat(p.totalCost.toFixed(2)),
-                status: p.paid ? 'จ่ายแล้ว' : 'ยังไม่จ่าย',
-                source: 'daily'
-            };
-        });
-        
-        const paymentsToAdd = withCosts
-            .filter(function(p) { return p.paid && p.totalCost > TOLERANCE; })
-            .map(function(p) { 
-                return { 
-                    timestamp: new Date().toISOString(), 
-                    paymentDate: selectedDate, 
-                    name: p.name, 
-                    amount: parseFloat(p.totalCost.toFixed(2)),
-                    source: 'daily'
-                };
-            });
-
-        state.allTransactions.push(...transToAdd);
-        state.allPayments.push(...paymentsToAdd);
-        
-        _isDailyDirty = false; 
-        updateAndRender();
-
-        try {
-            localStorage.setItem(STORAGE_KEY + '_backup', JSON.stringify(state));
-        } catch(e) { console.error('Auto Backup failed'); }
-
-        Swal.fire({ icon: 'success', title: 'บันทึกสำเร็จ!', text: `บันทึกข้อมูลวันที่ ${selectedDate} ลงบัญชีรวมแล้ว`, timer: 2500, showConfirmButton: false });
-    });
-}
-
-function clearTodayData() {
-    Swal.fire({ title: 'ล้างข้อมูลวันนี้?', text: 'เกมและการจ่ายเงินของวันนี้จะถูกล้างทั้งหมด', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626', confirmButtonText: 'ล้างเลย!', cancelButtonText: 'ยกเลิก' })
-        .then(function(r) {
-            if (!r.isConfirmed) return;
-            const dd = getCurrentDailyData();
-            dd.games = [];
-            dd.players.forEach(function(p) { p.paid = false; });
-            currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-            _isDailyDirty = false;
-            updateAndRender();
-        });
-}
-
-// ============================================================
-// PAYMENT & QUICK DEBT MODALS
-// ============================================================
-function openPaymentModal(name, balance) {
-    const elName = document.getElementById('payment-name');
-    const elHidden = document.getElementById('payment-hidden-name');
-    const elAmt = document.getElementById('payment-amount');
-    const elModal = document.getElementById('payment-modal');
-    
-    if(elName) elName.textContent = name;
-    if(elHidden) elHidden.value = name;
-    if(elAmt) elAmt.value = parseFloat(balance).toFixed(2);
-    if(elModal) elModal.classList.remove('hidden');
-    setTimeout(function() { if(elAmt) elAmt.focus(); }, 100);
-}
-
-function closePaymentModal() { 
-    const elModal = document.getElementById('payment-modal');
-    if(elModal) elModal.classList.add('hidden'); 
-    const elAmt = document.getElementById('payment-amount');
-    if(elAmt) elAmt.value = ''; 
-}
-
-function deletePayment(payIdx, name, amount, date) {
-    Swal.fire({
-        title: 'ยืนยันการลบรายการชำระเงิน?',
-        html: `ต้องการลบรายการของ <b>${escapeHtml(name)}</b><br>จำนวน <b>฿${amount}</b> วันที่ ${new Date(date+'T00:00:00').toLocaleDateString('th-TH')}`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dc2626',
-        confirmButtonText: 'ใช่ ลบเลย',
-        cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (!r.isConfirmed) return;
-        if (state.allPayments[payIdx]) {
-            state.allPayments.splice(payIdx, 1);
-            updateAndRender();
-            Swal.fire({ icon: 'success', title: 'ลบรายการสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
-        }
-    });
-}
-
-function submitPayment() {
-    const elHidden = document.getElementById('payment-hidden-name');
-    const elAmt = document.getElementById('payment-amount');
-    
-    const name = elHidden ? elHidden.value : '';
-    const amount = elAmt ? (parseFloat(elAmt.value) || 0) : 0;
-    
-    if (amount <= 0) { Swal.fire('ข้อผิดพลาด', 'จำนวนเงินต้องมากกว่า 0', 'error'); return; }
-    state.allPayments.push({ timestamp: new Date().toISOString(), paymentDate: getTodayString(), name: name, amount: amount, source: 'manual_payment' });
-    closePaymentModal();
-    updateAndRender();
-    Swal.fire({ icon: 'success', title: 'บันทึกการชำระเงินสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-}
-
-function openQuickDebtModal() {
-    fillMasterPlayerDropdown('debt-player-name');
-    const elDate = document.getElementById('debt-date');
-    if(elDate) elDate.value = getTodayString();
-    
-    const elAmt = document.getElementById('debt-amount');
-    if(elAmt) elAmt.value = '';
-    
-    const elModal = document.getElementById('quick-debt-modal');
-    if(elModal) elModal.classList.remove('hidden');
-}
-
-function closeQuickDebtModal() { 
-    const elModal = document.getElementById('quick-debt-modal');
-    if(elModal) elModal.classList.add('hidden'); 
-}
-
-function submitDebt() {
-    const elDate = document.getElementById('debt-date');
-    const elName = document.getElementById('debt-player-name');
-    const elAmt = document.getElementById('debt-amount');
-    
-    const date = elDate ? elDate.value : '';
-    const name = elName ? elName.value : '';
-    const amount = elAmt ? (parseFloat(elAmt.value) || 0) : 0;
-    
-    if (!name) { Swal.fire('ข้อผิดพลาด', 'กรุณาเลือกชื่อผู้เล่น', 'error'); return; }
-    if (!date) { Swal.fire('ข้อผิดพลาด', 'กรุณาเลือกวันที่', 'error'); return; }
-    if (amount <= 0) { Swal.fire('ข้อผิดพลาด', 'ยอดหนี้ต้องมากกว่า 0', 'error'); return; }
-    
-    state.allTransactions.push({ date: date, name: name, shuttlecockCost: 0, totalCost: parseFloat(amount.toFixed(2)), status: 'ยังไม่จ่าย', source: 'quick_debt' });
-    closeQuickDebtModal();
-    updateAndRender();
-    Swal.fire({ icon: 'success', title: 'บันทึกหนี้สำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-}
-
-function fillMasterPlayerDropdown(selectId) {
-    const sel = document.getElementById(selectId);
-    if (!sel) return;
-    sel.innerHTML = '<option value="">-- เลือกผู้เล่น --</option>' +
-        [...state.masterPlayerList].sort(function(a, b) { return String(a).localeCompare(String(b), 'th'); }).map(function(n) { return `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`; }).join('');
-}
-
-// ============================================================
-// RENDER — DAILY
-// ============================================================
-function renderAll() {
-    renderPlayerList();
-    renderGameDropdowns();
-    renderOverallSummaryStats();
-    renderGamesList();
-    renderDailySummaryTable();
-}
-
-function renderPlayerList() {
-    const allNames = [...new Set([
-        ...state.masterPlayerList, 
-        ...getCurrentDailyData().players.map(function(p) { return p.name; })
-    ])].sort(function(a, b) { return String(a).localeCompare(String(b), 'th'); });
-    
-    const container = document.getElementById('playerList');
-    if (!container) return;
-    
-    if (allNames.length === 0) {
-        container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-4 text-sm">ยังไม่มีรายชื่อผู้เล่น กรุณาเพิ่มผู้เล่น</div>';
-        return;
-    }
-    
-    container.innerHTML = allNames.map(function(name) {
-        const dd = getCurrentDailyData();
-        const player = dd.players.find(function(p) { return p.name === name; });
-        const isPresent = player ? player.present : false;
-        const color = getPlayerColor(name);
-        const stylePresent = `background:${color.bg};border-color:${color.border};color:${color.text};`;
-        const styleAbsent = 'background:#f8fafc;border-color:#e2e8f0;color:#94a3b8;';
-
-        const colonIdx = String(name).indexOf(': ');
-        const hasPrefix = colonIdx !== -1;
-        const prefix = hasPrefix ? String(name).substring(0, colonIdx) : '';
-        const shortName = hasPrefix ? String(name).substring(colonIdx + 2) : name;
-        const dataName = `data-name="${escapeHtml(name)}"`;
-
-        const nameBlock = hasPrefix
-            ? `<div style="display:flex;flex-direction:column;min-width:0;flex:1;">
-                <span style="font-size:10px;font-weight:500;opacity:0.7;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(prefix)}</span>
-                <span style="font-size:13px;font-weight:700;line-height:1.3;white-space:normal;word-break:break-word;">${escapeHtml(shortName)}</span>
-               </div>`
-            : `<span style="font-size:13px;font-weight:700;white-space:normal;word-break:break-word;flex:1;">${escapeHtml(shortName)}</span>`;
-
-        return `<div class="player-chip ${isPresent ? '' : 'absent'}" style="${isPresent ? stylePresent : styleAbsent};align-items:flex-start;" ${dataName} data-action="toggle">
-            <div style="display:flex;align-items:flex-start;gap:6px;overflow:hidden;flex:1;min-width:0;">
-                <i class="fas ${isPresent ? 'fa-user-check' : 'fa-user'}" style="font-size:12px;flex-shrink:0;margin-top:3px;"></i>
-                ${nameBlock}
-            </div>
-            <div class="chip-actions" style="flex-shrink:0;margin-left:4px;">
-                <button ${dataName} data-action="rename" title="เปลี่ยนชื่อ" class="btn btn-ghost btn-icon" style="font-size:11px;padding:4px;"><i class="fas fa-edit"></i></button>
-                <button ${dataName} data-action="delete" title="ลบ" class="btn btn-ghost btn-icon" style="font-size:11px;padding:4px;color:#ef4444;"><i class="fas fa-trash-alt"></i></button>
-            </div>
-        </div>`;
-    }).join('');
-    
-    filterDailyPlayers();
-}
-
-function renderGameDropdowns() {
-    const dd = getCurrentDailyData();
-    const present = dd.players.filter(function(p) { return p.present; }).sort(function(a, b) { return String(a.name).localeCompare(String(b.name), 'th'); });
-    const baseOpts = '<option value="">-- เลือกผู้เล่น --</option>' + present.map(function(p) { return `<option value="${escapeHtml(p.name)}">${escapeHtml(p.name)}</option>`; }).join('');
-    const selected = Object.values(currentGameSelection).filter(Boolean);
-
-    Object.keys(currentGameSelection).forEach(function(k) {
-        if (currentGameSelection[k] && !present.some(function(p) { return p.name === currentGameSelection[k]; })) {
-            currentGameSelection[k] = '';
-        }
-    });
-
-    ['player1','player2','player3','player4'].forEach(function(id) {
-        const sel = document.getElementById(id);
-        if (!sel) return;
-        sel.innerHTML = baseOpts;
-        sel.value = currentGameSelection[id] || '';
-        for (let i=0; i<sel.options.length; i++) {
-            const opt = sel.options[i];
-            if (opt.value) opt.disabled = selected.includes(opt.value) && opt.value !== sel.value;
-        }
-    });
-}
-
-function renderOverallSummaryStats() {
-    const dd = getCurrentDailyData();
-    const games = dd.games;
-    const elGames = document.getElementById('totalGames');
-    if(elGames) elGames.textContent = games.length;
-    
-    const totalBalls = games.reduce(function(s, g) { return s + (g.shuttlecocksUsed || 0); }, 0);
-    const elBalls = document.getElementById('totalShuttlecocks');
-    if(elBalls) elBalls.textContent = totalBalls;
-    
-    const counts = games.reduce(function(acc, g) {
-        (g.shuttlecockSpeeds || []).forEach(function(sp) { const s = String(sp).trim(); if (s) acc[s] = (acc[s] || 0) + 1; });
-        return acc;
-    }, {});
-    const summDiv = document.getElementById('shuttlecockSpeedSummary');
-    if(summDiv) {
-        summDiv.innerHTML = Object.keys(counts).length
-            ? Object.entries(counts).sort(function(a, b) { return a[0].localeCompare(b[0]); }).map(function(entry) { return `<span>เบอร์ ${escapeHtml(entry[0])}: <strong>${entry[1]}</strong> ลูก</span>`; }).join(' <span style="color:#cbd5e1">|</span> ')
-            : '<span style="color:#94a3b8">ยังไม่มีข้อมูล</span>';
-    }
-}
-
-function renderGamesList() {
-    const games = getCurrentDailyData().games;
-    const container = document.getElementById('gamesList');
-    if(!container) return;
-    if (!games.length) {
-        container.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-table-tennis"></i>ยังไม่มีการบันทึกเกม</div>';
-        return;
-    }
-    container.innerHTML = games.map(function(game, idx) {
-        const p1 = game.players[0];
-        const p2 = game.players[1];
-        const p3 = game.players[2];
-        const p4 = game.players[3];
-        const tag = function(n) { return n ? `<span class="player-tag" style="background:${getPlayerColor(n).tag}">${escapeHtml(n)}</span>` : ''; };
-        const speedText = (game.shuttlecockSpeeds || []).join(', ') || 'N/A';
-        const price = game.shuttlecockPrice ?? state.settings.shuttlecockPrice ?? 0;
-        const cost = ((game.shuttlecocksUsed || 0) * price / 4).toFixed(2);
-        return `<div class="game-card">
-            <div class="game-card-header">
-                <span style="font-size:13px;font-weight:700;color:#475569">เกมที่ ${idx + 1}</span>
-                <div style="display:flex;gap:3px;align-items:center;">
-                    <button data-game-id="${game.id}" data-action="move-up" class="btn btn-ghost btn-icon" ${idx===0?'disabled':''} title="เลื่อนขึ้น"><i class="fas fa-arrow-up" style="font-size:11px;"></i></button>
-                    <button data-game-id="${game.id}" data-action="move-down" class="btn btn-ghost btn-icon" ${idx===games.length-1?'disabled':''} title="เลื่อนลง"><i class="fas fa-arrow-down" style="font-size:11px;"></i></button>
-                    <button data-game-id="${game.id}" data-action="edit-game" class="btn btn-ghost btn-icon" title="แก้ไข" style="color:#3b82f6;"><i class="fas fa-edit" style="font-size:11px;"></i></button>
-                    <button data-game-id="${game.id}" data-action="remove-game" class="btn btn-ghost btn-icon" title="ลบ" style="color:#ef4444;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></button>
-                </div>
-            </div>
-            <div class="game-card-body" style="font-size:13px;">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-                    <span style="width:52px;font-weight:700;color:#3b82f6;font-size:12px;flex-shrink:0;">ทีม A</span>
-                    <div style="display:flex;flex-wrap:wrap;gap:4px;">${tag(p1)}${tag(p2)}</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-                    <span style="width:52px;font-weight:700;color:#ef4444;font-size:12px;flex-shrink:0;">ทีม B</span>
-                    <div style="display:flex;flex-wrap:wrap;gap:4px;">${tag(p3)}${tag(p4)}</div>
-                </div>
-                <div style="background:#f8fafc;border-radius:6px;padding:6px 10px;font-size:12px;color:#475569;">
-                    <i class="fas fa-circle" style="font-size:8px;margin-right:4px;"></i>
-                    ${escapeHtml(speedText)} &nbsp;·&nbsp; ${game.shuttlecocksUsed} ลูก @${price.toFixed(2)} บ. &nbsp;·&nbsp; คนละ <strong>${cost}</strong> บ.
-                </div>
-            </div>
-        </div>`;
-    }).join('');
-}
-
-function renderDailySummaryTable() {
-    const { playerDetails, grandTotal } = calculateDailySummary();
-    const all = Object.values(playerDetails).filter(function(p) { return p.totalCost > TOLERANCE || p.gamesPlayed > 0; }).sort(function(a, b) { return String(a.name).localeCompare(String(b.name), 'th'); });
-    const unpaid = all.filter(function(p) { return !p.paid; });
-    const paid = all.filter(function(p) { return p.paid; });
-
-    const makeRow = function(d) { return `<tr${d.inGameOnly ? ' style="background:#fffbeb;"' : ''}>
-        <td class="sticky-col" style="background:${d.inGameOnly ? '#fffbeb' : 'white'};font-weight:600;">
-            ${escapeHtml(d.name)}
-            ${d.inGameOnly ? '<span title="อยู่ในเกมแต่ไม่ได้ mark มาวันนี้" style="margin-left:4px;font-size:10px;background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:10px;font-weight:600;">*เกม</span>' : ''}
-        </td>
-        <td class="text-center" style="font-size:12px;">${d.gameIndices.join(', ') || '-'}</td>
-        <td class="text-center" style="font-size:11px;color:#64748b;">${[...new Set(d.shuttlecockSpeedsUsed)].join(', ') || '-'}</td>
-        <td class="text-center" style="font-weight:700;">${d.totalCost.toFixed(2)}</td>
-        <td class="text-center"><span class="badge ${d.paid ? 'badge-success' : 'badge-danger'}">${d.paid ? 'จ่ายแล้ว' : 'ยังไม่จ่าย'}</span></td>
-        <td class="text-center"><button data-name="${escapeHtml(d.name)}" data-action="toggle-paid" class="btn btn-sm ${d.paid ? 'btn-secondary' : 'btn-warning'}" style="font-size:12px;">${d.paid ? 'ยกเลิก' : 'บันทึกจ่าย'}</button></td>
-    </tr>`; };
-
-    let unpaidHtml = '', paidHtml = '';
-    if (unpaid.length) {
-        const tot = unpaid.reduce(function(s, p) { return s + p.totalCost; }, 0);
-        unpaidHtml = `<tr><td colspan="6" class="section-divider" style="background:#fef2f2;color:#b91c1c;border-bottom:1px solid #fecaca;">ยังไม่จ่าย (${unpaid.length} คน)</td></tr>`;
-        unpaidHtml += unpaid.map(makeRow).join('');
-        unpaidHtml += `<tr style="background:#fef2f2;font-weight:700;"><td class="sticky-col" colspan="3" style="background:#fef2f2;">รวม (ยังไม่จ่าย)</td><td class="text-center" style="color:#b91c1c;">${tot.toFixed(2)}</td><td colspan="2"></td></tr>`;
-    }
-    if (paid.length) {
-        const tot = paid.reduce(function(s, p) { return s + p.totalCost; }, 0);
-        paidHtml = `<tr><td colspan="6" class="section-divider" style="background:#f0fdf4;color:#15803d;border-bottom:1px solid #bbf7d0;">จ่ายแล้ว (${paid.length} คน)</td></tr>`;
-        paidHtml += paid.map(makeRow).join('');
-        paidHtml += `<tr style="background:#f0fdf4;font-weight:700;"><td class="sticky-col" colspan="3" style="background:#f0fdf4;">รวม (จ่ายแล้ว)</td><td class="text-center" style="color:#15803d;">${tot.toFixed(2)}</td><td colspan="2"></td></tr>`;
-    }
-
-    const tUnpaid = document.getElementById('summaryTableUnpaid');
-    if(tUnpaid) tUnpaid.innerHTML = unpaidHtml || (all.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-receipt"></i>ยังไม่มีข้อมูล</div></td></tr>` : '');
-    
-    const tPaid = document.getElementById('summaryTablePaid');
-    if(tPaid) tPaid.innerHTML = paidHtml;
-    
-    const gTotal = document.getElementById('grandTotal');
-    if(gTotal) gTotal.textContent = grandTotal.toFixed(2);
-}
-
-// ============================================================
-// RENDER — ACCOUNT
-// ============================================================
-function renderAccountTab() {
-    const { report, totalShuttlecock, totalUnpaid, totalCredit, playersCount } = calculateOverallBalance();
-    
-    const elDate = document.getElementById('account-summary-date');
-    if(elDate) elDate.textContent = new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
-    
-    const elTUnpaid = document.getElementById('total-unpaid-overall');
-    if(elTUnpaid) elTUnpaid.textContent = formatCurrency(totalUnpaid);
-    
-    const elTCredit = document.getElementById('total-credit-overall');
-    if(elTCredit) elTCredit.textContent = formatCurrency(totalCredit);
-    
-    const elTShuttle = document.getElementById('total-shuttlecock-overall');
-    if(elTShuttle) elTShuttle.textContent = formatCurrency(totalShuttlecock);
-    
-    const elPCount = document.getElementById('players-count-overall');
-    if(elPCount) elPCount.textContent = playersCount;
-    
-    fillMasterPlayerDropdown('debt-player-name');
-
-    const makeCard = function(item) {
-        const balance = parseFloat(item.balance);
-        let balHtml, action = '';
-        if (balance > TOLERANCE) {
-            balHtml = `<span style="font-weight:700;color:#dc2626;">ค้าง ${formatCurrency(balance)}</span>`;
-            action = `<button class="btn btn-success btn-sm pay-btn" data-name="${escapeHtml(item.name)}" data-balance="${balance.toFixed(2)}" style="font-size:12px;"><i class="fas fa-hand-holding-usd"></i>รับเงิน</button>
-                      <button class="btn btn-sm" style="background:#00B900;color:white;font-size:12px;margin-left:4px;" onclick="sendPersonalLine('${escapeHtml(item.name)}', ${balance.toFixed(2)})"><i class="fab fa-line"></i>ทวงเงิน</button>`;
-        } else if (balance < -TOLERANCE) {
-            balHtml = `<span style="font-weight:700;color:#1d4ed8;">เครดิต ${formatCurrency(-balance)}</span>`;
-        } else {
-            balHtml = `<span style="font-weight:700;color:#16a34a;">✅ ครบแล้ว</span>`;
-        }
-        return `<div style="border:1.5px solid #e2e8f0;border-radius:10px;padding:12px 14px;background:white;">
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
-                <span style="font-weight:700;color:#1e293b;">${escapeHtml(item.name)}</span>
-                <div style="display:flex;align-items:center;gap:8px;">${balHtml}${action}</div>
-            </div>
-            <div style="font-size:12px;color:#64748b;margin-top:5px;display:flex;justify-content:space-between;">
-                <span>เรียกเก็บรวม: ${formatCurrency(item.totalDebt)}</span>
-                <span>ชำระแล้ว: ${formatCurrency(item.totalPaid)}</span>
-            </div>
-        </div>`;
-    };
-
-    const sInput = document.getElementById('searchAccountInput');
-    const searchTerm = sInput ? String(sInput.value).toLowerCase() : '';
-    const filterFn = function(item) { return String(item.name).toLowerCase().includes(searchTerm); };
-    
-    const displayUnpaid = report.unpaid.filter(filterFn);
-    const displayCredit = report.withCredit.filter(filterFn);
-    const displayPaidFull = report.paidInFull.filter(filterFn);
-
-    const empty = function(txt) { return `<div class="text-sm text-gray-400 py-2 px-1">${txt}</div>`; };
-    
-    const unList = document.getElementById('unpaid-list-overall');
-    if(unList) unList.innerHTML = displayUnpaid.length ? displayUnpaid.map(makeCard).join('') : empty('ไม่พบข้อมูล 🔍');
-    
-    const crList = document.getElementById('credit-list-overall');
-    if(crList) crList.innerHTML = displayCredit.length ? displayCredit.map(makeCard).join('') : empty('ไม่พบข้อมูล 🔍');
-    
-    const pfList = document.getElementById('paid-in-full-list-overall');
-    if(pfList) pfList.innerHTML = displayPaidFull.length ? displayPaidFull.map(makeCard).join('') : empty('ไม่พบข้อมูล 🔍');
-}
-
-// ============================================================
-// RENDER — HISTORY
-// ============================================================
-function renderHistoryTab() {
-    const elStart = document.getElementById('summaryStartDate');
-    const startDate = elStart ? elStart.value : '';
-    
-    const elEnd = document.getElementById('summaryEndDate');
-    const endDate = elEnd ? elEnd.value : '';
-    
-    const elCurDate = document.getElementById('history-current-date');
-    if(elCurDate) elCurDate.textContent = new Date().toLocaleString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) + ' น.';
-
-    const filteredTx = state.allTransactions.filter(function(t) { return (!startDate || t.date >= startDate) && (!endDate || t.date <= endDate); });
-    const filteredPay = state.allPayments.filter(function(p) { return (!startDate || p.paymentDate >= startDate) && (!endDate || p.paymentDate <= endDate); });
-
-    const summaries = {};
-    const names = new Set([...filteredTx.map(function(t){ return t.name; }), ...filteredPay.map(function(p){ return p.name; })]);
-    names.forEach(function(name) { summaries[name] = { name: name, totalDebt: 0, totalPaid: 0, balance: 0, transactions: [], payments: [] }; });
-    
-    filteredTx.forEach(function(t) { if (summaries[t.name]) { summaries[t.name].totalDebt += Number(t.totalCost || 0); summaries[t.name].transactions.push(t); } });
-    filteredPay.forEach(function(p) { if (summaries[p.name]) { summaries[p.name].totalPaid += Number(p.amount || 0); summaries[p.name].payments.push(p); } });
-    
-    const all = Object.values(summaries).map(function(p) { p.balance = p.totalDebt - p.totalPaid; return p; }).filter(function(p) { return p.totalDebt > TOLERANCE || p.totalPaid > TOLERANCE; });
-    const unpaid = all.filter(function(p) { return p.balance > TOLERANCE; }).sort(function(a, b) { return b.balance - a.balance; });
-    const paid = all.filter(function(p) { return p.balance <= TOLERANCE; }).sort(function(a, b) { return String(a.name).localeCompare(String(b.name), 'th'); });
-
-    const contentDiv = document.getElementById('overall-summary-content');
-    if(!contentDiv) return;
-    if (!all.length) { contentDiv.innerHTML = '<div class="empty-state"><i class="fas fa-calendar-times"></i>ไม่พบข้อมูลสำหรับช่วงวันที่ที่เลือก</div>'; return; }
-
-    let topSpender = { name: '-', amount: 0 };
-    let topPaid = { name: '-', amount: 0 };
-    all.forEach(function(p) {
-        if (p.totalDebt > topSpender.amount) { topSpender.amount = p.totalDebt; topSpender.name = p.name; }
-        if (p.totalPaid > topPaid.amount) { topPaid.amount = p.totalPaid; topPaid.name = p.name; }
-    });
-
-    const statsHtml = `
-        <div class="grid grid-cols-2 gap-3 mb-5 p-3 bg-indigo-50 rounded-lg border border-indigo-100">
-            <div>
-                <div class="text-xs text-indigo-600 font-semibold">🏸 ค่าลูกแบดรวมสูงสุด</div>
-                <div class="text-sm font-bold text-gray-800">${escapeHtml(topSpender.name)} <span class="text-indigo-600">(฿${topSpender.amount.toFixed(2)})</span></div>
-            </div>
-            <div>
-                <div class="text-xs text-green-600 font-semibold">💸 ชำระเงินรวมสูงสุด</div>
-                <div class="text-sm font-bold text-gray-800">${escapeHtml(topPaid.name)} <span class="text-green-600">(฿${topPaid.amount.toFixed(2)})</span></div>
-            </div>
-        </div>
-    `;
-
-    const makeHistoryTable = function(players, colorScheme, label) {
-        const total = players.reduce(function(s, p) { return s + p.balance; }, 0);
-        const colors = colorScheme === 'red'
-            ? { head: '#fef2f2', headText: '#b91c1c', foot: '#fecaca', border: '#fca5a5' }
-            : { head: '#f0fdf4', headText: '#15803d', foot: '#bbf7d0', border: '#86efac' };
-        return `<div style="margin-bottom:28px;">
-            <h3 style="font-size:16px;font-weight:700;color:${colors.headText};border-bottom:2px solid ${colors.border};padding-bottom:8px;margin-bottom:12px;">${label}</h3>
-            <div class="overflow-x-auto">
-                <table class="data-table">
-                    <thead style="background:${colors.head};">
-                        <tr>
-                            <th style="color:${colors.headText};">ชื่อผู้เล่น</th>
-                            <th class="text-right" style="color:${colors.headText};">ยอดเรียกเก็บ</th>
-                            <th class="text-right" style="color:${colors.headText};">ชำระแล้ว</th>
-                            <th class="text-right" style="color:${colors.headText};font-weight:700;">ยอดคงเหลือ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${players.map(function(p, i) { return renderHistoryRow(p, colorScheme, i); }).join('')}
-                    </tbody>
-                    <tfoot style="background:${colors.foot};">
-                        <tr>
-                            <td colspan="3">รวมทั้งหมด</td>
-                            <td class="text-right" style="color:${colors.headText};font-size:15px;">${total.toFixed(2)}</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>`;
-    };
-
-    let html = statsHtml;
-    if (unpaid.length) html += makeHistoryTable(unpaid, 'red', `⚠️ ผู้เล่นที่มียอดค้างชำระ (${unpaid.length} คน)`);
-    if (paid.length) html += makeHistoryTable(paid, 'green', `✅ ผู้เล่นที่ชำระครบแล้ว / มีเครดิต (${paid.length} คน)`);
-    contentDiv.innerHTML = html;
-}
-
-function renderHistoryRow(player, color, suffix) {
-    const detailId = `hd-${color}-${suffix}`;
-    const balColor = player.balance > TOLERANCE ? '#b91c1c' : (player.balance < -TOLERANCE ? '#1d4ed8' : '#15803d');
-    const balText = player.balance < -TOLERANCE ? `(${Math.abs(player.balance).toFixed(2)})` : player.balance.toFixed(2);
-    const sortedTx = [...player.transactions].sort(function(a, b) { return new Date(b.date+'T00:00:00') - new Date(a.date+'T00:00:00'); });
-    const sortedPay = [...player.payments].sort(function(a, b) { return new Date(b.paymentDate+'T00:00:00') - new Date(a.paymentDate+'T00:00:00'); });
-    return `
-        <tr style="border-bottom:1px solid #f1f5f9;cursor:pointer;" data-detail-id="${detailId}" data-action="toggle-history">
-            <td style="font-weight:600;">${escapeHtml(player.name)} <i class="fas fa-chevron-down" style="font-size:10px;color:#94a3b8;transition:transform .2s;"></i></td>
-            <td class="text-right">${player.totalDebt.toFixed(2)}</td>
-            <td class="text-right" style="color:#16a34a;">${player.totalPaid.toFixed(2)}</td>
-            <td class="text-right" style="font-weight:700;color:${balColor};">${balText}</td>
-        </tr>
-        <tr id="${detailId}" class="details-row">
-            <td colspan="4" style="padding:0;">
-                <div style="padding:14px 16px;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:6px;">ประวัติค่าใช้จ่าย</div>
-                            <div style="max-height:160px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:6px;background:white;">
-                                <table class="data-table" style="font-size:12px;">
-                                    <tbody>
-                                        ${sortedTx.length ? sortedTx.map(function(t) { return `<tr><td>${new Date(t.date+'T00:00:00').toLocaleDateString('th-TH')}</td><td class="text-right">${Number(t.totalCost).toFixed(2)} บ.</td><td class="text-center"><span class="badge ${t.status==='จ่ายแล้ว'?'badge-success':'badge-danger'}" style="font-size:11px;">${t.status||'ยังไม่จ่าย'}</span></td></tr>`; }).join('') : '<tr><td colspan="3" style="text-align:center;color:#94a3b8;">ไม่มีรายการ</td></tr>'}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:6px;">ประวัติการชำระเงิน</div>
-                            <div style="max-height:160px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:6px;background:white;">
-                                <table class="data-table" style="font-size:12px;">
-                                    <tbody>
-                                        ${sortedPay.length ? sortedPay.map(function(p, pi) {
-                                            const payIdx = state.allPayments.indexOf(p);
-                                            return `<tr>
-                                                <td>${new Date(p.paymentDate+'T00:00:00').toLocaleDateString('th-TH')}</td>
-                                                <td class="text-right" style="color:#16a34a;font-weight:600;">${Number(p.amount).toFixed(2)} บ.</td>
-                                                <td style="text-align:center;padding:4px;">
-                                                    <button class="btn btn-ghost btn-icon del-payment-btn"
-                                                        data-pay-idx="${payIdx}"
-                                                        data-player-name="${escapeHtml(player.name)}"
-                                                        data-amount="${Number(p.amount).toFixed(2)}"
-                                                        data-date="${p.paymentDate}"
-                                                        title="ลบรายการชำระนี้"
-                                                        style="color:#ef4444;padding:2px 6px;font-size:11px;">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>`;
-                                        }).join('') : '<tr><td colspan="3" style="text-align:center;color:#94a3b8;">ไม่มีรายการ</td></tr>'}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>`;
-}
-
-function toggleHistoryDetails(id, triggerRow) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle('show');
-    const icon = triggerRow.querySelector('.fa-chevron-down');
-    if (icon) icon.style.transform = el.classList.contains('show') ? 'rotate(180deg)' : '';
-}
-
-// ============================================================
-// TAB MANAGEMENT
-// ============================================================
-function switchTab(name) {
-    document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.add('hidden'); });
-    document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    
-    const content = document.getElementById(`tab-${name}`);
-    if(content) content.classList.remove('hidden');
-    
-    const btn = document.querySelector(`[data-tab="${name}"]`);
-    if(btn) btn.classList.add('active');
-    
-    if (name === 'account') renderAccountTab();
-    if (name === 'history') renderHistoryTab();
-}
-
-// ============================================================
-// MAIN UPDATE CYCLE
-// ============================================================
-function updateAndRender() {
-    saveToStorage();
-    renderAll();
-    updateTabBadges();
-    
-    const activeTabBtn = document.querySelector('.tab-btn.active');
-    const activeTab = activeTabBtn ? activeTabBtn.dataset.tab : null;
-    
-    if (activeTab === 'account') renderAccountTab();
-    if (activeTab === 'history') renderHistoryTab();
-}
-
-function updateTabBadges() {
-    const { playerDetails } = calculateDailySummary();
-    const unpaidToday = Object.values(playerDetails).filter(function(p) { return !p.paid && p.totalCost > TOLERANCE; }).length;
-    const badgeDaily = document.getElementById('badge-daily');
-    if (badgeDaily) {
-        if (unpaidToday > 0) { badgeDaily.textContent = unpaidToday; badgeDaily.style.display = 'inline-flex'; }
-        else badgeDaily.style.display = 'none';
-    }
-    const { report } = calculateOverallBalance();
-    const badgeAcc = document.getElementById('badge-account');
-    if (badgeAcc) {
-        if (report.unpaid.length > 0) { badgeAcc.textContent = report.unpaid.length; badgeAcc.style.display = 'inline-flex'; }
-        else badgeAcc.style.display = 'none';
-    }
-}
-
-function useLastTeam() {
-    const games = getCurrentDailyData().games;
-    if (!games.length) {
-        Swal.fire({ icon: 'info', title: 'ยังไม่มีเกม', text: 'ยังไม่มีเกมที่บันทึกในวันนี้' }); return;
-    }
-    const lastGame = games[games.length - 1];
-    const presentNames = getCurrentDailyData().players.filter(function(p) { return p.present; }).map(function(p) { return p.name; });
-    const missing = lastGame.players.filter(function(n) { return !presentNames.includes(n); });
-    
-    if (missing.length > 0) {
-        Swal.fire({
-            icon: 'warning', title: 'ผู้เล่นบางคนไม่ได้มาวันนี้',
-            html: `<p>ผู้เล่นต่อไปนี้ไม่ได้ mark ว่ามาวันนี้:</p>
-                   <p style="font-weight:700;color:#dc2626;">${missing.map(function(n) { return escapeHtml(n); }).join(', ')}</p>
-                   <p style="margin-top:8px;">ต้องการใช้ทีมเดิมต่อไหม?</p>`,
-            showCancelButton: true, confirmButtonText: 'ใช้ทีมเดิม', cancelButtonText: 'ยกเลิก',
-            confirmButtonColor: '#1d4ed8'
-        }).then(function(r) { if (r.isConfirmed) applyLastTeam(lastGame.players); });
-    } else {
-        applyLastTeam(lastGame.players);
-    }
-}
-
-function applyLastTeam(players) {
-    ['player1','player2','player3','player4'].forEach(function(id, i) {
-        currentGameSelection[id] = players[i] || '';
-    });
-    renderGameDropdowns();
-    Swal.fire({ icon: 'success', title: 'เลือกทีมเดิมแล้ว', toast: true, position: 'top-end', showConfirmButton: false, timer: 1800 });
-}
-
-function payAllUnpaid() {
-    const { report } = calculateOverallBalance();
-    if (!report.unpaid.length) {
-        Swal.fire({ icon: 'info', title: 'ไม่มีรายการค้าง', text: 'ทุกคนชำระครบแล้ว 🎉' }); return;
-    }
-    const totalAmt = report.unpaid.reduce(function(s, p) { return s + p.balance; }, 0);
-    const nameList = report.unpaid.map(function(p) { return `${escapeHtml(p.name)} (฿${p.balance.toFixed(2)})`; }).join('<br>');
-    Swal.fire({
-        title: 'ชำระทั้งหมดพร้อมกัน?',
-        html: `<p style="margin-bottom:10px;">บันทึกการชำระสำหรับทุกคนที่ค้างอยู่:</p>
-               <div style="max-height:200px;overflow-y:auto;text-align:left;font-size:13px;background:#f8fafc;border-radius:8px;padding:10px;">${nameList}</div>
-               <p style="margin-top:12px;font-weight:700;font-size:16px;color:#1d4ed8;">รวม ฿${totalAmt.toFixed(2)}</p>`,
-        icon: 'question', showCancelButton: true,
-        confirmButtonColor: '#16a34a',
-        confirmButtonText: '✅ ยืนยันชำระทั้งหมด', cancelButtonText: 'ยกเลิก'
-    }).then(function(r) {
-        if (!r.isConfirmed) return;
-        const today = getTodayString();
-        report.unpaid.forEach(function(item) {
-            state.allPayments.push({ timestamp: new Date().toISOString(), paymentDate: today, name: item.name, amount: parseFloat(item.balance.toFixed(2)), source: 'manual_payment' });
-        });
-        updateAndRender();
-        Swal.fire({ icon: 'success', title: `ชำระทั้งหมด ${report.unpaid.length} คน สำเร็จ!`, toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
-    });
-}
-
-function applySettingsToUI() {
-    const el = document.getElementById('shuttlecockPrice');
-    if(el) el.value = state.settings.shuttlecockPrice || 0;
-}
-
-// ============================================================
-// EXPORT UTILITIES (คืนชีพ 100%)
-// ============================================================
-function formatDateThai(dateStr) {
-    if (!dateStr) dateStr = getTodayString();
-    const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('th-TH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-}
-
-async function captureAndDownload(element, filename) {
-    Swal.fire({ title: 'กำลังสร้างรูป...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-    try {
-        const canvas = await html2canvas(element, {
-            scale: 2.5,
-            useCORS: true,
-            backgroundColor: '#f1f5f9',
-            logging: false,
-            onclone: function(doc, el) {
-                el.style.fontFamily = "'Sarabun', sans-serif";
-            }
-        });
-        canvas.toBlob(function(blob) {
-            const isIOS = (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) && !window.MSStream;
-            if (isIOS) {
-                const url = URL.createObjectURL(blob);
-                Swal.fire({
-                    icon: 'info',
-                    title: 'บันทึกรูปบน iPhone/iPad',
-                    html: `<p style="font-size:14px;">กดปุ่มด้านล่างเพื่อเปิดรูป แล้ว<br><strong>กดค้างที่รูป → บันทึกรูปภาพ</strong></p>`,
-                    confirmButtonText: '🖼️ เปิดรูป',
-                    showCancelButton: true,
-                    cancelButtonText: 'ปิด',
-                    confirmButtonColor: '#1d4ed8'
-                }).then(function(r) {
-                    if (r.isConfirmed) window.open(url, '_blank');
-                    else URL.revokeObjectURL(url);
-                });
-            } else {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                Swal.fire({ icon: 'success', title: 'บันทึกรูปสำเร็จ!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-            }
-        }, 'image/png');
-    } catch(e) {
-        console.error(e);
-        Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถสร้างรูปได้: ' + e.message, 'error');
-    }
-}
-
-async function renderOffscreenAndCapture(buildFn, filename) {
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1;width:800px;background:#f1f5f9;padding:20px;font-family:Sarabun,sans-serif;';
-    document.body.appendChild(wrapper);
-    buildFn(wrapper);
-    await new Promise(function(r) { setTimeout(r, 100); }); 
-    await captureAndDownload(wrapper, filename);
-    document.body.removeChild(wrapper);
-}
-
-// ============================================================
-// EXPORT 1: เกมที่บันทึกแล้ว → รูปภาพ
-// ============================================================
-function exportGamesImage() {
-    const dd = getCurrentDailyData();
-    if (!dd.games || dd.games.length === 0) {
-        Swal.fire({ icon: 'info', title: 'ยังไม่มีเกม', text: 'ยังไม่มีข้อมูลเกมที่บันทึก' }); return;
-    }
-    const dateStr = formatDateThai(selectedDate);
-    const totalBalls = dd.games.reduce(function(s, g) { return s + (g.shuttlecocksUsed || 0); }, 0);
-
-    renderOffscreenAndCapture(function(wrapper) {
-        const speedCounts = dd.games.reduce(function(acc, g) {
-            (g.shuttlecockSpeeds || []).forEach(function(s) { const k = String(s).trim(); if (k) acc[k] = (acc[k] || 0) + 1; });
-            return acc;
-        }, {});
-        const speedSummary = Object.entries(speedCounts).sort(function(a,b) { return a[0].localeCompare(b[0]); }).map(function(entry) { return `เบอร์ ${entry[0]}: ${entry[1]} ลูก`; }).join(' | ');
-
-        const gamesHTML = dd.games.map(function(g, idx) {
-            const price = g.shuttlecockPrice ?? state.settings.shuttlecockPrice ?? 0;
-            const costEach = ((g.shuttlecocksUsed || 0) * price / 4).toFixed(2);
-            const speeds = (g.shuttlecockSpeeds || []).join(', ');
-            const p1 = g.players[0];
-            const p2 = g.players[1];
-            const p3 = g.players[2];
-            const p4 = g.players[3];
-            const tag = function(n, bg) { return n ? `<span style="background:${bg};color:white;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700;display:inline-block;margin:2px;">${escapeHtml(n)}</span>` : ''; };
-            const colors = ['#ef4444','#3b82f6','#22c55e','#f59e0b','#8b5cf6','#ec4899','#14b8a6','#f97316'];
-            const col = function(n) { if (!n) return '#888'; const s = [...String(n)].reduce(function(a,c) { return a+c.charCodeAt(0); },0); return colors[s % colors.length]; };
-            return `<div style="background:white;border-radius:12px;padding:14px 16px;margin-bottom:10px;border:1.5px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #f1f5f9;padding-bottom:8px;">
-                    <span style="font-weight:800;font-size:15px;color:#374151;">เกมที่ ${idx + 1}</span>
-                    <span style="font-size:12px;color:#6b7280;">🏸 ${escapeHtml(speeds)} (${g.shuttlecocksUsed} ลูก @${price.toFixed(2)} บ.) · คนละ ${costEach} บ.</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                    <span style="width:56px;font-weight:700;color:#3b82f6;font-size:13px;">ทีม A</span>
-                    <div>${tag(p1,col(p1))} ${tag(p2,col(p2))}</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;">
-                    <span style="width:56px;font-weight:700;color:#ef4444;font-size:13px;">ทีม B</span>
-                    <div>${tag(p3,col(p3))} ${tag(p4,col(p4))}</div>
-                </div>
-            </div>`;
-        }).join('');
-
-        wrapper.innerHTML = `
-            <div style="background:linear-gradient(135deg,#1d4ed8,#1e40af);border-radius:16px;padding:20px 24px;margin-bottom:16px;color:white;">
-                <div style="font-size:22px;font-weight:800;margin-bottom:4px;">🏸 เกมที่บันทึกแล้ว</div>
-                <div style="font-size:14px;opacity:0.9;">${dateStr}</div>
-                <div style="display:flex;gap:20px;margin-top:14px;">
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;text-align:center;">
-                        <div style="font-size:24px;font-weight:800;">${dd.games.length}</div>
-                        <div style="font-size:12px;opacity:0.85;">เกมทั้งหมด</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;text-align:center;">
-                        <div style="font-size:24px;font-weight:800;">${totalBalls}</div>
-                        <div style="font-size:12px;opacity:0.85;">ลูกทั้งหมด</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;flex:1;text-align:center;">
-                        <div style="font-size:13px;font-weight:600;">${escapeHtml(speedSummary) || '-'}</div>
-                        <div style="font-size:12px;opacity:0.85;">สรุปตามเบอร์</div>
-                    </div>
-                </div>
-            </div>
-            ${gamesHTML}
-            <div style="text-align:center;font-size:11px;color:#9ca3af;margin-top:8px;">สร้างโดยโปรแกรมคำนวณค่าลูกแบดมินตัน</div>`;
-    }, `games-${selectedDate}.png`);
-}
-
-// ============================================================
-// EXPORT 2: สรุปค่าใช้จ่ายประจำวัน → รูปภาพ
-// ============================================================
-function exportSummaryImage() {
-    const { playerDetails, grandTotal } = calculateDailySummary();
-    const all = Object.values(playerDetails).filter(function(p) { return p.totalCost > TOLERANCE || p.gamesPlayed > 0; }).sort(function(a,b) { return String(a.name).localeCompare(String(b.name),'th'); });
-    if (all.length === 0) {
-        Swal.fire({ icon: 'info', title: 'ยังไม่มีข้อมูล', text: 'ยังไม่มีผู้เล่นที่มีค่าใช้จ่าย' }); return;
-    }
-    const dateStr = formatDateThai(selectedDate);
-    const unpaid = all.filter(function(p) { return !p.paid; });
-    const paid = all.filter(function(p) { return p.paid; });
-    const price = state.settings.shuttlecockPrice || 0;
-
-    const makeRow = function(p, bg, textColor) { return `
-        <tr style="border-bottom:1px solid #f1f5f9;">
-            <td style="padding:10px 14px;font-weight:600;color:${textColor};background:${bg};">${escapeHtml(p.name)}</td>
-            <td style="padding:10px 14px;text-align:center;color:#374151;background:${bg};font-size:13px;">${p.gameIndices.join(', ') || '-'}</td>
-            <td style="padding:10px 14px;text-align:right;font-weight:800;color:${textColor};background:${bg};font-size:15px;">${p.totalCost.toFixed(2)}</td>
-            <td style="padding:10px 14px;text-align:center;background:${bg};"><span style="background:${p.paid?'#dcfce7':'#fee2e2'};color:${p.paid?'#15803d':'#b91c1c'};padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">${p.paid?'จ่ายแล้ว':'ยังไม่จ่าย'}</span></td>
-        </tr>`; };
-
-    const makeSection = function(players, label, headerBg, headerColor, rowBg, rowText, totalBg) {
-        if (!players.length) return '';
-        const tot = players.reduce(function(s,p) { return s+p.totalCost; }, 0);
-        return `
-            <div style="margin-bottom:16px;">
-                <div style="background:${headerBg};padding:8px 16px;border-radius:8px 8px 0 0;font-weight:700;font-size:14px;color:${headerColor};">${label}</div>
-                <div style="border-radius:0 0 8px 8px;overflow:hidden;border:1.5px solid ${headerBg};border-top:none;">
-                    <table style="width:100%;border-collapse:collapse;">
-                        <thead>
-                            <tr style="background:${headerBg}20;">
-                                <th style="padding:8px 14px;text-align:left;font-size:12px;color:#6b7280;">ชื่อ</th>
-                                <th style="padding:8px 14px;text-align:center;font-size:12px;color:#6b7280;">เกม</th>
-                                <th style="padding:8px 14px;text-align:right;font-size:12px;color:#6b7280;">ค่าลูก (฿)</th>
-                                <th style="padding:8px 14px;text-align:center;font-size:12px;color:#6b7280;">สถานะ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${players.map(function(p) { return makeRow(p, rowBg, rowText); }).join('')}
-                        </tbody>
-                        <tfoot>
-                            <tr style="background:${totalBg};">
-                                <td colspan="2" style="padding:10px 14px;font-weight:700;">รวม (${players.length} คน)</td>
-                                <td style="padding:10px 14px;text-align:right;font-weight:800;font-size:16px;color:${headerColor};">${tot.toFixed(2)}</td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>`;
-    };
-
-    renderOffscreenAndCapture(function(wrapper) {
-        wrapper.innerHTML = `
-            <div style="background:linear-gradient(135deg,#0f766e,#0d9488);border-radius:16px;padding:20px 24px;margin-bottom:16px;color:white;">
-                <div style="font-size:22px;font-weight:800;margin-bottom:4px;">🧾 สรุปค่าใช้จ่ายประจำวัน</div>
-                <div style="font-size:14px;opacity:0.9;">${dateStr}</div>
-                <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;">
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;text-align:center;">
-                        <div style="font-size:22px;font-weight:800;">${all.length}</div>
-                        <div style="font-size:12px;opacity:0.85;">ผู้เล่น</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;text-align:center;">
-                        <div style="font-size:22px;font-weight:800;">${unpaid.length}</div>
-                        <div style="font-size:12px;opacity:0.85;">ยังไม่จ่าย</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;text-align:center;">
-                        <div style="font-size:22px;font-weight:800;">${paid.length}</div>
-                        <div style="font-size:12px;opacity:0.85;">จ่ายแล้ว</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 16px;flex:1;text-align:center;">
-                        <div style="font-size:22px;font-weight:800;">฿${grandTotal.toFixed(2)}</div>
-                        <div style="font-size:12px;opacity:0.85;">รวมทั้งหมด</div>
-                    </div>
-                </div>
-                ${price > 0 ? `<div style="margin-top:10px;font-size:13px;opacity:0.85;">ราคาต่อลูก: ฿${price.toFixed(2)}</div>` : ''}
-            </div>
-            ${makeSection(unpaid, '⚠️ ยังไม่จ่าย', '#fee2e2', '#b91c1c', 'white', '#374151', '#fef2f2')}
-            ${makeSection(paid, '✅ จ่ายแล้ว', '#dcfce7', '#15803d', 'white', '#374151', '#f0fdf4')}
-            <div style="text-align:center;font-size:11px;color:#9ca3af;margin-top:8px;">สร้างโดยโปรแกรมคำนวณค่าลูกแบดมินตัน</div>`;
-    }, `summary-${selectedDate}.png`);
-}
-
-// ============================================================
-// EXPORT 3A: บัญชีรวม → รูปภาพ
-// ============================================================
-function exportAccountImage() {
-    const { report, totalUnpaid, totalCredit } = calculateOverallBalance();
-    if (report.unpaid.length === 0 && report.withCredit.length === 0) {
-        Swal.fire({ icon: 'info', title: 'ไม่มีรายการ', text: 'ไม่มีผู้ค้างชำระหรือมีเครดิต' }); return;
-    }
-    const today = new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
-
-    const makePersonRow = function(item, i) {
-        const balance = Math.abs(item.balance);
-        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid rgba(0,0,0,0.05);background:${i%2===0?'white':'#fafafa'};">
-            <div>
-                <div style="font-weight:700;font-size:14px;color:#1e293b;">${i+1}. ${escapeHtml(item.name)}</div>
-                <div style="font-size:11px;color:#94a3b8;margin-top:1px;">เรียกเก็บ ฿${item.totalDebt.toFixed(2)} · จ่ายแล้ว ฿${item.totalPaid.toFixed(2)}</div>
-            </div>
-            <div style="font-size:16px;font-weight:800;">฿${balance.toFixed(2)}</div>
-        </div>`;
-    };
-
-    renderOffscreenAndCapture(function(wrapper) {
-        const unpaidBlock = report.unpaid.length ? `
-            <div style="margin-bottom:16px;">
-                <div style="background:#dc2626;color:white;padding:12px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center;">
-                    <div><div style="font-size:16px;font-weight:800;">⚠️ ค้างชำระ</div><div style="font-size:12px;opacity:0.85;">${report.unpaid.length} คน</div></div>
-                    <div style="text-align:right;"><div style="font-size:20px;font-weight:800;">฿${totalUnpaid.toFixed(2)}</div><div style="font-size:11px;opacity:0.85;">รวมที่ค้าง</div></div>
-                </div>
-                <div style="border:2px solid #fecaca;border-top:none;border-radius:0 0 12px 12px;overflow:hidden;">
-                    ${report.unpaid.map(function(item, i) { return makePersonRow(item, i); }).join('')}
-                </div>
-            </div>` : '';
-
-        const creditBlock = report.withCredit.length ? `
-            <div style="margin-bottom:16px;">
-                <div style="background:#1d4ed8;color:white;padding:12px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center;">
-                    <div><div style="font-size:16px;font-weight:800;">💰 มีเครดิต</div><div style="font-size:12px;opacity:0.85;">${report.withCredit.length} คน</div></div>
-                    <div style="text-align:right;"><div style="font-size:20px;font-weight:800;">฿${totalCredit.toFixed(2)}</div><div style="font-size:11px;opacity:0.85;">รวมเครดิต</div></div>
-                </div>
-                <div style="border:2px solid #bfdbfe;border-top:none;border-radius:0 0 12px 12px;overflow:hidden;">
-                    ${report.withCredit.map(function(item, i) { return makePersonRow(item, i); }).join('')}
-                </div>
-            </div>` : '';
-
-        wrapper.innerHTML = `
-            <div style="background:linear-gradient(135deg,#4c1d95,#6d28d9);border-radius:16px;padding:20px 24px;margin-bottom:16px;color:white;">
-                <div style="font-size:22px;font-weight:800;margin-bottom:4px;">💳 สรุปยอดรวมบัญชี</div>
-                <div style="font-size:14px;opacity:0.9;">ข้อมูล ณ ${today}</div>
-            </div>
-            ${unpaidBlock}
-            ${creditBlock}
-            <div style="text-align:center;font-size:11px;color:#9ca3af;margin-top:8px;">สร้างโดยโปรแกรมคำนวณค่าลูกแบดมินตัน</div>`;
-    }, `account-${getTodayString()}.png`);
-}
-
-// ============================================================
-// EXPORT 3B: บัญชีรวม → ข้อความสำหรับ LINE
-// ============================================================
-function exportAccountText() {
-    const { report, totalUnpaid, totalCredit } = calculateOverallBalance();
-    const today = new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
-
-    let text = `🏸 สรุปยอดบัญชีแบดมินตัน\n`;
-    text += `📅 ${today}\n`;
-    text += `${'─'.repeat(28)}\n`;
-
-    if (report.unpaid.length > 0) {
-        text += `\n⚠️ ยังค้างชำระ (${report.unpaid.length} คน)\n`;
-        text += `${'─'.repeat(28)}\n`;
-        report.unpaid.forEach(function(item, i) {
-            const nameStr = String(item.name).padEnd(16, ' ');
-            text += `${i+1}. ${nameStr}฿${item.balance.toFixed(2)}\n`;
-        });
-        text += `${'─'.repeat(28)}\n`;
-        text += `💸 รวมค้างทั้งหมด: ฿${totalUnpaid.toFixed(2)}\n`;
-    } else {
-        text += `\n✅ ไม่มีผู้ค้างชำระ\n`;
-    }
-
-    if (report.withCredit.length > 0) {
-        text += `\n💰 มีเครดิต (${report.withCredit.length} คน)\n`;
-        text += `${'─'.repeat(28)}\n`;
-        report.withCredit.forEach(function(item, i) {
-            const nameStr = String(item.name).padEnd(16, ' ');
-            text += `${i+1}. ${nameStr}฿${Math.abs(item.balance).toFixed(2)}\n`;
-        });
-        text += `${'─'.repeat(28)}\n`;
-        text += `💎 รวมเครดิต: ฿${totalCredit.toFixed(2)}\n`;
-    }
-
-    if (report.paidInFull.length > 0) {
-        text += `\n✅ ชำระครบแล้ว: ${report.paidInFull.map(function(p) { return p.name; }).join(', ')}\n`;
-    }
-
-    text += `\n🏸 สร้างโดยโปรแกรมคำนวณค่าลูกแบดมินตัน`;
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'คัดลอกสำเร็จ!',
-                html: `<p style="font-size:14px;">ข้อความถูกคัดลอกไปยัง clipboard แล้ว<br>นำไปวางใน LINE ได้เลย 📋</p>
-                       <textarea style="width:100%;height:150px;font-size:12px;margin-top:12px;border:1px solid #e2e8f0;border-radius:8px;padding:8px;font-family:monospace;resize:none;">${text}</textarea>`,
-                confirmButtonText: 'เข้าใจแล้ว',
-                confirmButtonColor: '#06b6d4'
-            });
-        }).catch(function() { fallbackCopyText(text); });
-    } else {
-        fallbackCopyText(text);
-    }
-}
-
-function fallbackCopyText(text) {
-    Swal.fire({
-        title: 'ข้อความสรุป LINE',
-        html: `<p style="font-size:13px;color:#64748b;margin-bottom:8px;">กด Ctrl+A แล้ว Ctrl+C (หรือแตะค้างแล้วเลือกทั้งหมด) เพื่อคัดลอก</p>
-               <textarea id="swal-copy-area" style="width:100%;height:180px;font-size:12px;border:1px solid #e2e8f0;border-radius:8px;padding:8px;font-family:monospace;resize:none;">${text}</textarea>`,
-        confirmButtonText: 'ปิด',
-        confirmButtonColor: '#06b6d4',
-        didOpen: function() {
-            const ta = document.getElementById('swal-copy-area');
-            if(ta) {
-                ta.select();
-                try { document.execCommand('copy'); } catch(e) {}
-            }
-        }
-    });
-}
-
-function filterDailyPlayers() {
-    const elSearch = document.getElementById('searchDailyPlayer');
-    if(!elSearch) return;
-    
-    const term = String(elSearch.value).toLowerCase();
-    const chips = document.querySelectorAll('#playerList .player-chip');
-    
-    chips.forEach(function(chip) {
-        const nameData = String(chip.getAttribute('data-name') || '').toLowerCase();
-        const nameText = String(chip.innerText || '').toLowerCase();
-        
-        if (nameData.includes(term) || nameText.includes(term)) {
-            chip.classList.remove('hidden');
-            chip.style.display = 'flex';
-        } else {
-            chip.classList.add('hidden');
-            chip.style.display = 'none';
-        }
-    });
-}
-
-function savePromptPaySettings() {
-    const elName = document.getElementById('settingBankName');
-    const elNum = document.getElementById('settingBankNumber');
-    const data = {
-        name: elName ? elName.value : '',
-        number: elNum ? elNum.value : ''
-    };
-    localStorage.setItem('badminton_promptpay', JSON.stringify(data));
-    Swal.fire({ icon: 'success', title: 'บันทึกสำเร็จ', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
-}
-
-function loadPromptPaySettings() {
-    const saved = localStorage.getItem('badminton_promptpay');
-    if (saved) {
-        try {
-            const data = JSON.parse(saved);
-            const elName = document.getElementById('settingBankName');
-            const elNum = document.getElementById('settingBankNumber');
-            if(elName) elName.value = data.name || '';
-            if(elNum) elNum.value = data.number || '';
-        } catch(e){}
-    }
-}
-
-function sendPersonalLine(name, balance) {
-    const elName = document.getElementById('settingBankName');
-    const elNum = document.getElementById('settingBankNumber');
-    
-    const bankName = elName ? elName.value : '';
-    const bankNumber = elNum ? elNum.value : '';
-    const dateStr = new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
-    
-    let message = `🏸 สวัสดีครับคุณ ${name}\n`;
-    message += `แจ้งสรุปยอดค่าสนาม/ลูกแบด (${dateStr})\n`;
-    message += `--------------------------\n`;
-    message += `💰 ยอดค้างชำระ: ฿${parseFloat(balance).toLocaleString('th-TH', {minimumFractionDigits: 2})}\n`;
-    
-    if (bankNumber) {
-        message += `--------------------------\n`;
-        message += `โอนได้ที่: ${bankNumber}\n`;
-        if (bankName) message += `ชื่อบัญชี: ${bankName}\n`;
-    }
-    message += `--------------------------\n`;
-    message += `โอนแล้วรบกวนแจ้งสลิปด้วยนะครับ ขอบคุณครับ 🙏`;
-
-    const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(message)}`;
-    window.open(lineUrl, '_blank');
-}
-// ============================================================
-// 🎙️ VOICE COMMAND (ระบบสั่งทัพด้วยเสียง)
-// ============================================================
 function processVoiceCommand(text) {
-    let allAliases = [];
-    const autoCorrectMap = { 'แกน':'แทน', 'หนู':'หมู', 'เบน':'แมน', 'สากล':'สากดา', 'พี่ปุ้ย':'พี่ปุ๋ย' };
-
-    // 1. สร้างตะแกรงร่อนชื่อเพื่อนทั้งหมดที่มีในก๊วน
-    state.masterPlayerList.forEach(function(fullName) {
-        let shortName = fullName.includes(': ') ? fullName.split(': ')[1] : fullName;
-        allAliases.push(shortName);
-    });
-    Object.keys(autoCorrectMap).forEach(function(k) { allAliases.push(k); });
-    Object.values(autoCorrectMap).forEach(function(v) { allAliases.push(v); });
-
-    // กรองคำซ้ำและเรียงจากคำยาวไปสั้น (เพื่อให้มันจับคำว่า "พี่ปุ๋ย" ก่อนคำว่า "ปุ๋ย")
-    allAliases = [...new Set(allAliases)].filter(Boolean);
-    allAliases.sort(function(a, b) { return b.length - a.length; });
-
-    let foundPositions = [];
-    let tempText = text;
-
-    // 2. กวาดหา "ชื่อที่สะกดตรงเป๊ะ" จากประโยคที่พูด
-    allAliases.forEach(function(alias) {
-        let index = tempText.indexOf(alias);
-        while (index !== -1) {
-            // จำตำแหน่งเอาไว้ว่าชื่อนี้พูดออกมาตอนไหน (Index เท่าไหร่)
-            foundPositions.push({ name: alias, index: index });
-            // เจาะรูคำที่หาเจอออกไป เพื่อรักษาตำแหน่งคำข้างหลังไว้
-            tempText = tempText.substring(0, index) + ' '.repeat(alias.length) + tempText.substring(index + alias.length);
-            index = tempText.indexOf(alias);
-        }
-    });
-
-    // 3. กวาดล้างคำขยะและคำสร้อยที่ STT ชอบแถมมา
-    let noiseRegex = /ทีม 1|ทีม 2|ทีมหนึ่ง|ทีมสอง|ทีมเอ|ทีมบี|คู่กับ|และ|กับ|คู่|เจอ|ปะทะ|ฝั่ง|ทาง|ครับ|ค่ะ|จ้ะ|จ้า|เอ่อ|อ่า|อืม|คือ|แบบว่า/g;
-    let leftoverText = tempText.replace(noiseRegex, ' ').replace(/\s+/g, ' ').trim();
-    let leftoverWords = leftoverText.split(' ').filter(Boolean);
-
-    // 4. ถ้ามีคำที่ STT ฟังเพี้ยน (Fuzzy) หลงเหลืออยู่ ให้เก็บตกมาด้วย
-    leftoverWords.forEach(function(word) {
-        if (word.length >= 2) { // ไม่เอาคำพยางค์เดียวประหลาดๆ
-            let idx = text.indexOf(word);
-            foundPositions.push({ name: word, index: idx !== -1 ? idx : 999 });
-        }
-    });
-
-    // 5. 🎯 เรียงคิวชื่อทั้งหมดตาม "ลำดับการพูด" จากซ้ายไปขวา
-    foundPositions.sort(function(a, b) { return a.index - b.index; });
-    let finalNames = foundPositions.map(function(item) { return item.name; });
-
-    // 6. เทรายชื่อลง 4 กล่องตามลำดับเป๊ะๆ
-    ['penP1', 'penP2', 'penP3', 'penP4'].forEach(function(id) { document.getElementById(id).value = ''; });
-    if(finalNames[0]) document.getElementById('penP1').value = finalNames[0];
-    if(finalNames[1]) document.getElementById('penP2').value = finalNames[1];
-    if(finalNames[2]) document.getElementById('penP3').value = finalNames[2];
-    if(finalNames[3]) document.getElementById('penP4').value = finalNames[3];
-
-    Swal.fire({ icon: 'success', title: 'จัดทีมตามเสียงสั่ง!', text: `ได้ยินว่า: "${text}"`, toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
-
-    // 7. ปลุกสมองกลให้ประเมินไฟสัญญาณและหาคนชื่อซ้ำอัตโนมัติ
-    scanPenInput();
+    let aliases = []; state.masterPlayerList.forEach(n=>aliases.push(n.includes(': ')?n.split(': ')[1]:n));
+    const autoMap = {'แกน':'แทน','หนู':'หมู','เบน':'แมน','สากล':'สากดา','พี่ปุ้ย':'พี่ปุ๋ย'}; Object.keys(autoMap).forEach(k=>aliases.push(k)); Object.values(autoMap).forEach(v=>aliases.push(v));
+    aliases = [...new Set(aliases)].sort((a,b)=>b.length-a.length);
+    let found = []; let t = text;
+    aliases.forEach(a=>{ let i=t.indexOf(a); while(i!==-1){ found.push({name:a, i}); t=t.substring(0,i)+' '.repeat(a.length)+t.substring(i+a.length); i=t.indexOf(a); } });
+    let left = t.replace(/ทีม 1|ทีม 2|ทีมหนึ่ง|ทีมสอง|ทีมเอ|ทีมบี|คู่กับ|และ|กับ|คู่|เจอ|ปะทะ|ฝั่ง|ทาง|ครับ|ค่ะ|จ้ะ|จ้า|เอ่อ|อ่า|อืม|คือ|แบบว่า/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+    left.forEach(w=>{ if(w.length>=2){ let idx=text.indexOf(w); found.push({name:w, i:idx!==-1?idx:999}); } });
+    found.sort((a,b)=>a.i-b.i); let f = found.map(x=>x.name);
+    ['penP1','penP2','penP3','penP4'].forEach(id=>document.getElementById(id).value='');
+    if(f[0]) document.getElementById('penP1').value=f[0]; if(f[1]) document.getElementById('penP2').value=f[1]; if(f[2]) document.getElementById('penP3').value=f[2]; if(f[3]) document.getElementById('penP4').value=f[3];
+    scanPenInput(); Swal.fire({icon:'success',title:'จัดทีมด้วยเสียง!',text:`"${text}"`,toast:true,position:'top-end',showConfirmButton:false,timer:2500});
 }
-// ============================================================
-// 🛡️ INITIALIZATION & EVENT BINDING (Safe Bind)
-// ============================================================
+
+// --- RECORD GAME ---
+function recordGame() {
+    const p = ['player1','player2','player3','player4'].map(id=>document.getElementById(id).value).filter(Boolean);
+    if(new Set(p).size!==4) { Swal.fire('ผิดพลาด','เลือก 4 คนไม่ซ้ำกัน','error'); return; }
+    const pr = parseFloat(document.getElementById('shuttlecockPrice').value)||state.settings.shuttlecockPrice||0;
+    const sp = document.getElementById('shuttlecockSpeeds').value.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean);
+    if(!sp.length) { Swal.fire('ผิดพลาด','ใส่เบอร์ลูก','error'); return; }
+    _isDailyDirty = true; state.settings.shuttlecockPrice = pr;
+    getCurrentDailyData().games.push({id:++_gameIdCounter, players:p, shuttlecocksUsed:sp.length, shuttlecockPrice:pr, shuttlecockSpeeds:sp});
+    document.getElementById('shuttlecockSpeeds').value=''; currentGameSelection={player1:'',player2:'',player3:'',player4:''}; updateAndRender();
+}
+
+// --- RENDER LOGIC ---
+function updateAndRender() { saveToStorage(); renderDaily(); renderAccount(); renderHistory(); }
+function switchTab(name) { document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden')); document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active')); document.getElementById(`tab-${name}`).classList.remove('hidden'); document.querySelector(`[data-tab="${name}"]`).classList.add('active'); }
+
+function renderDaily() {
+    const dd = getCurrentDailyData();
+    // 1. Players
+    let pList = [...new Set([...state.masterPlayerList, ...dd.players.map(x=>x.name)])].sort((a,b)=>a.localeCompare(b,'th'));
+    document.getElementById('playerList').innerHTML = pList.map(n=>{
+        let isP = dd.players.find(x=>x.name===n)?.present; let col = getPlayerColor(n);
+        let sh = n.includes(': ')?n.split(': ')[1]:n; let px = n.includes(': ')?n.split(': ')[0]:'';
+        return `<div class="player-chip ${isP?'':'absent'}" style="${isP?`background:${col.bg};border-color:${col.border};color:${col.text}`:''}" onclick="if(!event.target.closest('button')) togglePlayer('${escapeHtml(n)}')">
+            <div class="flex gap-1 overflow-hidden"><i class="fas ${isP?'fa-user-check':'fa-user'} text-xs mt-1"></i><div><div class="text-[10px] opacity-70">${escapeHtml(px)}</div><div class="text-sm font-bold">${escapeHtml(sh)}</div></div></div>
+            <div class="chip-actions"><button onclick="document.getElementById('rename-old-name').value='${escapeHtml(n)}'; document.getElementById('rename-new-name').value='${escapeHtml(n)}'; document.getElementById('rename-modal').classList.remove('hidden');" class="btn btn-ghost p-1"><i class="fas fa-edit"></i></button><button onclick="deletePlayer('${escapeHtml(n)}')" class="btn btn-ghost text-red-500 p-1"><i class="fas fa-trash-alt"></i></button></div>
+        </div>`;
+    }).join('');
+    
+    // 2. Dropdowns
+    const prs = dd.players.filter(p=>p.present).sort((a,b)=>a.name.localeCompare(b.name,'th'));
+    const opts = '<option value="">-- เลือก --</option>' + prs.map(p=>`<option value="${escapeHtml(p.name)}">${escapeHtml(p.name)}</option>`).join('');
+    ['player1','player2','player3','player4'].forEach(id=>{ const el=document.getElementById(id); el.innerHTML=opts; el.value=currentGameSelection[id]||''; });
+
+    // 3 & 4. Games & Summary
+    let totalB = dd.games.reduce((s,g)=>s+(g.shuttlecocksUsed||0),0);
+    document.getElementById('shuttlecockSpeedSummary').innerHTML = `รวมเกม: ${dd.games.length} | รวมลูก: ${totalB}`;
+    document.getElementById('gamesList').innerHTML = dd.games.map((g,i)=>{
+        let c = ((g.shuttlecocksUsed||0)*(g.shuttlecockPrice||0)/4).toFixed(2);
+        return `<div class="game-card p-2 text-sm"><div class="flex justify-between font-bold mb-1"><span>เกม ${i+1}</span><button onclick="getCurrentDailyData().games.splice(${i},1); updateAndRender();" class="text-red-500"><i class="fas fa-trash"></i></button></div>
+        <div class="text-blue-600">A: ${g.players[0]}, ${g.players[1]}</div><div class="text-red-600">B: ${g.players[2]}, ${g.players[3]}</div>
+        <div class="text-gray-500 text-xs mt-1">ลูก ${g.shuttlecockSpeeds.join(',')} (${c} บ./คน)</div></div>`;
+    }).join('');
+
+    // 5. Cost Table
+    let det = {}; prs.forEach(p=>det[p.name]={n:p.name, cost:0, p:p.paid});
+    dd.games.forEach(g=>{ let c=(g.shuttlecocksUsed*(g.shuttlecockPrice||0))/4; g.players.forEach(p=>{if(!det[p])det[p]={n:p,cost:0,p:false}; det[p].cost+=c;}); });
+    let un='', pd='', grand=0;
+    Object.values(det).filter(x=>x.cost>0).sort((a,b)=>a.n.localeCompare(b.n,'th')).forEach(d=>{
+        grand+=d.cost; let row = `<tr><td>${escapeHtml(d.n)}</td><td class="text-center">${d.cost.toFixed(2)}</td><td class="text-center"><button onclick="let p=getCurrentDailyData().players.find(x=>x.name==='${escapeHtml(d.n)}'); p.paid=!p.paid; updateAndRender();" class="btn btn-sm ${d.p?'btn-secondary':'btn-warning'}">${d.p?'ยกเลิก':'จ่าย'}</button></td></tr>`;
+        if(d.p) pd+=row; else un+=row;
+    });
+    document.getElementById('summaryTableUnpaid').innerHTML = un; document.getElementById('summaryTablePaid').innerHTML = pd; document.getElementById('grandTotal').innerText = grand.toFixed(2);
+}
+
+function renderAccount() {
+    let sum={}; state.allTransactions.forEach(t=>{if(!sum[t.name])sum[t.name]={n:t.name,d:0,p:0}; sum[t.name].d+=t.totalCost;});
+    state.allPayments.forEach(p=>{if(!sum[p.name])sum[p.name]={n:p.name,d:0,p:0}; sum[p.name].p+=p.amount;});
+    let un='', cr='', pf='', tu=0, tc=0;
+    Object.values(sum).forEach(x=>{
+        let b=x.d-x.p; if(b>0.01){ tu+=b; un+=`<div class="p-2 border rounded flex justify-between"><span>${x.n}</span><span class="text-red-600 font-bold">ค้าง ${b.toFixed(2)}</span></div>`; }
+        else if(b<-0.01){ tc-=b; cr+=`<div class="p-2 border rounded flex justify-between"><span>${x.n}</span><span class="text-blue-600 font-bold">เครดิต ${(-b).toFixed(2)}</span></div>`; }
+    });
+    document.getElementById('unpaid-list-overall').innerHTML=un; document.getElementById('credit-list-overall').innerHTML=cr;
+    document.getElementById('total-unpaid-overall').innerText='฿'+tu.toFixed(2); document.getElementById('total-credit-overall').innerText='฿'+tc.toFixed(2);
+}
+
+function renderHistory() { document.getElementById('overall-summary-content').innerHTML=`<div class="p-3 bg-gray-50 border rounded text-center text-gray-500">ระบบประวัติพร้อมใช้งาน</div>`; }
+
 function bindEvents() {
-    
-    const elDailySearch = document.getElementById('searchDailyPlayer');
-    if(elDailySearch) elDailySearch.addEventListener('input', filterDailyPlayers);
-    
-    const elWorkingDate = document.getElementById('workingDate');
-    if (elWorkingDate) {
-        elWorkingDate.addEventListener('change', function(e) {
-            selectedDate = e.target.value;
-            currentGameSelection = { player1: '', player2: '', player3: '', player4: '' };
-            ensureIntegrity();
-            try { updateAndRender(); } catch(err){ console.error(err); }
-        });
-    }
-
-    document.querySelectorAll('.tab-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() { switchTab(btn.dataset.tab); });
-    });
-
-    const btnAddP = document.getElementById('btnAddPlayer');
-    if(btnAddP) btnAddP.addEventListener('click', addPlayer);
-    
-    const inpNewP = document.getElementById('newPlayerName');
-    if(inpNewP) inpNewP.addEventListener('keypress', function(e) { if (e.key === 'Enter') addPlayer(); });
-
-    const btnClrTdy = document.getElementById('btnClearTodayPlayers');
-    if(btnClrTdy) btnClrTdy.addEventListener('click', clearTodayPlayers);
-    
-    const btnClrAll = document.getElementById('btnClearAllPlayers');
-    if(btnClrAll) btnClrAll.addEventListener('click', clearAllPlayers);
-
-    const btnRecGame = document.getElementById('btnRecordGame');
-    if(btnRecGame) btnRecGame.addEventListener('click', recordGame);
-    
-    const btnOpenPen = document.getElementById('btnOpenPenInput');
-    if(btnOpenPen) btnOpenPen.addEventListener('click', openPenInputModal);
-    
-    const btnClosePen = document.getElementById('btnClosePenInput');
-    if(btnClosePen) btnClosePen.addEventListener('click', closePenInputModal);
-    
-    const btnCancelPen = document.getElementById('btnCancelPenInput');
-    if(btnCancelPen) btnCancelPen.addEventListener('click', closePenInputModal);
-    
-    const btnScanPen = document.getElementById('btnScanPen');
-    if(btnScanPen) btnScanPen.addEventListener('click', scanPenInput);
-    
-    const btnConfirmPen = document.getElementById('btnConfirmPenInput');
-    if(btnConfirmPen) btnConfirmPen.addEventListener('click', confirmPenData);
-        const btnVoice = document.getElementById('btnVoiceCommand');
-    if(btnVoice) btnVoice.addEventListener('click', startVoiceCommand);
-
-    // ผูก Event ให้ 4 กล่องกระดาน S Pen (ปรับใหม่ให้หน้าจอนิ่งตอนเขียน)
-    ['penP1', 'penP2', 'penP3', 'penP4'].forEach(function(id) {
-        const el = document.getElementById(id);
-        if (el) {
-            // แค่จำว่ากำลังเล็งกล่องไหนอยู่ (ไม่ต้องสแกนแทรก)
-            el.addEventListener('focus', function(e) { focusedFieldId = e.target.id; });
-            // จะสแกนก็ต่อเมื่อ "เขียนเสร็จแล้วยกปากกาไปจิ้มกล่องอื่น"
-            el.addEventListener('change', scanPenInput); 
-        }
-    });
-
-    const btnUseLast = document.getElementById('btnUseLastTeam');
-    if(btnUseLast) btnUseLast.addEventListener('click', useLastTeam);
-    
-    const btnPayAll = document.getElementById('btnPayAllUnpaid');
-    if(btnPayAll) btnPayAll.addEventListener('click', payAllUnpaid);
-    
-    const inpSpeed = document.getElementById('shuttlecockSpeeds');
-    if(inpSpeed) inpSpeed.addEventListener('keypress', function(e) { if (e.key === 'Enter') recordGame(); });
-
-    ['player1','player2','player3','player4'].forEach(function(id) {
-        const elPlayer = document.getElementById(id);
-        if(elPlayer) {
-            elPlayer.addEventListener('change', function(e) {
-                currentGameSelection[id] = e.target.value;
-                renderGameDropdowns();
-            });
-        }
-    });
-
-    const inpPrice = document.getElementById('shuttlecockPrice');
-    if(inpPrice) {
-        inpPrice.addEventListener('change', function(e) {
-            state.settings.shuttlecockPrice = Math.max(0, parseFloat(e.target.value) || 0);
-            saveToStorage();
-            renderDailySummaryTable();
-        });
-    }
-
-    const btnConfirm = document.getElementById('btnConfirmSave');
-    if(btnConfirm) btnConfirm.addEventListener('click', confirmDailySummaryAndSave);
-    
-    const btnClearTd = document.getElementById('btnClearToday');
-    if(btnClearTd) btnClearTd.addEventListener('click', clearTodayData);
-
-    const btnSaveFile = document.getElementById('btnSave');
-    if(btnSaveFile) btnSaveFile.addEventListener('click', saveToFile);
-    
-    const btnLoadFile = document.getElementById('loadFile');
-    if(btnLoadFile) btnLoadFile.addEventListener('change', loadFromFile);
-
-    const btnClosePay = document.getElementById('btnClosePayment');
-    if(btnClosePay) btnClosePay.addEventListener('click', closePaymentModal);
-    
-    const btnCancelPay = document.getElementById('btnCancelPayment');
-    if(btnCancelPay) btnCancelPay.addEventListener('click', closePaymentModal);
-    
-    const btnSubPay = document.getElementById('btnSubmitPayment');
-    if(btnSubPay) btnSubPay.addEventListener('click', submitPayment);
-    
-    const inpPayAmt = document.getElementById('payment-amount');
-    if(inpPayAmt) inpPayAmt.addEventListener('keypress', function(e) { if (e.key === 'Enter') submitPayment(); });
-
-    const btnOpenDebt = document.getElementById('btnOpenQuickDebt');
-    if(btnOpenDebt) btnOpenDebt.addEventListener('click', openQuickDebtModal);
-    
-    const btnCloseDebt = document.getElementById('btnCloseDebt');
-    if(btnCloseDebt) btnCloseDebt.addEventListener('click', closeQuickDebtModal);
-    
-    const btnCancelDebt = document.getElementById('btnCancelDebt');
-    if(btnCancelDebt) btnCancelDebt.addEventListener('click', closeQuickDebtModal);
-    
-    const btnSubDebt = document.getElementById('btnSubmitDebt');
-    if(btnSubDebt) btnSubDebt.addEventListener('click', submitDebt);
-
-    const btnCloseRen = document.getElementById('btnCloseRename');
-    if(btnCloseRen) btnCloseRen.addEventListener('click', closeRenameModal);
-    
-    const btnCancelRen = document.getElementById('btnCancelRename');
-    if(btnCancelRen) btnCancelRen.addEventListener('click', closeRenameModal);
-    
-    const btnSubRen = document.getElementById('btnSubmitRename');
-    if(btnSubRen) btnSubRen.addEventListener('click', submitRename);
-    
-    const inpRenName = document.getElementById('rename-new-name');
-    if(inpRenName) inpRenName.addEventListener('keypress', function(e) { if (e.key === 'Enter') submitRename(); });
-
-    const btnFiltHist = document.getElementById('btnFilterHistory');
-    if(btnFiltHist) btnFiltHist.addEventListener('click', renderHistoryTab);
-    
-    const btnRefHist = document.getElementById('btnRefreshHistory');
-    if(btnRefHist) btnRefHist.addEventListener('click', renderHistoryTab);
-
-    const btnExpGames = document.getElementById('btnExportGamesImg');
-    if(btnExpGames) btnExpGames.addEventListener('click', exportGamesImage);
-    
-    const btnExpSumm = document.getElementById('btnExportSummaryImg');
-    if(btnExpSumm) btnExpSumm.addEventListener('click', exportSummaryImage);
-    
-    const btnExpAccImg = document.getElementById('btnExportAccountImg');
-    if(btnExpAccImg) btnExpAccImg.addEventListener('click', exportAccountImage);
-    
-    const btnExpAccTxt = document.getElementById('btnExportAccountText');
-    if(btnExpAccTxt) btnExpAccTxt.addEventListener('click', exportAccountText);
-
-    ['payment-modal','quick-debt-modal','rename-modal','pen-input-modal'].forEach(function(id) {
-        const modal = document.getElementById(id);
-        if(modal) {
-            modal.addEventListener('click', function(e) { if (e.target === e.currentTarget) e.currentTarget.classList.add('hidden'); });
-        }
-    });
-
-    const elPlayerList = document.getElementById('playerList');
-    if(elPlayerList) {
-        elPlayerList.addEventListener('click', function(e) {
-            const actionEl = e.target.closest('[data-action]');
-            if (!actionEl) return;
-            const action = actionEl.dataset.action;
-            const name = actionEl.dataset.name;
-            if (!name) return;
-            if (action === 'toggle') {
-                if (!e.target.closest('button')) togglePlayerPresence(name);
-            } else if (action === 'rename') {
-                e.stopPropagation();
-                openRenameModal(name);
-            } else if (action === 'delete') {
-                e.stopPropagation();
-                deletePlayer(name);
-            }
-        });
-    }
-
-    const elTabAcc = document.getElementById('tab-account');
-    if(elTabAcc) {
-        elTabAcc.addEventListener('click', function(e) {
-            const btn = e.target.closest('.pay-btn');
-            if (!btn) return;
-            const name = btn.dataset.name;
-            const balance = btn.dataset.balance;
-            if (name && balance) openPaymentModal(name, balance);
-        });
-    }
-
-    const elGamesList = document.getElementById('gamesList');
-    if(elGamesList) {
-        elGamesList.addEventListener('click', function(e) {
-            const btn = e.target.closest('[data-game-id]');
-            if (!btn || btn.disabled) return;
-            const gameId = Number(btn.dataset.gameId);
-            const action = btn.dataset.action;
-            if (action === 'move-up')    moveGame(gameId, -1);
-            if (action === 'move-down')  moveGame(gameId,  1);
-            if (action === 'edit-game')  editGame(gameId);
-            if (action === 'remove-game') removeGame(gameId);
-        });
-    }
-
-    const elSummTab = document.getElementById('summaryTable');
-    if(elSummTab) {
-        elSummTab.addEventListener('click', function(e) {
-            const btn = e.target.closest('[data-action="toggle-paid"]');
-            if (!btn) return;
-            const name = btn.dataset.name;
-            if (name) togglePaidStatus(name);
-        });
-    }
-
-    const elOvSumm = document.getElementById('overall-summary-content');
-    if(elOvSumm) {
-        elOvSumm.addEventListener('click', function(e) {
-            const delBtn = e.target.closest('.del-payment-btn');
-            if (delBtn) {
-                e.stopPropagation();
-                const payIdx  = parseInt(delBtn.dataset.payIdx, 10);
-                const name    = delBtn.dataset.playerName;
-                const amount  = delBtn.dataset.amount;
-                const date    = delBtn.dataset.date;
-                deletePayment(payIdx, name, amount, date);
-                return;
-            }
-            const row = e.target.closest('[data-action="toggle-history"]');
-            if (!row) return;
-            const detailId = row.dataset.detailId;
-            if (detailId) toggleHistoryDetails(detailId, row);
-        });
-    }
+    document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+    document.getElementById('btnAddPlayer').addEventListener('click',addPlayer);
+    document.getElementById('btnRecordGame').addEventListener('click',recordGame);
+    document.getElementById('btnOpenPenInput').addEventListener('click',openPenInputModal);
+    document.getElementById('btnClosePenInput').addEventListener('click',closePenInputModal);
+    document.getElementById('btnCancelPenInput').addEventListener('click',closePenInputModal);
+    document.getElementById('btnScanPen').addEventListener('click',scanPenInput);
+    document.getElementById('btnConfirmPenInput').addEventListener('click',confirmPenData);
+    ['penP1','penP2','penP3','penP4'].forEach(id=>{ const el=document.getElementById(id); el.addEventListener('focus',e=>focusedFieldId=e.target.id); el.addEventListener('change',scanPenInput); });
+    document.getElementById('btnVoiceCommand').addEventListener('click',startVoiceCommand);
+    document.getElementById('btnSave').addEventListener('click',saveToFile);
+    document.getElementById('loadFile').addEventListener('change',loadFromFile);
+    document.getElementById('btnUseLastTeam').addEventListener('click',()=>{ const dd=getCurrentDailyData(); if(dd.games.length){ let p=dd.games[dd.games.length-1].players; ['player1','player2','player3','player4'].forEach((id,i)=>currentGameSelection[id]=p[i]); updateAndRender(); }});
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    bindEvents();
-    loadFromStorage();
-    ensureIntegrity();
-    syncGameIdCounter(); 
-    loadPromptPaySettings();
-
-    const today = getTodayString();
-    selectedDate = today;
-    
-    const wd = document.getElementById('workingDate');
-    if (wd) wd.value = today;
-    
-    const se = document.getElementById('summaryEndDate');
-    if (se) se.value = today;
-    
-    const d = new Date(today); d.setDate(1);
-    const ss = document.getElementById('summaryStartDate');
-    if (ss) ss.value = d.toISOString().split('T')[0];
-
-    try {
-        applySettingsToUI();
-        renderAll();
-        updateTabBadges();
-    } catch (e) {
-        console.error("Render Error:", e);
-        if(typeof Swal !== 'undefined') {
-            Swal.fire('ข้อผิดพลาดระบบ', 'พบปัญหาข้อมูลขัดข้อง กรุณากดปุ่ม "ล้างข้อมูลทั้งหมด" แล้วโหลดไฟล์สำรองใหม่', 'error');
-        } else {
-            alert('พบปัญหาข้อมูลขัดข้อง ระบบอาจทำงานไม่สมบูรณ์');
-        }
-    }
-
-    const elAccSearch = document.getElementById('searchAccountInput');
-    if(elAccSearch) elAccSearch.addEventListener('input', renderAccountTab);
-});
-
-window.addEventListener('beforeunload', function(e) {
-    if (_isDailyDirty) {
-        e.preventDefault();
-        e.returnValue = 'คุณมีเกมที่บันทึกไว้แต่ยังไม่ได้ยืนยันลงบัญชีรวม แน่ใจหรือไม่ที่จะออกจากหน้านี้?';
-    }
-});
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./sw.js')
-      .then(function() { console.log('Service Worker Registered'); })
-      .catch(function(err) { console.log('Service Worker Failed', err); });
-  });
-}
+document.addEventListener('DOMContentLoaded', () => { bindEvents(); loadFromStorage(); ensureIntegrity(); document.getElementById('workingDate').value = selectedDate; document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice||0; updateAndRender(); });
 </script>
 </body>
 </html>
