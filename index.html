@@ -201,13 +201,14 @@
             <div class="card-header">
                 <div class="section-icon bg-teal-100 text-teal-600"><i class="fas fa-receipt"></i></div><h2 class="text-teal-700">สรุปค่าใช้จ่ายประจำวัน</h2>
                 <div class="ml-auto flex gap-2">
+                    <button id="btnExportSummaryImg" class="btn btn-sm" style="background:#0d9488;color:white;"><i class="fas fa-image"></i>ส่งออกรูป</button>
                     <button id="btnConfirmSave" class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>บันทึกลงบัญชี</button>
                     <button id="btnClearToday" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i>ล้างวันนี้</button>
                 </div>
             </div>
             <div class="card-body p-0 overflow-x-auto">
                 <table class="data-table" id="summaryTable">
-                    <thead><tr><th class="sticky-col">ชื่อ</th><th class="text-center">เกม</th><th class="text-center">ลูก</th><th class="text-center">ค่าลูก(฿)</th><th class="text-center">สถานะ</th><th class="text-center">จัดการ</th></tr></thead>
+                    <thead><tr><th class="sticky-col">ชื่อ</th><th class="text-center">เกม</th><th class="text-center">เบอร์ลูก</th><th class="text-center">ยอด(฿)</th><th class="text-center">สถานะ</th><th class="text-center">จัดการ</th></tr></thead>
                     <tbody id="summaryTableUnpaid"></tbody>
                     <tbody id="summaryTablePaid"></tbody>
                     <tfoot><tr><td class="sticky-col" colspan="3">รวมทั้งหมด</td><td class="text-center text-lg text-teal-700" id="grandTotal">0.00</td><td colspan="2"></td></tr></tfoot>
@@ -221,19 +222,23 @@
             <div class="card-header">
                 <div class="section-icon bg-blue-100 text-blue-600"><i class="fas fa-wallet"></i></div><h2 class="text-blue-700">สรุปยอดรวมบัญชีทั้งหมด</h2>
                 <div class="ml-auto flex gap-2">
+                    <button id="btnExportAccountImg" class="btn btn-sm" style="background:#0d9488;color:white;"><i class="fas fa-image"></i>ส่งออกรูป</button>
+                    <button id="btnAddDebt" class="btn btn-sm btn-danger"><i class="fas fa-file-invoice-dollar"></i>เพิ่มหนี้</button>
                     <button id="btnExportAccountText" class="btn btn-sm btn-indigo"><i class="fab fa-line"></i>ส่ง LINE</button>
                     <button id="btnPayAllUnpaid" class="btn btn-sm btn-success"><i class="fas fa-hand-holding-usd"></i>ชำระทั้งหมด</button>
                 </div>
             </div>
             <div class="card-body space-y-4">
                 <input type="text" id="searchAccountInput" class="form-control" placeholder="🔍 ค้นหาชื่อ..." style="max-width: 320px;">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-                    <div class="bg-red-50 p-2 rounded-lg"><div class="text-red-700 font-bold text-xl" id="total-unpaid-overall">฿0</div><div class="text-xs text-gray-500">ค้างชำระรวม</div></div>
-                    <div class="bg-blue-50 p-2 rounded-lg"><div class="text-blue-700 font-bold text-xl" id="total-credit-overall">฿0</div><div class="text-xs text-gray-500">เครดิตรวม</div></div>
+                <div id="accountExportArea" class="space-y-4 bg-white p-2 rounded">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                        <div class="bg-red-50 p-2 rounded-lg"><div class="text-red-700 font-bold text-xl" id="total-unpaid-overall">฿0</div><div class="text-xs text-gray-500">ค้างชำระรวม</div></div>
+                        <div class="bg-blue-50 p-2 rounded-lg"><div class="text-blue-700 font-bold text-xl" id="total-credit-overall">฿0</div><div class="text-xs text-gray-500">เครดิตรวม</div></div>
+                    </div>
+                    <div><div class="font-bold text-red-600 mb-2">⚠️ ผู้ที่ค้างชำระ</div><div id="unpaid-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
+                    <div><div class="font-bold text-blue-600 mb-2">💰 มีเครดิต</div><div id="credit-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
+                    <div><div class="font-bold text-green-600 mb-2">✅ ชำระครบแล้ว</div><div id="paid-in-full-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
                 </div>
-                <div><div class="font-bold text-red-600 mb-2">⚠️ ผู้ที่ค้างชำระ</div><div id="unpaid-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
-                <div><div class="font-bold text-blue-600 mb-2">💰 มีเครดิต</div><div id="credit-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
-                <div><div class="font-bold text-green-600 mb-2">✅ ชำระครบแล้ว</div><div id="paid-in-full-list-overall" class="grid sm:grid-cols-2 gap-2"></div></div>
             </div>
         </div>
     </div>
@@ -247,6 +252,25 @@
                     <button id="btnFilterHistory" class="btn btn-primary">ค้นหา</button>
                 </div>
                 <div id="overall-summary-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab-settings" class="tab-content hidden space-y-4">
+        <div class="card">
+            <div class="card-header"><div class="section-icon bg-gray-100 text-gray-600"><i class="fas fa-cog"></i></div><h2 class="text-gray-700">ตั้งค่าระบบ</h2></div>
+            <div class="card-body space-y-5">
+                <div>
+                    <label class="form-label">ราคาลูกแบดมินตันเริ่มต้น (บาท/ลูก)</label>
+                    <input type="number" id="settingDefaultPrice" class="form-control" style="max-width: 200px;" placeholder="0">
+                    <p class="text-xs text-gray-500 mt-1">ราคานี้จะถูกดึงไปแสดงเป็นค่าเริ่มต้นในหน้าคิดเงินรายวันโดยอัตโนมัติ</p>
+                </div>
+                <hr class="border-gray-200">
+                <div>
+                    <h3 class="font-bold text-red-600 mb-2"><i class="fas fa-exclamation-triangle"></i> จัดการข้อมูล (Danger Zone)</h3>
+                    <p class="text-sm text-gray-600 mb-3">การล้างข้อมูลนี้จะลบรายชื่อผู้เล่น ประวัติเกม และบัญชีทั้งหมดอย่างถาวร (แนะนำให้ส่งออกรูปหรือเซฟไฟล์สำรองไว้ก่อน)</p>
+                    <button id="btnFactoryReset" class="btn btn-danger btn-sm"><i class="fas fa-skull-crossbones"></i> ล้างข้อมูลทั้งหมด (Factory Reset)</button>
+                </div>
             </div>
         </div>
     </div>
@@ -302,6 +326,7 @@
 </div>
 
 <div id="payment-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-header"><h3 class="font-bold text-green-700">ชำระเงิน</h3><button class="btn-ghost" id="btnClosePayment"><i class="fas fa-times"></i></button></div><div class="modal-body"><p id="payment-name" class="font-bold mb-2"></p><input type="hidden" id="payment-hidden-name"><input type="number" id="payment-amount" class="form-control text-lg" placeholder="0.00"></div><div class="modal-footer"><button class="btn btn-secondary" id="btnCancelPayment">ยกเลิก</button><button class="btn btn-success" id="btnSubmitPayment">ยืนยัน</button></div></div></div>
+<div id="debt-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-header"><h3 class="font-bold text-red-700">เพิ่มยอดค้างชำระ (ตั้งหนี้)</h3><button class="btn-ghost" id="btnCloseDebt"><i class="fas fa-times"></i></button></div><div class="modal-body space-y-3"><div><label class="form-label">ชื่อผู้เล่น</label><input type="text" id="debt-name" class="form-control" placeholder="พิมพ์ชื่อผู้เล่น..." list="debt-player-list"><datalist id="debt-player-list"></datalist></div><div><label class="form-label">จำนวนเงิน (บาท)</label><input type="number" id="debt-amount" class="form-control text-lg" placeholder="0.00"></div></div><div class="modal-footer"><button class="btn btn-secondary" id="btnCancelDebt">ยกเลิก</button><button class="btn btn-danger" id="btnSubmitDebt">บันทึกหนี้</button></div></div></div>
 <div id="rename-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-header"><h3 class="font-bold">เปลี่ยนชื่อ</h3><button class="btn-ghost" id="btnCloseRename"><i class="fas fa-times"></i></button></div><div class="modal-body"><input type="hidden" id="rename-old-name"><input type="text" id="rename-new-name" class="form-control"></div><div class="modal-footer"><button class="btn btn-secondary" id="btnCancelRename">ยกเลิก</button><button class="btn btn-primary" id="btnSubmitRename">ยืนยัน</button></div></div></div>
 
 <script>
@@ -339,6 +364,7 @@ function loadFromFile(event) {
             const loaded = JSON.parse(e.target.result);
             if (loaded && ('masterPlayerList' in loaded || 'dailyData' in loaded)) {
                 state = loaded; ensureIntegrity(); syncGameIdCounter(); document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice||0;
+                document.getElementById('settingDefaultPrice').value = state.settings.shuttlecockPrice||0;
                 updateAndRender(); switchTab('daily'); Swal.fire({icon:'success',title:'โหลดข้อมูลสำเร็จ!',toast:true,position:'top-end',showConfirmButton:false,timer:2500});
             } else throw new Error('Invalid');
         } catch (err) { Swal.fire('ข้อผิดพลาด', 'ไฟล์ไม่ถูกต้องหรือชำรุด', 'error'); }
@@ -359,6 +385,13 @@ function togglePlayer(name) {
     updateAndRender();
 }
 function deletePlayer(name) {
+    // เช็คหนี้คงค้างก่อนลบ
+    let debt = 0, paid = 0;
+    state.allTransactions.forEach(t => { if(t.name === name) debt += t.totalCost; });
+    state.allPayments.forEach(p => { if(p.name === name) paid += p.amount; });
+    if (debt - paid > 0.01) return Swal.fire('ลบไม่ได้!', `${name} ยังมียอดค้างชำระ ${(debt - paid).toFixed(2)} บาท<br>โปรดเคลียร์ยอดก่อนลบ`, 'error');
+    if (paid - debt > 0.01) return Swal.fire('ลบไม่ได้!', `${name} ยังมียอดเครดิตคงเหลือ ${(paid - debt).toFixed(2)} บาท<br>โปรดเคลียร์ยอดก่อนลบ`, 'error');
+
     Swal.fire({title:`ลบ ${name}?`,icon:'warning',showCancelButton:true,confirmButtonColor:'#dc2626',confirmButtonText:'ลบเลย'}).then(r=>{
         if(r.isConfirmed) {
             state.masterPlayerList = state.masterPlayerList.filter(x=>x!==name);
@@ -371,16 +404,27 @@ function deletePlayer(name) {
 function submitRename() {
     const oldN = document.getElementById('rename-old-name').value; const newN = document.getElementById('rename-new-name').value.trim();
     if(!newN || oldN===newN) { document.getElementById('rename-modal').classList.add('hidden'); return; }
+    if(state.masterPlayerList.includes(newN)) { Swal.fire('ซ้ำ!', 'ชื่อนี้มีในระบบแล้ว โปรดใช้ชื่ออื่น', 'warning'); return; }
     let idx = state.masterPlayerList.indexOf(oldN); if(idx!==-1) state.masterPlayerList[idx] = newN;
     state.allTransactions.forEach(t=>{if(t.name===oldN) t.name=newN;}); state.allPayments.forEach(t=>{if(t.name===oldN) t.name=newN;});
     Object.values(state.dailyData).forEach(d=>{ d.players.forEach(p=>{if(p.name===oldN) p.name=newN;}); d.games.forEach(g=>g.players=g.players.map(x=>x===oldN?newN:x)); });
     document.getElementById('rename-modal').classList.add('hidden'); updateAndRender();
 }
 
+function togglePlayerPaidStatus(playerName) {
+    const dd = getCurrentDailyData();
+    let player = dd.players.find(x => x.name === playerName);
+    if (!player) {
+        player = { name: playerName, paid: false, present: true };
+        dd.players.push(player);
+    }
+    player.paid = !player.paid; updateAndRender();
+}
+
 // --- S PEN SMART BOARD (V4) ---
 function openPenInputModal() {
     document.getElementById('pen-input-modal').classList.remove('hidden');
-    ['penP1','penP2','penP3','penP4'].forEach(id=>{ document.getElementById(id).value=''; document.getElementById(id).className='court-input'; });
+    ['penP1','penP2','penP3','penP4'].forEach(id=>{ const el=document.getElementById(id); el.value=''; el.dataset.confirmed=''; el.className='court-input'; });
     document.querySelectorAll('.ball-btn').forEach(b=>b.classList.remove('active')); currentPenMatchedBalls=[]; focusedFieldId='penP1';
     document.getElementById('penReviewSection').classList.add('hidden'); document.getElementById('penQuickPad').classList.add('hidden'); document.getElementById('btnConfirmPenInput').classList.add('hidden');
     
@@ -388,7 +432,7 @@ function openPenInputModal() {
     if(badge) badge.innerHTML = (dd.games.length>0 && dd.games[dd.games.length-1].shuttlecockSpeeds) ? `ลูกล่าสุด: <b>${dd.games[dd.games.length-1].shuttlecockSpeeds.join(', ')}</b>` : 'ยังไม่มีเกม';
 }
 function closePenInputModal() { document.getElementById('pen-input-modal').classList.add('hidden'); }
-function clearPenField(id) { document.getElementById(id).value=''; document.getElementById(id).className='court-input'; document.getElementById(id).focus(); focusedFieldId=id; scanPenInput(); }
+function clearPenField(id) { const el=document.getElementById(id); el.value=''; el.dataset.confirmed=''; el.className='court-input'; el.focus(); focusedFieldId=id; scanPenInput(); }
 function toggleBallBtn(btn, num) {
     btn.classList.toggle('active'); if(btn.classList.contains('active')) currentPenMatchedBalls.push(num); else currentPenMatchedBalls = currentPenMatchedBalls.filter(b=>b!==num);
     currentPenMatchedBalls.sort((a,b)=>a-b); scanPenInput();
@@ -410,10 +454,12 @@ function scanPenInput() {
 
     fields.forEach((id, i) => {
         let v = vals[i]; const el = document.getElementById(id);
-        if(!v) { el.className='court-input'; return; }
+        if(!v) { el.className='court-input'; el.dataset.confirmed=''; return; }
         
         let exact = state.masterPlayerList.find(m=>m.toLowerCase()===v.toLowerCase());
-        if(exact) { status[i]='green'; fNames[i]=exact; el.value=exact; return; }
+        let exactShort = exact ? (exact.includes(': ')?exact.split(': ')[1].toLowerCase():exact.toLowerCase()) : '';
+        let isAmbiguous = (v.toLowerCase() === exactShort) && (aliasMap.filter(m => m.short === exactShort).length > 1);
+        if(exact && (!isAmbiguous || el.dataset.confirmed === '1')) { status[i]='green'; fNames[i]=exact; el.value=exact; return; }
 
         let t = v.toLowerCase(); if(autoMap[t]) t=autoMap[t].toLowerCase();
         let matches = [];
@@ -460,7 +506,7 @@ function renderQuickPad(status) {
     }).join('');
 }
 function selectPad(name, targetId) {
-    document.getElementById(targetId).value = name; scanPenInput();
+    document.getElementById(targetId).value = name; document.getElementById(targetId).dataset.confirmed = '1'; scanPenInput();
     let fields = ['penP1','penP2','penP3','penP4']; let nIdx = (fields.indexOf(targetId)+1)%4; let c=0;
     while(document.getElementById(fields[nIdx]).value!=='' && c<4) { nIdx=(nIdx+1)%4; c++; }
     focusedFieldId = fields[nIdx]; document.getElementById(focusedFieldId).focus(); scanPenInput();
@@ -481,12 +527,21 @@ function confirmPenData() {
 
 // --- VOICE COMMAND (Smart) ---
 function startVoiceCommand() {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if(!SR) { Swal.fire('ไม่รองรับ','โปรดใช้ Chrome','error'); return; }
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if(!SR) { Swal.fire('ไม่รองรับ','เบราว์เซอร์นี้ไม่รองรับระบบเสียง โปรดใช้ Chrome หรือ Safari เวอร์ชั่นล่าสุด','error'); return; }
     const rec = new SR(); rec.lang = 'th-TH'; rec.interimResults = false; rec.maxAlternatives = 1;
-    Swal.fire({ title:'🎙️ ฟังอยู่...', html:'พูดชื่อ 4 คน <br><span class="text-xs text-gray-500">(เสร็จแล้วกด พูดจบแล้ว 👇)</span>', showConfirmButton:true, confirmButtonText:'<i class="fas fa-stop-circle"></i> พูดจบแล้ว', showCancelButton:true, allowOutsideClick:false, didOpen:()=>rec.start() }).then(r=>{ if(r.isConfirmed) rec.stop(); else if(r.isDismissed) rec.abort(); });
-    rec.onresult = e => { Swal.close(); processVoiceCommand(e.results[0][0].transcript); };
-    rec.onerror = e => { Swal.close(); if(e.error!=='aborted' && e.error!=='no-speech') Swal.fire('ผิดพลาด','ฟังไม่ถนัด ลองใหม่ครับ','warning'); };
+    
+    rec.onerror = e => { 
+        Swal.close(); 
+        if(e.error === 'not-allowed') Swal.fire('ไม่อนุญาตให้ใช้ไมค์','โปรดตรวจสอบสิทธิ์การเข้าถึงไมโครโฟนในการตั้งค่าเบราว์เซอร์ของคุณ','error');
+        else if(e.error!=='aborted' && e.error!=='no-speech') Swal.fire('ผิดพลาด','ระบบฟังเสียงขัดข้องหรือฟังไม่ถนัด ลองใหม่อีกครั้งครับ','warning'); 
+    };
     rec.onend = () => { if(Swal.isVisible() && Swal.getTitle()?.textContent==='🎙️ ฟังอยู่...') Swal.close(); };
+    rec.onresult = e => { Swal.close(); processVoiceCommand(e.results[0][0].transcript); };
+
+    try {
+        rec.start(); // ย้ายมา Start แบบ Sync เพื่อแก้บั๊ก iOS Safari บล็อกไมค์
+        Swal.fire({ title:'🎙️ ฟังอยู่...', html:'พูดชื่อคนที่ต้องการจัดลงสนาม <br><span class="text-xs text-gray-500">(ระบบจะเติมลงในช่องที่ว่างอยู่)</span>', showConfirmButton:true, confirmButtonText:'<i class="fas fa-stop-circle"></i> พูดจบแล้ว', showCancelButton:true, allowOutsideClick:false }).then(r=>{ if(r.isConfirmed) rec.stop(); else if(r.isDismissed) rec.abort(); });
+    } catch(err) { Swal.fire('ข้อผิดพลาด', 'ไม่สามารถเปิดไมค์ได้: ' + err.message, 'error'); }
 }
 function processVoiceCommand(text) {
     let aliases = []; state.masterPlayerList.forEach(n=>aliases.push(n.includes(': ')?n.split(': ')[1]:n));
@@ -495,18 +550,37 @@ function processVoiceCommand(text) {
     let found = []; let t = text;
     aliases.forEach(a=>{ let i=t.indexOf(a); while(i!==-1){ found.push({name:a, i}); t=t.substring(0,i)+' '.repeat(a.length)+t.substring(i+a.length); i=t.indexOf(a); } });
     let left = t.replace(/ทีม 1|ทีม 2|ทีมหนึ่ง|ทีมสอง|ทีมเอ|ทีมบี|คู่กับ|และ|กับ|คู่|เจอ|ปะทะ|ฝั่ง|ทาง|ครับ|ค่ะ|จ้ะ|จ้า|เอ่อ|อ่า|อืม|คือ|แบบว่า/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
-    left.forEach(w=>{ if(w.length>=2){ let idx=text.indexOf(w); found.push({name:w, i:idx!==-1?idx:999}); } });
+    
+    // แก้บั๊กหา Index ของชื่อที่ไม่รู้จักที่ซ้ำกัน
+    let searchBase = text;
+    left.forEach(w=>{ if(w.length>=2){ let idx=searchBase.indexOf(w); if(idx!==-1){ found.push({name:w, i:idx}); searchBase=searchBase.substring(0,idx)+' '.repeat(w.length)+searchBase.substring(idx+w.length); } else { found.push({name:w, i:999}); } } });
+    
     found.sort((a,b)=>a.i-b.i); let f = found.map(x=>x.name);
-    ['penP1','penP2','penP3','penP4'].forEach(id=>document.getElementById(id).value='');
-    if(f[0]) document.getElementById('penP1').value=f[0]; if(f[1]) document.getElementById('penP2').value=f[1]; if(f[2]) document.getElementById('penP3').value=f[2]; if(f[3]) document.getElementById('penP4').value=f[3];
-    scanPenInput(); Swal.fire({icon:'success',title:'จัดทีมด้วยเสียง!',text:`"${text}"`,toast:true,position:'top-end',showConfirmButton:false,timer:2500});
+    
+    // เติมชื่อลงในช่องที่ยังว่างอยู่ (ไม่ล้างของเดิมที่พิมพ์ไว้)
+    let availableFields = ['penP1','penP2','penP3','penP4'].filter(id => !document.getElementById(id).value.trim());
+    f.forEach((name, idx) => { if(availableFields[idx]) document.getElementById(availableFields[idx]).value = name; });
+    
+    scanPenInput(); 
+    
+    // ตรวจสอบว่ามีกล่องไหนติดสถานะสีเหลือง(ซ้ำ/กำกวม) หรือสีแดง(ไม่รู้จัก) หรือไม่
+    let isWarning = ['penP1','penP2','penP3','penP4'].some(id => {
+        let cls = document.getElementById(id).className;
+        return cls.includes('status-yellow') || cls.includes('status-red');
+    });
+
+    if(isWarning) {
+        Swal.fire({icon:'warning',title:'พบชื่อซ้ำหรือกำกวม!',text:`ระบบได้ยินว่า: "${text}"\nโปรดจิ้มเลือกชื่อที่ถูกต้องจากรายการด้านล่าง`,toast:true,position:'top-end',showConfirmButton:false,timer:4000});
+    } else {
+        Swal.fire({icon:'success',title:'จัดทีมด้วยเสียง!',text:`"${text}"`,toast:true,position:'top-end',showConfirmButton:false,timer:2500});
+    }
 }
 
 // --- RECORD GAME ---
 function recordGame() {
     const p = ['player1','player2','player3','player4'].map(id=>document.getElementById(id).value).filter(Boolean);
     if(new Set(p).size!==4) { Swal.fire('ผิดพลาด','เลือก 4 คนไม่ซ้ำกัน','error'); return; }
-    const pr = parseFloat(document.getElementById('shuttlecockPrice').value)||state.settings.shuttlecockPrice||0;
+    const pr = Math.max(0, parseFloat(document.getElementById('shuttlecockPrice').value)||state.settings.shuttlecockPrice||0);
     const sp = document.getElementById('shuttlecockSpeeds').value.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean);
     if(!sp.length) { Swal.fire('ผิดพลาด','ใส่เบอร์ลูก','error'); return; }
     _isDailyDirty = true; state.settings.shuttlecockPrice = pr;
@@ -515,13 +589,26 @@ function recordGame() {
 }
 
 // --- RENDER LOGIC ---
-function updateAndRender() { saveToStorage(); renderDaily(); renderAccount(); renderHistory(); }
+function syncDailyToAccount() {
+    const dd = getCurrentDailyData();
+    let det = {}; dd.players.forEach(p=>det[p.name]={cost:0});
+    dd.games.forEach(g=>{ let c=(g.shuttlecocksUsed*(g.shuttlecockPrice||0))/4; g.players.forEach(p=>{if(!det[p])det[p]={cost:0}; det[p].cost+=c;}); });
+    state.allTransactions = state.allTransactions.filter(t => t.date !== selectedDate || !t.isAutoDaily);
+    state.allPayments = state.allPayments.filter(p => p.date !== selectedDate || !p.isAutoDaily);
+    Object.keys(det).forEach(name => { if(det[name].cost > 0) state.allTransactions.push({ id: Date.now()+Math.random(), date: selectedDate, name: name, totalCost: det[name].cost, isAutoDaily: true }); });
+    dd.players.filter(p=>p.paid).forEach(p=>{ if(det[p.name] && det[p.name].cost > 0) state.allPayments.push({ id: Date.now()+Math.random(), date: selectedDate, name: p.name, amount: det[p.name].cost, isAutoDaily: true }); });
+}
+function updateAndRender() { syncDailyToAccount(); saveToStorage(); renderDaily(); renderAccount(); renderHistory(); }
 function switchTab(name) { document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden')); document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active')); document.getElementById(`tab-${name}`).classList.remove('hidden'); document.querySelector(`[data-tab="${name}"]`).classList.add('active'); }
 
 function renderDaily() {
     const dd = getCurrentDailyData();
+    const searchQuery = (document.getElementById('searchDailyPlayer').value || '').toLowerCase();
+
     // 1. Players
     let pList = [...new Set([...state.masterPlayerList, ...dd.players.map(x=>x.name)])].sort((a,b)=>a.localeCompare(b,'th'));
+    if(searchQuery) pList = pList.filter(n => n.toLowerCase().includes(searchQuery));
+    
     document.getElementById('playerList').innerHTML = pList.map(n=>{
         let isP = dd.players.find(x=>x.name===n)?.present; let col = getPlayerColor(n);
         let sh = n.includes(': ')?n.split(': ')[1]:n; let px = n.includes(': ')?n.split(': ')[0]:'';
@@ -555,29 +642,117 @@ function renderDaily() {
     }).join('');
 
     // 5. Cost Table
-    let det = {}; prs.forEach(p=>det[p.name]={n:p.name, cost:0, p:p.paid});
-    dd.games.forEach(g=>{ let c=(g.shuttlecocksUsed*(g.shuttlecockPrice||0))/4; g.players.forEach(p=>{if(!det[p])det[p]={n:p,cost:0,p:false}; det[p].cost+=c;}); });
+    let details = {}; 
+    dd.players.forEach(p => details[p.name] = { n: p.name, cost: 0, p: p.paid, games: 0, speeds: [] });
+    
+    dd.games.forEach(game => { 
+        let costPerPlayer = (game.shuttlecocksUsed * (game.shuttlecockPrice || 0)) / 4; 
+        game.players.forEach(playerName => {
+            if (!details[playerName]) {
+                details[playerName] = { n: playerName, cost: 0, p: false, games: 0, speeds: [] };
+            }
+            details[playerName].cost += costPerPlayer; 
+            details[playerName].games++; 
+            if (game.shuttlecockSpeeds) details[playerName].speeds.push(...game.shuttlecockSpeeds);
+        }); 
+    });
     let un='', pd='', grand=0;
-    Object.values(det).filter(x=>x.cost>0).sort((a,b)=>a.n.localeCompare(b.n,'th')).forEach(d=>{
-        grand+=d.cost; let row = `<tr><td>${escapeHtml(d.n)}</td><td class="text-center">${d.cost.toFixed(2)}</td><td class="text-center"><button onclick="let p=getCurrentDailyData().players.find(x=>x.name==='${escapeHtml(d.n)}'); p.paid=!p.paid; updateAndRender();" class="btn btn-sm ${d.p?'btn-secondary':'btn-warning'}">${d.p?'ยกเลิก':'จ่าย'}</button></td></tr>`;
+    Object.values(details).filter(x=>x.cost>0).sort((a,b)=>a.n.localeCompare(b.n,'th')).forEach(d=>{
+        grand+=d.cost; let statusBadge = d.p ? '<span class="text-green-600 font-bold">จ่ายแล้ว</span>' : '<span class="text-red-600 font-bold">ค้างชำระ</span>'; 
+        let spds = [...new Set(d.speeds)].join(', ') || '-';
+        let row = `<tr><td class="sticky-col">${escapeHtml(d.n)}</td><td class="text-center">${d.games}</td><td class="text-center text-xs text-gray-500">${escapeHtml(spds)}</td><td class="text-center font-bold">${d.cost.toFixed(2)}</td><td class="text-center">${statusBadge}</td><td class="text-center"><button onclick="togglePlayerPaidStatus('${escapeHtml(d.n)}')" class="btn btn-sm ${d.p?'btn-secondary':'btn-warning'}">${d.p?'ยกเลิก':'จ่าย'}</button></td></tr>`;
         if(d.p) pd+=row; else un+=row;
     });
     document.getElementById('summaryTableUnpaid').innerHTML = un; document.getElementById('summaryTablePaid').innerHTML = pd; document.getElementById('grandTotal').innerText = grand.toFixed(2);
 }
 
 function renderAccount() {
+    const searchQuery = (document.getElementById('searchAccountInput').value || '').toLowerCase();
     let sum={}; state.allTransactions.forEach(t=>{if(!sum[t.name])sum[t.name]={n:t.name,d:0,p:0}; sum[t.name].d+=t.totalCost;});
     state.allPayments.forEach(p=>{if(!sum[p.name])sum[p.name]={n:p.name,d:0,p:0}; sum[p.name].p+=p.amount;});
     let un='', cr='', pf='', tu=0, tc=0;
     Object.values(sum).forEach(x=>{
-        let b=x.d-x.p; if(b>0.01){ tu+=b; un+=`<div class="p-2 border rounded flex justify-between"><span>${x.n}</span><span class="text-red-600 font-bold">ค้าง ${b.toFixed(2)}</span></div>`; }
-        else if(b<-0.01){ tc-=b; cr+=`<div class="p-2 border rounded flex justify-between"><span>${x.n}</span><span class="text-blue-600 font-bold">เครดิต ${(-b).toFixed(2)}</span></div>`; }
+        if (searchQuery && !x.n.toLowerCase().includes(searchQuery)) return;
+        let b=x.d-x.p; if(b>0.01){ tu+=b; un+=`<div class="p-2 border rounded flex justify-between items-center"><span>${x.n}</span><div><span class="text-red-600 font-bold mr-2">ค้าง ${b.toFixed(2)}</span><button class="btn btn-sm btn-success" onclick="openPaymentModal('${escapeHtml(x.n)}')">จ่าย</button></div></div>`; }
+        else if(b<-0.01){ tc-=b; cr+=`<div class="p-2 border rounded flex justify-between items-center"><span>${x.n}</span><span class="text-blue-600 font-bold">เครดิต ${(-b).toFixed(2)}</span></div>`; }
+        else { pf+=`<div class="p-2 border rounded flex justify-between"><span>${x.n}</span><span class="text-green-600 font-bold">ไม่มีค้างชำระ</span></div>`; }
     });
     document.getElementById('unpaid-list-overall').innerHTML=un; document.getElementById('credit-list-overall').innerHTML=cr;
+    document.getElementById('paid-in-full-list-overall').innerHTML=pf;
     document.getElementById('total-unpaid-overall').innerText='฿'+tu.toFixed(2); document.getElementById('total-credit-overall').innerText='฿'+tc.toFixed(2);
 }
 
-function renderHistory() { document.getElementById('overall-summary-content').innerHTML=`<div class="p-3 bg-gray-50 border rounded text-center text-gray-500">ระบบประวัติพร้อมใช้งาน</div>`; }
+function renderHistory() { 
+    let start = document.getElementById('summaryStartDate').value;
+    let end = document.getElementById('summaryEndDate').value;
+    let h = [...state.allTransactions.map(t=>({...t, type:'เกม'})), ...state.allPayments.map(p=>({...p, type:'ชำระเงิน'}))];
+    if(start) h = h.filter(x=>x.date>=start);
+    if(end) h = h.filter(x=>x.date<=end);
+    h.sort((a,b)=>new Date(b.date) - new Date(a.date));
+    if(!h.length) { document.getElementById('overall-summary-content').innerHTML=`<div class="p-3 bg-gray-50 border rounded text-center text-gray-500">ไม่มีข้อมูลประวัติในช่วงเวลานี้</div>`; return; }
+    document.getElementById('overall-summary-content').innerHTML = `<div class="overflow-x-auto"><table class="data-table"><thead><tr><th>วันที่</th><th>ประเภท</th><th>ชื่อ</th><th class="text-right">ยอดเงิน (฿)</th></tr></thead><tbody>` + 
+        h.map(x=>`<tr><td>${x.date}</td><td><span class="font-bold ${x.type==='ชำระเงิน'?'text-green-600':'text-red-600'}">${x.type}</span></td><td>${escapeHtml(x.name)}</td><td class="text-right font-bold ${x.type==='ชำระเงิน'?'text-green-600':'text-red-600'}">${(x.totalCost||x.amount).toFixed(2)}</td></tr>`).join('') +
+        `</tbody></table></div>`;
+}
+
+// --- ACTIONS & EXPORT ---
+function exportGamesImg() {
+    const el = document.getElementById('gamesList');
+    if(!el.innerHTML.trim()) return Swal.fire('ไม่มีข้อมูล', 'ไม่มีเกมให้ส่งออก', 'info');
+    html2canvas(el, {scale: 2, backgroundColor: '#f8fafc', scrollX: 0, scrollY: -window.scrollY, windowWidth: document.documentElement.offsetWidth}).then(canvas => {
+        const link = document.createElement('a'); link.download = `games-${selectedDate}.png`; link.href = canvas.toDataURL('image/png'); link.click();
+    });
+}
+function exportSummaryImg() {
+    const el = document.getElementById('summaryTable');
+    if(!el.innerText.trim()) return Swal.fire('ไม่มีข้อมูล', 'ไม่มีข้อมูลให้ส่งออก', 'info');
+    html2canvas(el, {scale: 2, backgroundColor: '#ffffff', scrollX: 0, scrollY: -window.scrollY, windowWidth: document.documentElement.offsetWidth}).then(canvas => {
+        const link = document.createElement('a'); link.download = `summary-${selectedDate}.png`; link.href = canvas.toDataURL('image/png'); link.click();
+    });
+}
+function exportAccountImg() {
+    const el = document.getElementById('accountExportArea');
+    html2canvas(el, {scale: 2, backgroundColor: '#ffffff', scrollX: 0, scrollY: -window.scrollY, windowWidth: document.documentElement.offsetWidth}).then(canvas => {
+        const link = document.createElement('a'); link.download = `account-${getTodayString()}.png`; link.href = canvas.toDataURL('image/png'); link.click();
+    });
+}
+function confirmSaveToAccount() {
+    updateAndRender(); Swal.fire('สำเร็จ','ระบบทำการบันทึกและซิงก์ข้อมูลบัญชีให้เรียบร้อยแล้ว','success');
+}
+function exportAccountText() {
+    let sum={}; state.allTransactions.forEach(t=>{if(!sum[t.name])sum[t.name]={n:t.name,d:0,p:0}; sum[t.name].d+=t.totalCost;});
+    state.allPayments.forEach(p=>{if(!sum[p.name])sum[p.name]={n:p.name,d:0,p:0}; sum[p.name].p+=p.amount;});
+    let txt = 'สรุปยอดค้างชำระแบดมินตัน\n\n'; Object.values(sum).forEach(x=>{ let b=x.d-x.p; if(b>0.01) txt += `${x.n}: ${b.toFixed(2)} บาท\n`; });
+    if(txt === 'สรุปยอดค้างชำระแบดมินตัน\n\n') txt += 'ไม่มีผู้ค้างชำระ';
+    navigator.clipboard.writeText(txt).then(()=>Swal.fire({icon:'success', title:'คัดลอกลง Clipboard แล้ว', text:'สามารถนำไปวางใน LINE ได้เลย'}));
+}
+function payAllUnpaid() {
+    Swal.fire({title:'ชำระทั้งหมด?', text:'บันทึกว่าทุกคนชำระเงินค้างจ่ายครบแล้ว', icon:'question', showCancelButton:true}).then(r=>{
+        if(r.isConfirmed) {
+            let sum={}; state.allTransactions.forEach(t=>{if(!sum[t.name])sum[t.name]={n:t.name,d:0,p:0}; sum[t.name].d+=t.totalCost;});
+            state.allPayments.forEach(p=>{if(!sum[p.name])sum[p.name]={n:p.name,d:0,p:0}; sum[p.name].p+=p.amount;});
+            Object.values(sum).forEach(x=>{ let b=x.d-x.p; if(b>0.01) state.allPayments.push({ id: Date.now()+Math.random(), date: getTodayString(), name: x.n, amount: b }); });
+            updateAndRender(); Swal.fire('สำเร็จ','ชำระทั้งหมดเรียบร้อย','success');
+        }
+    });
+}
+
+// --- MODAL PAYMENT ---
+function openPaymentModal(name) {
+    document.getElementById('payment-name').innerText = `ชำระเงินของ: ${name}`;
+    document.getElementById('payment-hidden-name').value = name;
+    document.getElementById('payment-amount').value = '';
+    document.getElementById('payment-modal').classList.remove('hidden');
+}
+function submitPayment() {
+    const name = document.getElementById('payment-hidden-name').value;
+    const amt = parseFloat(document.getElementById('payment-amount').value);
+    if(!name || isNaN(amt) || amt<=0) return;
+    state.allPayments.push({ id: Date.now(), date: getTodayString(), name: name, amount: amt });
+    document.getElementById('payment-modal').classList.add('hidden');
+    updateAndRender();
+    Swal.fire({icon:'success', title:'บันทึกชำระเงินแล้ว', toast:true, position:'top-end', timer:1500, showConfirmButton:false});
+}
 
 function bindEvents() {
     document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
@@ -588,14 +763,74 @@ function bindEvents() {
     document.getElementById('btnCancelPenInput').addEventListener('click',closePenInputModal);
     document.getElementById('btnScanPen').addEventListener('click',scanPenInput);
     document.getElementById('btnConfirmPenInput').addEventListener('click',confirmPenData);
-    ['penP1','penP2','penP3','penP4'].forEach(id=>{ const el=document.getElementById(id); el.addEventListener('focus',e=>focusedFieldId=e.target.id); el.addEventListener('change',scanPenInput); });
+    ['penP1','penP2','penP3','penP4'].forEach(id=>{ const el=document.getElementById(id); el.addEventListener('focus',e=>focusedFieldId=e.target.id); el.addEventListener('input',e=>e.target.dataset.confirmed=''); el.addEventListener('change',scanPenInput); });
     document.getElementById('btnVoiceCommand').addEventListener('click',startVoiceCommand);
     document.getElementById('btnSave').addEventListener('click',saveToFile);
     document.getElementById('loadFile').addEventListener('change',loadFromFile);
     document.getElementById('btnUseLastTeam').addEventListener('click',()=>{ const dd=getCurrentDailyData(); if(dd.games.length){ let p=dd.games[dd.games.length-1].players; ['player1','player2','player3','player4'].forEach((id,i)=>currentGameSelection[id]=p[i]); updateAndRender(); }});
+
+    document.getElementById('workingDate').addEventListener('change', (e) => { 
+        if(!e.target.value) { e.target.value = getTodayString(); } 
+        selectedDate = e.target.value; 
+        updateAndRender(); 
+    });
+    
+    document.getElementById('searchDailyPlayer').addEventListener('input', renderDaily);
+    document.getElementById('searchAccountInput').addEventListener('input', renderAccount);
+
+    document.getElementById('btnSubmitRename').addEventListener('click', submitRename);
+    document.getElementById('btnCloseRename').addEventListener('click', () => document.getElementById('rename-modal').classList.add('hidden'));
+    document.getElementById('btnCancelRename').addEventListener('click', () => document.getElementById('rename-modal').classList.add('hidden'));
+    
+    document.getElementById('btnClosePayment').addEventListener('click', () => document.getElementById('payment-modal').classList.add('hidden'));
+    document.getElementById('btnCancelPayment').addEventListener('click', () => document.getElementById('payment-modal').classList.add('hidden'));
+    document.getElementById('btnSubmitPayment').addEventListener('click', submitPayment);
+
+    document.getElementById('btnClearTodayPlayers').addEventListener('click', () => { Swal.fire({title:'ล้างรายชื่อวันนี้?', icon:'warning', showCancelButton:true}).then(r=>{if(r.isConfirmed){ getCurrentDailyData().players=[]; updateAndRender(); }}) });
+    document.getElementById('btnClearAllPlayers').addEventListener('click', () => { Swal.fire({title:'ล้างรายชื่อทั้งหมด?', text:'ล้างผู้เล่นในระบบทั้งหมด', icon:'warning', showCancelButton:true}).then(r=>{if(r.isConfirmed){ state.masterPlayerList=[]; Object.values(state.dailyData).forEach(d=>d.players=[]); updateAndRender(); }}) });
+    document.getElementById('btnClearToday').addEventListener('click', () => { Swal.fire({title:'ล้างข้อมูลวันนี้?', text:'เกมและรายชื่อวันนี้จะหายไป', icon:'warning', showCancelButton:true}).then(r=>{if(r.isConfirmed){ state.dailyData[selectedDate]={players:[],games:[]}; updateAndRender(); }}) });
+    document.getElementById('btnConfirmSave').addEventListener('click', confirmSaveToAccount);
+    document.getElementById('btnExportGamesImg').addEventListener('click', exportGamesImg);
+    document.getElementById('btnExportSummaryImg').addEventListener('click', exportSummaryImg);
+    
+    document.getElementById('btnExportAccountImg').addEventListener('click', exportAccountImg);
+    document.getElementById('btnAddDebt').addEventListener('click', () => {
+        document.getElementById('debt-name').value = ''; document.getElementById('debt-amount').value = '';
+        document.getElementById('debt-player-list').innerHTML = state.masterPlayerList.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+        document.getElementById('debt-modal').classList.remove('hidden');
+    });
+    document.getElementById('btnCloseDebt').addEventListener('click', () => document.getElementById('debt-modal').classList.add('hidden'));
+    document.getElementById('btnCancelDebt').addEventListener('click', () => document.getElementById('debt-modal').classList.add('hidden'));
+    document.getElementById('btnSubmitDebt').addEventListener('click', () => {
+        const name = document.getElementById('debt-name').value.trim(); const amt = parseFloat(document.getElementById('debt-amount').value);
+        if(!name || isNaN(amt) || amt<=0) return;
+        if(!state.masterPlayerList.includes(name)) state.masterPlayerList.push(name);
+        state.allTransactions.push({ id: Date.now(), date: getTodayString(), name: name, totalCost: amt, isAutoDaily: false });
+        document.getElementById('debt-modal').classList.add('hidden'); updateAndRender();
+        Swal.fire({icon:'success', title:'ตั้งหนี้สำเร็จ', toast:true, position:'top-end', timer:1500, showConfirmButton:false});
+    });
+
+    document.getElementById('btnExportAccountText').addEventListener('click', exportAccountText);
+    document.getElementById('btnPayAllUnpaid').addEventListener('click', payAllUnpaid);
+    document.getElementById('btnFilterHistory').addEventListener('click', renderHistory);
+
+    document.getElementById('settingDefaultPrice').addEventListener('change', (e) => {
+        state.settings.shuttlecockPrice = parseFloat(e.target.value) || 0;
+        document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice;
+        saveToStorage(); Swal.fire({icon:'success', title:'บันทึกการตั้งค่าแล้ว', toast:true, position:'top-end', showConfirmButton:false, timer:1500});
+    });
+    document.getElementById('btnFactoryReset').addEventListener('click', () => {
+        Swal.fire({title:'ล้างข้อมูลทั้งหมด?', text:'ข้อมูลผู้เล่น เกม และประวัติบัญชีทั้งหมดจะหายไป ไม่สามารถกู้คืนได้!', icon:'error', showCancelButton:true, confirmButtonColor:'#dc2626', confirmButtonText:'ล้างข้อมูลเลย'}).then(r=>{
+            if(r.isConfirmed){
+                state = createDefaultState(); updateAndRender();
+                document.getElementById('shuttlecockPrice').value = 0; document.getElementById('settingDefaultPrice').value = 0;
+                Swal.fire('ล้างข้อมูลสำเร็จ', 'ระบบกลับคืนสู่ค่าเริ่มต้น', 'success');
+            }
+        });
+    });
 }
 
-document.addEventListener('DOMContentLoaded', () => { bindEvents(); loadFromStorage(); ensureIntegrity(); document.getElementById('workingDate').value = selectedDate; document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice||0; updateAndRender(); });
+document.addEventListener('DOMContentLoaded', () => { bindEvents(); loadFromStorage(); ensureIntegrity(); document.getElementById('workingDate').value = selectedDate; document.getElementById('shuttlecockPrice').value = state.settings.shuttlecockPrice||0; document.getElementById('settingDefaultPrice').value = state.settings.shuttlecockPrice||0; updateAndRender(); });
 </script>
 </body>
 </html>
